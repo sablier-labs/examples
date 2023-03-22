@@ -27,7 +27,7 @@ contract LinearStreamCreator {
         params.recipient = address(0xcafe); // The recipient of the streamed assets
         params.totalAmount = amount; // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset is DAI
-        params.cancelable = false; // Whether the stream will be cancelable or not
+        params.cancelable = true; // Whether the stream will be cancelable or not
         params.durations = LockupLinear.Durations({
             cliff: 4 weeks, // Assets will be unlocked only after 4 weeks
             total: 52 weeks // Setting a total duration of ~1 year

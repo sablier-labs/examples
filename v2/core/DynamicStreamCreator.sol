@@ -38,7 +38,7 @@ contract DynamicStreamCreator {
         params.recipient = address(0xcafe); // The recipient of the streamed assets
         params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset is DAI
-        params.cancelable = false; // Whether the stream will be cancelable or not
+        params.cancelable = true; // Whether the stream will be cancelable or not
         params.startTime = block.timestamp + 100 seconds;
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
