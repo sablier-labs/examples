@@ -14,7 +14,7 @@ contract LinearStreamCreator {
         sablier = sablier_;
     }
 
-    function createLinearStream(uint256 totalAmount) external returns (uint256 streamId) {
+    function createLinearStream(uint256 totalAmount) public returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 

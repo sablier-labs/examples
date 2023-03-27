@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.13;
 
-import { ISablierV2LockupDynamic } from "@sablier/v2-core/interfaces/ISablierV2LockupDynamic.sol";
-import { Broker, LockupDynamic } from "@sablier/v2-core/types/DataTypes.sol";
-import { ud2x18, ud60x18 } from "@sablier/v2-core/types/Math.sol";
-import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
+import {ISablierV2LockupDynamic} from "@sablier/v2-core/interfaces/ISablierV2LockupDynamic.sol";
+import {Broker, LockupDynamic} from "@sablier/v2-core/types/DataTypes.sol";
+import {ud2x18, ud60x18} from "@sablier/v2-core/types/Math.sol";
+import {IERC20} from "@sablier/v2-core/types/Tokens.sol";
 
 contract DynamicStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
@@ -14,7 +14,7 @@ contract DynamicStreamCreator {
         sablier = sablier_;
     }
 
-    function createDynamicStream(uint256 amount0, uint256 amount1) external returns (uint256 streamId) {
+    function createDynamicStream(uint256 amount0, uint256 amount1) public returns (uint256 streamId) {
         // Sum up the segment amounts
         uint256 totalAmount = amount0 + amount1;
 
@@ -38,10 +38,10 @@ contract DynamicStreamCreator {
 
         // Declare some dummy segments
         params.segments.push(
-            LockupDynamic.Segment({ amount: amount0, exponent: ud2x18(3.14e18), milestone: block.timestamp + 4 weeks })
+            LockupDynamic.Segment({amount: amount0, exponent: ud2x18(3.14e18), milestone: block.timestamp + 4 weeks})
         );
         params.segments.push(
-            LockupDynamic.Segment({ amount: amount1, exponent: ud2x18(0.5e18), milestone: block.timestamp + 2 years })
+            LockupDynamic.Segment({amount: amount1, exponent: ud2x18(0.5e18), milestone: block.timestamp + 2 years})
         );
 
         // Create the Sablier stream
