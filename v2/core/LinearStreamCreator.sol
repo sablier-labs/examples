@@ -14,18 +14,20 @@ contract LinearStreamCreator {
         sablier = sablier_;
     }
 
-    function createLinearStream(uint256 amount) external returns (uint256 streamId) {
+    function createLinearStream(uint256 totalAmount) external returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract
-        DAI.transferFrom(msg.sender, address(this), amount);
+        DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(sablier), amount);
+        DAI.approve(address(sablier), totalAmount);
 
-        // Prepare the parameters
+        // Declare the params struct
         LockupLinear.CreateWithDurations memory params;
+
+        // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
         params.recipient = address(0xcafe); // The recipient of the streamed assets
-        params.totalAmount = amount; // Total amount is the amount inclusive of all fees
+        params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset is DAI
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.durations = LockupLinear.Durations({
@@ -34,7 +36,7 @@ contract LinearStreamCreator {
          });
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Create the sablier stream using a function that sets the start time to `block.timestamp`
+        // Create the Sablier stream using a function that sets the start time to `block.timestamp`
         streamId = sablier.createWithDurations(params);
     }
 }
