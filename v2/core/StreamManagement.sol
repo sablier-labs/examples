@@ -26,7 +26,12 @@ contract StreamManagement {
     }
 
     // This function can be called by the recipient or an approved NFT operator
-    function transfer(uint256 streamId) external {
+    function safeTransferFrom(uint256 streamId) external {
+        sablier.safeTransferFrom({ from: address(this), to: address(0xcafe), tokenId: streamId });
+    }
+
+    // This function can be called by the recipient or an approved NFT operator
+    function transferFrom(uint256 streamId) external {
         sablier.transferFrom({ from: address(this), to: address(0xcafe), tokenId: streamId });
     }
 
