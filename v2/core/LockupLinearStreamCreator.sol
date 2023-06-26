@@ -6,7 +6,7 @@ import { Broker, LockupLinear } from "@sablier/v2-core/types/DataTypes.sol";
 import { ud60x18 } from "@sablier/v2-core/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
 
-contract LinearStreamCreator {
+contract LockupLinearStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     ISablierV2LockupLinear public immutable sablier;
 
@@ -14,7 +14,7 @@ contract LinearStreamCreator {
         sablier = sablier_;
     }
 
-    function createLinearStream(uint256 totalAmount) public returns (uint256 streamId) {
+    function createLockupLinearStream(uint256 totalAmount) public returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
