@@ -37,11 +37,12 @@ contract LockupDynamicStreamCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
-        params.segments.push(
-            LockupDynamic.Segment({ amount: amount0, exponent: ud2x18(3.14e18), milestone: block.timestamp + 4 weeks })
+        params.segments = new LockupDynamic.Segment[](2);
+        params.segments[0](
+            LockupDynamic.Segment({ amount: amount0, exponent: ud2x18(1e18), milestone: block.timestamp + 4 weeks })
         );
-        params.segments.push(
-            LockupDynamic.Segment({ amount: amount1, exponent: ud2x18(0.5e18), milestone: block.timestamp + 2 years })
+        params.segments[1](
+            LockupDynamic.Segment({ amount: amount1, exponent: ud2x18(3.14e18), milestone: block.timestamp + 52 weeks })
         );
 
         // Create the Sablier stream

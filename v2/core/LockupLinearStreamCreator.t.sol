@@ -4,7 +4,7 @@ pragma solidity >=0.8.13;
 import { ISablierV2LockupLinear } from "@sablier/v2-core/interfaces/ISablierV2LockupLinear.sol";
 import { Test } from "forge-std/Test.sol";
 
-import { LockupLinearStreamCreator } from "./LinearStreamCreator.sol";
+import { LockupLinearStreamCreator } from "./LockupLinearStreamCreator.sol";
 
 contract LockupLinearStreamCreatorTest is Test {
     // Get the latest deployment address from the docs
