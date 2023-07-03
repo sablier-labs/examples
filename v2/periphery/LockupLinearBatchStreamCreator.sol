@@ -2,6 +2,8 @@
 pragma solidity >=0.8.13;
 
 import { IAllowanceTransfer } from "@permit2/interfaces/IAllowanceTransfer.sol";
+import { IPRBProxy } from "@prb/proxy/interfaces/IPRBProxy.sol";
+import { IPRBProxyRegistry } from "@prb/proxy/interfaces/IPRBProxyRegistry.sol";
 import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
 import { Batch, Broker, LockupLinear, Permit2Params } from "@sablier/v2-periphery/types/DataTypes.sol";
 import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol";
