@@ -28,7 +28,7 @@ contract LockupLinearBatchCreateTest is Test {
         sablierTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
 
         // Deploy the stream creator
-        creator = new LockupLinearBatchCreate(sablier, sablierTarget);
+        creator = new LockupLinearBatchStreamCreator(sablier, sablierTarget);
 
         // Mint some DAI tokens to the creator contract using the `deal` cheatcode
         deal({ token: address(creator.DAI()), to: address(creator), give: 1337e18 });
