@@ -38,11 +38,17 @@ contract LockupDynamicStreamCreator {
 
         // Declare some dummy segments
         params.segments = new LockupDynamic.Segment[](2);
-        params.segments[0](
-            LockupDynamic.Segment({ amount: amount0, exponent: ud2x18(1e18), milestone: block.timestamp + 4 weeks })
-        );
-        params.segments[1](
-            LockupDynamic.Segment({ amount: amount1, exponent: ud2x18(3.14e18), milestone: block.timestamp + 52 weeks })
+        params.segments[0] = LockupDynamic.Segment({
+            amount: uint128(amount0),
+            exponent: ud2x18(1e18),
+            milestone: uint40(block.timestamp + 4 weeks)
+        });
+        params.segments[1] = (
+            LockupDynamic.Segment({
+                amount: uint128(amount1),
+                exponent: ud2x18(3.14e18),
+                milestone: uint40(block.timestamp + 52 weeks)
+            })
         );
 
         // Create the Sablier stream

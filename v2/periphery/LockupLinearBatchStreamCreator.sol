@@ -4,12 +4,12 @@ pragma solidity >=0.8.13;
 import { IAllowanceTransfer } from "@permit2/interfaces/IAllowanceTransfer.sol";
 import { IPRBProxy } from "@prb/proxy/interfaces/IPRBProxy.sol";
 import { IPRBProxyRegistry } from "@prb/proxy/interfaces/IPRBProxyRegistry.sol";
-import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
-import { Batch, Broker, LockupLinear, Permit2Params } from "@sablier/v2-periphery/types/DataTypes.sol";
-import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol";
 import { ISablierV2LockupLinear } from "@sablier/v2-core/interfaces/ISablierV2LockupLinear.sol";
 import { ud60x18 } from "@sablier/v2-core/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
+import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
+import { Batch, Broker, LockupLinear, Permit2Params } from "@sablier/v2-periphery/types/DataTypes.sol";
+import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol";
 
 contract LockupLinearBatchStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
@@ -48,7 +48,6 @@ contract LockupLinearBatchStreamCreator {
         permitDetails.token = address(DAI);
         permitDetails.amount = uint160(transferAmount);
         permitDetails.expiration = type(uint48).max; // maximum expiration possible
-        //
         (,, permitDetails.nonce) =
             PERMIT2.allowance({ user: address(this), token: address(DAI), spender: address(proxy) });
 
@@ -79,6 +78,7 @@ contract LockupLinearBatchStreamCreator {
         bytes memory data = abi.encodeCall(
             sablierProxyTarget.batchCreateWithDurations, (sablierLockupLinear, DAI, batch, permit2Params)
         );
+
         // Create multiple streams via the proxy
         bytes memory response = proxy.execute(address(sablierProxyTarget), data);
         streamIds = abi.decode(response, (uint256[]));
