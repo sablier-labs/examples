@@ -4,12 +4,12 @@ pragma solidity >=0.8.13;
 import { IAllowanceTransfer } from "@permit2/interfaces/IAllowanceTransfer.sol";
 import { IPRBProxy } from "@prb/proxy/interfaces/IPRBProxy.sol";
 import { IPRBProxyRegistry } from "@prb/proxy/interfaces/IPRBProxyRegistry.sol";
-import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
-import { Batch, Broker, LockupDynamic, Permit2Params } from "@sablier/v2-periphery/types/DataTypes.sol";
-import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol";
 import { ISablierV2LockupDynamic } from "@sablier/v2-core/interfaces/ISablierV2LockupDynamic.sol";
 import { ud2x18, ud60x18 } from "@sablier/v2-core/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
+import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
+import { Batch, Broker, LockupDynamic, Permit2Params } from "@sablier/v2-periphery/types/DataTypes.sol";
+import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol";
 
 contract LockupDynamicBatchStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
@@ -66,15 +66,18 @@ contract LockupDynamicBatchStreamCreator {
         batchSingle.recipient = address(0xcafe); // The recipient of the streamed assets
         batchSingle.cancelable = true; // Whether the stream will be cancelable or not
         batchSingle.segments = new LockupDynamic.Segment[](2);
+        batchSingle.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
         // Declare some dummy segments
         batchSingle.segments[0] =
             LockupDynamic.Segment({ amount: 0, exponent: ud2x18(1e18), milestone: uint40(block.timestamp + 4 weeks) });
-        batchSingle.segments[1] = LockupDynamic.Segment({
-            amount: perStreamAmount,
-            exponent: ud2x18(3.14e18),
-            milestone: uint40(block.timestamp + 52 weeks)
-        });
-        batchSingle.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        batchSingle.segments[1] = (
+            LockupDynamic.Segment({
+                amount: uint128(perStreamAmount),
+                exponent: ud2x18(3.14e18),
+                milestone: uint40(block.timestamp + 52 weeks)
+            })
+        );
 
         // Fill the batch param
         Batch.CreateWithMilestones[] memory batch = BatchBuilder.fillBatch(batchSingle, batchSize);
@@ -83,6 +86,7 @@ contract LockupDynamicBatchStreamCreator {
         bytes memory data = abi.encodeCall(
             sablierProxyTarget.batchCreateWithMilestones, (sablierLockupDynamic, DAI, batch, permit2Params)
         );
+
         // Create multiple streams via the proxy
         bytes memory response = proxy.execute(address(sablierProxyTarget), data);
         streamIds = abi.decode(response, (uint256[]));
