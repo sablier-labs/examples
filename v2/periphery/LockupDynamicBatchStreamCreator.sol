@@ -38,6 +38,9 @@ contract LockupDynamicBatchStreamCreator {
 
         uint256 transferAmount = perStreamAmount * batchSize;
 
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), transferAmount);
+
         // Approve the Permit2 contract to spend DAI
         uint256 allowance = DAI.allowance(address(this), address(PERMIT2));
         if (allowance < transferAmount) {
@@ -65,10 +68,10 @@ contract LockupDynamicBatchStreamCreator {
         batchSingle.sender = address(proxy); // The sender will be able to cancel the stream
         batchSingle.recipient = address(0xcafe); // The recipient of the streamed assets
         batchSingle.cancelable = true; // Whether the stream will be cancelable or not
-        batchSingle.segments = new LockupDynamic.Segment[](2);
         batchSingle.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
+        batchSingle.segments = new LockupDynamic.Segment[](2);
         batchSingle.segments[0] =
             LockupDynamic.Segment({ amount: 0, exponent: ud2x18(1e18), milestone: uint40(block.timestamp + 4 weeks) });
         batchSingle.segments[1] = (
