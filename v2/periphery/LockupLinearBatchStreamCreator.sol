@@ -38,6 +38,9 @@ contract LockupLinearBatchStreamCreator {
 
         uint256 transferAmount = perStreamAmount * batchSize;
 
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), transferAmount);
+
         // Approve the Permit2 contract to spend DAI
         uint256 allowance = DAI.allowance(address(this), address(PERMIT2));
         if (allowance < transferAmount) {
