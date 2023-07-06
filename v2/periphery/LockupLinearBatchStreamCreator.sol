@@ -14,13 +14,13 @@ import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol"
 contract LockupLinearBatchStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     IAllowanceTransfer public constant PERMIT2 = IAllowanceTransfer(0x000000000022D473030F116dDEE9F6B43aC78BA3);
-    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x33e200B5fb5e0C57d370d5202c26A35d07A46B98);
+    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
     ISablierV2LockupLinear public immutable sablierLockupLinear;
-    ISablierV2ProxyTarget public immutable sablierProxyTarget;
+    ISablierV2ProxyTarget public immutable proxyTarget;
 
-    constructor(ISablierV2LockupLinear sablierLockupLinear_, ISablierV2ProxyTarget sablierProxyTarget_) {
+    constructor(ISablierV2LockupLinear sablierLockupLinear_, ISablierV2ProxyTarget proxyTarget_) {
         sablierLockupLinear = sablierLockupLinear_;
-        sablierProxyTarget = sablierProxyTarget_;
+        proxyTarget = proxyTarget_;
     }
 
     function batchCreateLockupLinearStream(
@@ -36,6 +36,7 @@ contract LockupLinearBatchStreamCreator {
             proxy = PROXY_REGISTRY.deployFor(address(this)); // Deploy the proxy if it doesn't exist
         }
 
+        // Calculate the amount of DAI assets to transfer to this contract
         uint256 transferAmount = perStreamAmount * batchSize;
 
         // Transfer the provided amount of DAI tokens to this contract
@@ -47,6 +48,7 @@ contract LockupLinearBatchStreamCreator {
             DAI.approve({ spender: address(PERMIT2), amount: type(uint256).max });
         }
 
+        // See the full documentation at https://github.com/Uniswap/permit2
         IAllowanceTransfer.PermitDetails memory permitDetails;
         permitDetails.token = address(DAI);
         permitDetails.amount = uint160(transferAmount);
@@ -58,7 +60,7 @@ contract LockupLinearBatchStreamCreator {
         permitSingle.details = permitDetails;
         permitSingle.sigDeadline = type(uint48).max; // same deadline as expiration
 
-        // Declare the Permit2 params
+        // Declare the Permit2 params needed by Sablier
         Permit2Params memory permit2Params;
         permit2Params.permitSingle = permitSingle;
         permit2Params.signature = signature;
@@ -77,13 +79,12 @@ contract LockupLinearBatchStreamCreator {
         // Fill the batch param
         Batch.CreateWithDurations[] memory batch = BatchBuilder.fillBatch(batchSingle, batchSize);
 
-        // Encode the data for the proxy
-        bytes memory data = abi.encodeCall(
-            sablierProxyTarget.batchCreateWithDurations, (sablierLockupLinear, DAI, batch, permit2Params)
-        );
+        // Encode the data for the proxy target call
+        bytes memory data =
+            abi.encodeCall(proxyTarget.batchCreateWithDurations, (sablierLockupLinear, DAI, batch, permit2Params));
 
-        // Create multiple streams via the proxy
-        bytes memory response = proxy.execute(address(sablierProxyTarget), data);
+        // Create a batch of streams via the proxy and Sablier's proxy target
+        bytes memory response = proxy.execute(address(proxyTarget), data);
         streamIds = abi.decode(response, (uint256[]));
     }
 }

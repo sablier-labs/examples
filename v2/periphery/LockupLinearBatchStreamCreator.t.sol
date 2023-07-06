@@ -11,13 +11,13 @@ import { LockupLinearBatchStreamCreator } from "./LockupLinearBatchStreamCreator
 contract LockupLinearBatchCreateTest is Test {
     // Get the latest deployment address from the docs
     // https://docs.sablier.com/contracts/v2/addresses
-    address internal constant SABLIER_ADDRESS = address(0xcafe);
-    address internal constant SABLIER_TARGET_ADDRESS = address(0xbeef);
+    address internal constant SABLIER_ADDRESS = address(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
+    address internal constant SABLIER_TARGET_ADDRESS = address(0x297b43aE44660cA7826ef92D8353324C018573Ef);
 
     // Test contracts
-    LockupLinearBatchCreate internal creator;
+    LockupLinearBatchStreamCreator internal creator;
     ISablierV2LockupLinear internal sablier;
-    ISablierV2ProxyTarget internal sablierTarget;
+    ISablierV2ProxyTarget internal proxyTarget;
 
     function setUp() public {
         // Fork Ethereum Mainnet
@@ -25,7 +25,7 @@ contract LockupLinearBatchCreateTest is Test {
 
         // Load the Sablier contract from Ethereum Mainnet
         sablier = ISablierV2LockupLinear(SABLIER_ADDRESS);
-        sablierTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
+        proxyTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
 
         // Deploy the stream creator
         creator = new LockupLinearBatchStreamCreator(sablier, sablierTarget);
