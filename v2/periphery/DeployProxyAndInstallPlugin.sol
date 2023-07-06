@@ -5,8 +5,8 @@ import { IPRBProxy } from "@prb/proxy/interfaces/IPRBProxy.sol";
 import { IPRBProxyRegistry } from "@prb/proxy/interfaces/IPRBProxyRegistry.sol";
 import { ISablierV2ProxyPlugin } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyPlugin.sol";
 
-contract DeployProxyAndInstallPlugin {
-    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x33e200B5fb5e0C57d370d5202c26A35d07A46B98);
+contract ProxyDeployerAndPluginInstaller {
+    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
     ISablierV2ProxyPlugin public immutable sablierProxyPlugin;
 
     constructor(ISablierV2ProxyPlugin sablierProxyPlugin_) {
