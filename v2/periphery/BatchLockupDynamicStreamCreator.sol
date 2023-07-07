@@ -66,18 +66,18 @@ contract BatchLockupDynamicStreamCreator {
         permit2Params.permitSingle = permitSingle;
         permit2Params.signature = permit2Signature;
 
-        // Declare a single batch struct
-        Batch.CreateWithMilestones memory batchSingle;
-        batchSingle.sender = address(proxy); // The sender will be able to cancel the stream
-        batchSingle.recipient = address(0xcafe); // The recipient of the streamed assets
-        batchSingle.cancelable = true; // Whether the stream will be cancelable or not
-        batchSingle.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        // Declare the first batch struct
+        Batch.CreateWithMilestones memory batchSingle0;
+        batchSingle0.sender = address(proxy); // The sender will be able to cancel the stream
+        batchSingle0.recipient = address(0xcafe); // The recipient of the streamed assets
+        batchSingle0.cancelable = true; // Whether the stream will be cancelable or not
+        batchSingle0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
-        batchSingle.segments = new LockupDynamic.Segment[](2);
-        batchSingle.segments[0] =
+        batchSingle0.segments = new LockupDynamic.Segment[](2);
+        batchSingle0.segments[0] =
             LockupDynamic.Segment({ amount: 0, exponent: ud2x18(1e18), milestone: uint40(block.timestamp + 4 weeks) });
-        batchSingle.segments[1] = (
+        batchSingle0.segments[1] = (
             LockupDynamic.Segment({
                 amount: uint128(perStreamAmount),
                 exponent: ud2x18(3.14e18),
@@ -85,10 +85,29 @@ contract BatchLockupDynamicStreamCreator {
             })
         );
 
+        // Declare the second batch struct
+        Batch.CreateWithMilestones memory batchSingle1;
+        batchSingle1.sender = address(proxy); // The sender will be able to cancel the stream
+        batchSingle1.recipient = address(0xbeef); // The recipient of the streamed assets
+        batchSingle1.cancelable = false; // Whether the stream will be cancelable or not
+        batchSingle1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare some dummy segments
+        batchSingle1.segments = new LockupDynamic.Segment[](2);
+        batchSingle1.segments[0] =
+            LockupDynamic.Segment({ amount: 0, exponent: ud2x18(1e18), milestone: uint40(block.timestamp + 1 weeks) });
+        batchSingle1.segments[1] = (
+            LockupDynamic.Segment({
+                amount: uint128(perStreamAmount),
+                exponent: ud2x18(3.14e18),
+                milestone: uint40(block.timestamp + 26 weeks)
+            })
+        );
+
         // Fill the batch param
         Batch.CreateWithMilestones[] memory batch = new Batch.CreateWithMilestones[](batchSize);
-        batch[0] = batchSingle;
-        batch[1] = batchSingle;
+        batch[0] = batchSingle0;
+        batch[1] = batchSingle1;
 
         // Encode the data for the proxy
         bytes memory data =

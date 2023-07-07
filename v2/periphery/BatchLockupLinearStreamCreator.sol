@@ -66,21 +66,32 @@ contract BatchLockupLinearStreamCreator {
         permit2Params.permitSingle = permitSingle;
         permit2Params.signature = signature;
 
-        // Declare a single batch struct
-        Batch.CreateWithDurations memory batchSingle;
-        batchSingle.sender = address(proxy); // The sender will be able to cancel the stream
-        batchSingle.recipient = address(0xcafe); // The recipient of the streamed assets
-        batchSingle.cancelable = true; // Whether the stream will be cancelable or not
-        batchSingle.durations = LockupLinear.Durations({
+        // Declare the first batch struct
+        Batch.CreateWithDurations memory batchSingle0;
+        batchSingle0.sender = address(proxy); // The sender will be able to cancel the stream
+        batchSingle0.recipient = address(0xcafe); // The recipient of the streamed assets
+        batchSingle0.cancelable = true; // Whether the stream will be cancelable or not
+        batchSingle0.durations = LockupLinear.Durations({
             cliff: 4 weeks, // Assets will be unlocked only after 4 weeks
             total: 52 weeks // Setting a total duration of ~1 year
          });
-        batchSingle.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        batchSingle0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare the second batch struct
+        Batch.CreateWithDurations memory batchSingle1;
+        batchSingle1.sender = address(proxy); // The sender will be able to cancel the stream
+        batchSingle1.recipient = address(0xbeef); // The recipient of the streamed assets
+        batchSingle1.cancelable = false; // Whether the stream will be cancelable or not
+        batchSingle1.durations = LockupLinear.Durations({
+            cliff: 1 weeks, // Assets will be unlocked only after 4 weeks
+            total: 26 weeks // Setting a total duration of ~6 months
+         });
+        batchSingle1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Fill the batch param
         Batch.CreateWithDurations[] memory batch = new Batch.CreateWithDurations[](batchSize);
-        batch[0] = batchSingle;
-        batch[1] = batchSingle;
+        batch[0] = batchSingle0;
+        batch[1] = batchSingle1;
 
         // Encode the data for the proxy target call
         bytes memory data =
