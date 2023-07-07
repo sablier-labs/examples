@@ -83,7 +83,7 @@ contract BatchLockupLinearStreamCreator {
         batchSingle1.recipient = address(0xbeef); // The recipient of the streamed assets
         batchSingle1.cancelable = false; // Whether the stream will be cancelable or not
         batchSingle1.durations = LockupLinear.Durations({
-            cliff: 1 weeks, // Assets will be unlocked only after 4 weeks
+            cliff: 1 weeks, // Assets will be unlocked only after 1 week
             total: 26 weeks // Setting a total duration of ~6 months
          });
         batchSingle1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
