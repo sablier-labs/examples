@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
-pragma solidity >=0.8.13;
+pragma solidity >=0.8.19;
 
 import { ISablierV2LockupLinear } from "@sablier/v2-core/interfaces/ISablierV2LockupLinear.sol";
 import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
