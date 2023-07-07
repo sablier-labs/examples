@@ -26,7 +26,7 @@ contract BatchLockupDynamicStreamCreator {
     function batchCreateLockupDynamicStream(
         uint256 perStreamAmount,
         uint256 batchSize,
-        bytes memory signature
+        bytes memory permit2Signature
     )
         public
         returns (uint256[] memory streamIds)
@@ -63,7 +63,7 @@ contract BatchLockupDynamicStreamCreator {
         // Declare the Permit2 params needed by Sablier
         Permit2Params memory permit2Params;
         permit2Params.permitSingle = permitSingle;
-        permit2Params.signature = signature;
+        permit2Params.signature = permit2Signature;
 
         // Declare a single batch struct
         Batch.CreateWithMilestones memory batchSingle;
