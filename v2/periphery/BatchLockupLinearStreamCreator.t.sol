@@ -4,18 +4,18 @@ pragma solidity >=0.8.19;
 import { ISablierV2LockupLinear } from "@sablier/v2-core/interfaces/ISablierV2LockupLinear.sol";
 import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
 import { ArrayBuilder } from "@sablier/v2-periphery-test/utils/ArrayBuilder.sol";
+
 import { Test } from "forge-std/Test.sol";
 
-import { LockupLinearBatchStreamCreator } from "./LockupLinearBatchStreamCreator.sol";
+import { BatchLockupLinearStreamCreator } from "./BatchLockupLinearStreamCreator.sol";
 
-contract LockupLinearBatchCreateTest is Test {
-    // Get the latest deployment address from the docs
-    // https://docs.sablier.com/contracts/v2/addresses
+contract BatchLockupLinearStreamCreatorTest is Test {
+    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/addresses
     address internal constant SABLIER_ADDRESS = address(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
     address internal constant SABLIER_TARGET_ADDRESS = address(0x297b43aE44660cA7826ef92D8353324C018573Ef);
 
     // Test contracts
-    LockupLinearBatchStreamCreator internal creator;
+    BatchLockupLinearStreamCreator internal creator;
     ISablierV2LockupLinear internal sablier;
     ISablierV2ProxyTarget internal proxyTarget;
 
@@ -28,7 +28,7 @@ contract LockupLinearBatchCreateTest is Test {
         proxyTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
 
         // Deploy the stream creator
-        creator = new LockupLinearBatchStreamCreator(sablier, sablierTarget);
+        creator = new BatchLockupLinearStreamCreator(sablier, sablierTarget);
 
         // Mint some DAI tokens to the creator contract using the `deal` cheatcode
         deal({ token: address(creator.DAI()), to: address(creator), give: 1337e18 });
