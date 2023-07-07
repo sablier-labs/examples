@@ -9,7 +9,6 @@ import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablier
 import { Batch, Broker } from "@sablier/v2-periphery/types/DataTypes.sol";
 import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/types/Permit2.sol";
 import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/types/Proxy.sol";
-import { BatchBuilder } from "@sablier/v2-periphery-test/utils/BatchBuilder.sol";
 
 contract BatchLockupLinearStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
@@ -25,7 +24,6 @@ contract BatchLockupLinearStreamCreator {
 
     function batchCreateLockupLinearStream(
         uint256 perStreamAmount,
-        uint256 batchSize,
         bytes memory signature
     )
         public
@@ -35,6 +33,9 @@ contract BatchLockupLinearStreamCreator {
         if (address(proxy) == address(0)) {
             proxy = PROXY_REGISTRY.deployFor(address(this)); // Deploy the proxy if it doesn't exist
         }
+
+        // Declare the batch size
+        uint256 batchSize = 2;
 
         // Calculate the amount of DAI assets to transfer to this contract
         uint256 transferAmount = perStreamAmount * batchSize;
@@ -77,7 +78,9 @@ contract BatchLockupLinearStreamCreator {
         batchSingle.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Fill the batch param
-        Batch.CreateWithDurations[] memory batch = BatchBuilder.fillBatch(batchSingle, batchSize);
+        Batch.CreateWithDurations[] memory batch = new Batch.CreateWithDurations[](batchSize);
+        batch[0] = batchSingle;
+        batch[1] = batchSingle;
 
         // Encode the data for the proxy target call
         bytes memory data =
