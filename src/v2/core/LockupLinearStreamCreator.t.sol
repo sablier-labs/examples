@@ -32,7 +32,7 @@ contract LockupLinearStreamCreatorTest is Test {
     // Tests that creating streams works by checking the stream ids
     function test_CreateLockupLinearStream() public {
         uint256 expectedStreamId = lockupLinear.nextStreamId();
-        uint256 actualStreamId = creator.createLinearStream({ amount: 1337e18 });
+        uint256 actualStreamId = creator.createLockupLinearStream({ totalAmount: 1337e18 });
         assertEq(actualStreamId, expectedStreamId);
     }
 }

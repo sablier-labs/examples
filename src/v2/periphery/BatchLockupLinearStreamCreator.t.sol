@@ -28,7 +28,7 @@ contract BatchLockupLinearStreamCreatorTest is Test {
         proxyTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
 
         // Deploy the stream creator
-        creator = new BatchLockupLinearStreamCreator(lockupLinear, sablierTarget);
+        creator = new BatchLockupLinearStreamCreator(lockupLinear, proxyTarget);
 
         // Mint some DAI tokens to the creator contract using the `deal` cheatcode
         deal({ token: address(creator.DAI()), to: address(creator), give: 1337e18 });
@@ -39,7 +39,7 @@ contract BatchLockupLinearStreamCreatorTest is Test {
         uint256 nextStreamId = lockupLinear.nextStreamId();
         uint256[] memory expectedStreamIds = ArrayBuilder.fillStreamIds(nextStreamId, 10);
         uint256[] memory actualStreamIds =
-            creator.batchCreateLockupLinearStream({ perStreamAmount: 1337e18, batchSize: 10, signature: "" });
+            creator.batchCreateLockupLinearStream({ perStreamAmount: 1337e18, permit2Signature: "" });
         assertEq(actualStreamIds, expectedStreamIds);
     }
 }

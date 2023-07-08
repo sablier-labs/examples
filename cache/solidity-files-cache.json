@@ -1,0 +1,4943 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "build_infos": "out/build-info",
+    "sources": "src",
+    "tests": "test",
+    "scripts": "script",
+    "libraries": [
+      "lib"
+    ]
+  },
+  "files": {
+    "lib/forge-std/lib/ds-test/src/test.sol": {
+      "lastModificationDate": 1688826705680,
+      "contentHash": "9febff9d09f18af5306669dc276c4c43",
+      "sourceName": "lib/forge-std/lib/ds-test/src/test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {
+        "DSTest": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "test.sol/DSTest.json"
+        }
+      }
+    },
+    "lib/forge-std/src/Base.sol": {
+      "lastModificationDate": 1688826703509,
+      "contentHash": "ee13c050b1914464f1d3f90cde90204b",
+      "sourceName": "lib/forge-std/src/Base.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "CommonBase": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Base.sol/CommonBase.json"
+        },
+        "ScriptBase": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Base.sol/ScriptBase.json"
+        },
+        "TestBase": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Base.sol/TestBase.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdAssertions.sol": {
+      "lastModificationDate": 1688826703509,
+      "contentHash": "6cc2858240bcd443debbbf075490e325",
+      "sourceName": "lib/forge-std/src/StdAssertions.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/StdMath.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "StdAssertions": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdAssertions.sol/StdAssertions.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdChains.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "9c76820952c8f5e2fc02f872dc3afeb4",
+      "sourceName": "lib/forge-std/src/StdChains.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "StdChains": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdChains.sol/StdChains.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdCheats.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "24785368b480beef5cd536afd144d5cb",
+      "sourceName": "lib/forge-std/src/StdCheats.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console2.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "StdCheats": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdCheats.sol/StdCheats.json"
+        },
+        "StdCheatsSafe": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdCheats.sol/StdCheatsSafe.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdError.sol": {
+      "lastModificationDate": 1688826703510,
+      "contentHash": "64c896e1276a291776e5ea5aecb3870a",
+      "sourceName": "lib/forge-std/src/StdError.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "stdError": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdError.sol/stdError.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdInvariant.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "12c06010ec43ce935ed209d5aca30828",
+      "sourceName": "lib/forge-std/src/StdInvariant.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "StdInvariant": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdInvariant.sol/StdInvariant.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdJson.sol": {
+      "lastModificationDate": 1688826703510,
+      "contentHash": "2e1d13674e152408867795362d833c24",
+      "sourceName": "lib/forge-std/src/StdJson.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "stdJson": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdJson.sol/stdJson.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdMath.sol": {
+      "lastModificationDate": 1688826703510,
+      "contentHash": "9da8f453eba6bb98f3d75bc6822bfb29",
+      "sourceName": "lib/forge-std/src/StdMath.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "stdMath": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdMath.sol/stdMath.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdStorage.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "3cb9868082df39a53927db09dbc21f23",
+      "sourceName": "lib/forge-std/src/StdStorage.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "stdStorage": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdStorage.sol/stdStorage.json"
+        },
+        "stdStorageSafe": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdStorage.sol/stdStorageSafe.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdStyle.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "820e6f6b7704f0c980fae604b1e34b18",
+      "sourceName": "lib/forge-std/src/StdStyle.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol"
+      ],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "StdStyle": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdStyle.sol/StdStyle.json"
+        }
+      }
+    },
+    "lib/forge-std/src/StdUtils.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "dd923493ddd9f98777687205cfe9d646",
+      "sourceName": "lib/forge-std/src/StdUtils.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "StdUtils": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StdUtils.sol/StdUtils.json"
+        }
+      }
+    },
+    "lib/forge-std/src/Test.sol": {
+      "lastModificationDate": 1688826705701,
+      "contentHash": "bc9d74a0c612e1c2b66cca2973bcc803",
+      "sourceName": "lib/forge-std/src/Test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol"
+      ],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "Test": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Test.sol/Test.json"
+        }
+      }
+    },
+    "lib/forge-std/src/Vm.sol": {
+      "lastModificationDate": 1688826705702,
+      "contentHash": "93cbedbadc52c20145ebbfa27ce148c4",
+      "sourceName": "lib/forge-std/src/Vm.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "Vm": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Vm.sol/Vm.json"
+        },
+        "VmSafe": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Vm.sol/VmSafe.json"
+        }
+      }
+    },
+    "lib/forge-std/src/console.sol": {
+      "lastModificationDate": 1688826703511,
+      "contentHash": "100b8a33b917da1147740d7ab8b0ded3",
+      "sourceName": "lib/forge-std/src/console.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "console": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "console.sol/console.json"
+        }
+      }
+    },
+    "lib/forge-std/src/console2.sol": {
+      "lastModificationDate": 1688826703511,
+      "contentHash": "491ca717c1915995e78cc361485a3067",
+      "sourceName": "lib/forge-std/src/console2.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "console2": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "console2.sol/console2.json"
+        }
+      }
+    },
+    "lib/forge-std/src/interfaces/IMulticall3.sol": {
+      "lastModificationDate": 1688826703512,
+      "contentHash": "7b131ca1ca32ef6378b7b9ad5488b901",
+      "sourceName": "lib/forge-std/src/interfaces/IMulticall3.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2, <0.9.0",
+      "artifacts": {
+        "IMulticall3": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IMulticall3.sol/IMulticall3.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/Common.sol": {
+      "lastModificationDate": 1688826825022,
+      "contentHash": "d77a476e938b130819f9bb3bd2932e57",
+      "sourceName": "lib/v2-core/lib/prb-math/src/Common.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Common": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Common.sol/Common.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/SD59x18.sol": {
+      "lastModificationDate": 1688826825022,
+      "contentHash": "901bbf52c355f7ef00c935391346419a",
+      "sourceName": "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "SD59x18": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "SD59x18.sol/SD59x18.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/UD2x18.sol": {
+      "lastModificationDate": 1688826825022,
+      "contentHash": "71feb4e30bbc21e5e85fe3109fbd5917",
+      "sourceName": "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "UD2x18": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "UD2x18.sol/UD2x18.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/UD60x18.sol": {
+      "lastModificationDate": 1688826825022,
+      "contentHash": "55aeee8a1cf7cf9fd8a0176bd06b739f",
+      "sourceName": "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "UD60x18": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "UD60x18.sol/UD60x18.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "fdf620cd0842991c797eef17265b5138",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Casting": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Casting.sol/Casting.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "3a00d7986d0f1f5fd47ac9f2dc1475ce",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Constants": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Constants.sol/Constants.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "01ce16eb254b596aa49047e21d548541",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Errors": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Errors.sol/Errors.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "f0d7fec0238b9623cd5432462fba5c7f",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ValueType": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ValueType.sol/ValueType.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "cad7d3fe4dba2c04d2c7c481e6e0e210",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Casting": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Casting.sol/Casting.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "7fc7d96c638cf5317dbba7ae8c07300d",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Constants": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Constants.sol/Constants.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "ed20ef1168816e445cf00d5ad68a5d20",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Conversions": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Conversions.sol/Conversions.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "a7e94006142e69ba7db582ef8ea8a777",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Errors": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Errors.sol/Errors.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "7d1863a86f1dd22889ee2c28737b3456",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Helpers": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Helpers.sol/Helpers.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "9ba39059764f9bac4b29f829c0dec4db",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Math": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Math.sol/Math.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol": {
+      "lastModificationDate": 1688826825023,
+      "contentHash": "a8cbdd366dbe50e8199a8d59109c94ab",
+      "sourceName": "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ValueType": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ValueType.sol/ValueType.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "5b5adfd1cd28d449eccc56ed83738365",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Casting": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Casting.sol/Casting.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "93bafe3a5bfec3c48c72e3b6dff0b5ac",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Constants": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Constants.sol/Constants.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "b114bc752027098a098fe200d9600fa4",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Errors": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Errors.sol/Errors.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "4bf392abdd32a2c1d83ad65c640ac7bd",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ValueType": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ValueType.sol/ValueType.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "210f9ed8d979a7449cdb5b7adb003808",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Casting": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Casting.sol/Casting.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "282d93a05c3ed412d5a3b74a4ad05d6d",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Constants": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Constants.sol/Constants.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "7d6126ed4b68e5c939cf0af5cd237b66",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Conversions": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Conversions.sol/Conversions.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "63cbb9480bb14e0824736d5c109aa7ce",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Errors": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Errors.sol/Errors.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "f17f113af284236759bc9217ed544728",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Helpers": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Helpers.sol/Helpers.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "925bb9fcc75f579cf3e9dd58fa10a90c",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Math": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Math.sol/Math.json"
+        }
+      }
+    },
+    "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol": {
+      "lastModificationDate": 1688826825024,
+      "contentHash": "2cdd6d9529412185283eb7d955e95cbe",
+      "sourceName": "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ValueType": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ValueType.sol/ValueType.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/IAdminable.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "8de4cbc58cecc1633e07b8e0dd532d04",
+      "sourceName": "lib/v2-core/src/interfaces/IAdminable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "IAdminable": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IAdminable.sol/IAdminable.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/ISablierV2Base.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "a349f4b6c067015a6ab6975d9e72b6ae",
+      "sourceName": "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2Base": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2Base.sol/ISablierV2Base.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "30a5ff51fb090cad99602dd36bed715c",
+      "sourceName": "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2Comptroller": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2Comptroller.sol/ISablierV2Comptroller.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/ISablierV2Lockup.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "aff4717c1e439061ed7cc0209b9b271e",
+      "sourceName": "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2Lockup": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2Lockup.sol/ISablierV2Lockup.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "cc27b558cd789ff0321bb511d7af839e",
+      "sourceName": "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2LockupDynamic": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2LockupDynamic.sol/ISablierV2LockupDynamic.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "4295acd1e770465e9e84af41df2ecfef",
+      "sourceName": "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2LockupLinear": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2LockupLinear.sol/ISablierV2LockupLinear.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "66f0d216e5b3b193937b19d250c43c5c",
+      "sourceName": "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2NFTDescriptor": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2NFTDescriptor.sol/ISablierV2NFTDescriptor.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/hooks/ISablierV2LockupRecipient.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "8eaf9d6ef06cab7e9c0b72c1fb7a3d7b",
+      "sourceName": "lib/v2-core/src/interfaces/hooks/ISablierV2LockupRecipient.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2LockupRecipient": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2LockupRecipient.sol/ISablierV2LockupRecipient.json"
+        }
+      }
+    },
+    "lib/v2-core/src/interfaces/hooks/ISablierV2LockupSender.sol": {
+      "lastModificationDate": 1688826783711,
+      "contentHash": "164f0da374416a6185fd30adf5a886f1",
+      "sourceName": "lib/v2-core/src/interfaces/hooks/ISablierV2LockupSender.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2LockupSender": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2LockupSender.sol/ISablierV2LockupSender.json"
+        }
+      }
+    },
+    "lib/v2-core/src/types/DataTypes.sol": {
+      "lastModificationDate": 1688826783712,
+      "contentHash": "25395f9d035935c72a39517753c400d2",
+      "sourceName": "lib/v2-core/src/types/DataTypes.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Lockup": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "DataTypes.sol/Lockup.json"
+        },
+        "LockupDynamic": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "DataTypes.sol/LockupDynamic.json"
+        },
+        "LockupLinear": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "DataTypes.sol/LockupLinear.json"
+        }
+      }
+    },
+    "lib/v2-core/src/types/Math.sol": {
+      "lastModificationDate": 1688826783712,
+      "contentHash": "2bc37f4cb719289fbb2e4b14d00cf59b",
+      "sourceName": "lib/v2-core/src/types/Math.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Math": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Math.sol/Math.json"
+        }
+      }
+    },
+    "lib/v2-core/src/types/Tokens.sol": {
+      "lastModificationDate": 1688826783712,
+      "contentHash": "39946b11b7b0cd42e04ec8ffd2f79915",
+      "sourceName": "lib/v2-core/src/types/Tokens.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Tokens": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Tokens.sol/Tokens.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1688826910008,
+      "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
+      "sourceName": "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC20": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IERC20.sol/IERC20.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1688826910010,
+      "contentHash": "48de4c9a3a4ae5ef66a2aa620843413f",
+      "sourceName": "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC721": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IERC721.sol/IERC721.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "lastModificationDate": 1688826910011,
+      "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
+      "sourceName": "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC721Metadata": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IERC721Metadata.sol/IERC721Metadata.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1688826910014,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC165": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IERC165.sol/IERC165.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol": {
+      "lastModificationDate": 1688826916417,
+      "contentHash": "98c6097122b28bf3bbcd7119e911f8d3",
+      "sourceName": "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol"
+      ],
+      "versionRequirement": "^0.8.17",
+      "artifacts": {
+        "IAllowanceTransfer": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IAllowanceTransfer.sol/IAllowanceTransfer.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol": {
+      "lastModificationDate": 1688826916417,
+      "contentHash": "c159d42533cdb69d0020ebfde3d0f736",
+      "sourceName": "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.17",
+      "artifacts": {
+        "IEIP712": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IEIP712.sol/IEIP712.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol": {
+      "lastModificationDate": 1688826916418,
+      "contentHash": "1186e406ac0acbb224428a4b1152dbf9",
+      "sourceName": "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IPermit2": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IPermit2.sol/IPermit2.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol": {
+      "lastModificationDate": 1688826916418,
+      "contentHash": "3158bafaa78bab6bfdebf3005987c334",
+      "sourceName": "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol"
+      ],
+      "versionRequirement": "^0.8.17",
+      "artifacts": {
+        "ISignatureTransfer": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISignatureTransfer.sol/ISignatureTransfer.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol": {
+      "lastModificationDate": 1688826958077,
+      "contentHash": "cb9c615c3644ebef2869b162ebc59710",
+      "sourceName": "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol"
+      ],
+      "versionRequirement": ">=0.8.4",
+      "artifacts": {
+        "IPRBProxy": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IPRBProxy.sol/IPRBProxy.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol": {
+      "lastModificationDate": 1688826958077,
+      "contentHash": "5c88390d0dbedd75e78c81402074013c",
+      "sourceName": "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.4",
+      "artifacts": {
+        "IPRBProxyPlugin": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IPRBProxyPlugin.sol/IPRBProxyPlugin.json"
+        }
+      }
+    },
+    "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol": {
+      "lastModificationDate": 1688826958077,
+      "contentHash": "d9342031f6fc0ccea15b719b9d4a2f18",
+      "sourceName": "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol"
+      ],
+      "versionRequirement": ">=0.8.4",
+      "artifacts": {
+        "IPRBProxyRegistry": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "IPRBProxyRegistry.sol/IPRBProxyRegistry.json"
+        }
+      }
+    },
+    "lib/v2-periphery/src/interfaces/ISablierV2Archive.sol": {
+      "lastModificationDate": 1688826841536,
+      "contentHash": "1ed87072d47b91f59ccb256c1d52233f",
+      "sourceName": "lib/v2-periphery/src/interfaces/ISablierV2Archive.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/src/interfaces/IAdminable.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2Archive": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2Archive.sol/ISablierV2Archive.json"
+        }
+      }
+    },
+    "lib/v2-periphery/src/interfaces/ISablierV2ProxyPlugin.sol": {
+      "lastModificationDate": 1688826841536,
+      "contentHash": "fe369040f3e2582054e96002f64016e5",
+      "sourceName": "lib/v2-periphery/src/interfaces/ISablierV2ProxyPlugin.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/hooks/ISablierV2LockupSender.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2Archive.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2ProxyPlugin": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2ProxyPlugin.sol/ISablierV2ProxyPlugin.json"
+        }
+      }
+    },
+    "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol": {
+      "lastModificationDate": 1688826841537,
+      "contentHash": "b348aa5211c2bf4e5737583ae5f09466",
+      "sourceName": "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+        "lib/v2-periphery/src/types/DataTypes.sol",
+        "lib/v2-periphery/src/types/Permit2.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ISablierV2ProxyTarget": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ISablierV2ProxyTarget.sol/ISablierV2ProxyTarget.json"
+        }
+      }
+    },
+    "lib/v2-periphery/src/types/DataTypes.sol": {
+      "lastModificationDate": 1688826841537,
+      "contentHash": "e579999c3db9e3ed9b6cb8224cc20411",
+      "sourceName": "lib/v2-periphery/src/types/DataTypes.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Batch": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "DataTypes.sol/Batch.json"
+        }
+      }
+    },
+    "lib/v2-periphery/src/types/Permit2.sol": {
+      "lastModificationDate": 1688826841537,
+      "contentHash": "8052d5a9a752795d47522066a353986f",
+      "sourceName": "lib/v2-periphery/src/types/Permit2.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Permit2": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Permit2.sol/Permit2.json"
+        }
+      }
+    },
+    "lib/v2-periphery/src/types/Proxy.sol": {
+      "lastModificationDate": 1688826841537,
+      "contentHash": "c8ae8a514da05250083187fa014b1f20",
+      "sourceName": "lib/v2-periphery/src/types/Proxy.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "Proxy": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "Proxy.sol/Proxy.json"
+        }
+      }
+    },
+    "lib/v2-periphery/test/utils/ArrayBuilder.sol": {
+      "lastModificationDate": 1688826841542,
+      "contentHash": "adaea22555aa1d9240e6469610c50bf1",
+      "sourceName": "lib/v2-periphery/test/utils/ArrayBuilder.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ArrayBuilder": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "ArrayBuilder.sol/ArrayBuilder.json"
+        }
+      }
+    },
+    "src/v2/core/LockupDynamicStreamCreator.sol": {
+      "lastModificationDate": 1688828541657,
+      "contentHash": "d223698700168cfde12065d14853f7c6",
+      "sourceName": "src/v2/core/LockupDynamicStreamCreator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "LockupDynamicStreamCreator": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "LockupDynamicStreamCreator.sol/LockupDynamicStreamCreator.json"
+        }
+      }
+    },
+    "src/v2/core/LockupLinearStreamCreator.sol": {
+      "lastModificationDate": 1688828541657,
+      "contentHash": "f39bccda3a7b685aa4162bd9633420c8",
+      "sourceName": "src/v2/core/LockupLinearStreamCreator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "LockupLinearStreamCreator": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "LockupLinearStreamCreator.sol/LockupLinearStreamCreator.json"
+        }
+      }
+    },
+    "src/v2/core/LockupLinearStreamCreator.t.sol": {
+      "lastModificationDate": 1688828541657,
+      "contentHash": "83e9cb317af7fc096383e43f2b98c208",
+      "sourceName": "src/v2/core/LockupLinearStreamCreator.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "src/v2/core/LockupLinearStreamCreator.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "LockupLinearStreamCreatorTest": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "LockupLinearStreamCreator.t.sol/LockupLinearStreamCreatorTest.json"
+        }
+      }
+    },
+    "src/v2/core/RecipientHooks.sol": {
+      "lastModificationDate": 1688830098507,
+      "contentHash": "a84d7361cd46f42472c534f3f7a03c60",
+      "sourceName": "src/v2/core/RecipientHooks.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/src/interfaces/hooks/ISablierV2LockupRecipient.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "RecipientHooks": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "RecipientHooks.sol/RecipientHooks.json"
+        }
+      }
+    },
+    "src/v2/core/SenderHooks.sol": {
+      "lastModificationDate": 1688830107271,
+      "contentHash": "4d3078188c570030bc3d76d19d69d76a",
+      "sourceName": "src/v2/core/SenderHooks.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/interfaces/hooks/ISablierV2LockupSender.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "SenderHooks": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "SenderHooks.sol/SenderHooks.json"
+        }
+      }
+    },
+    "src/v2/core/StreamManagement.sol": {
+      "lastModificationDate": 1688828541658,
+      "contentHash": "b40743c7e9f2b9d642e1afda93d8779d",
+      "sourceName": "src/v2/core/StreamManagement.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "StreamManagement": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "StreamManagement.sol/StreamManagement.json"
+        }
+      }
+    },
+    "src/v2/periphery/BatchLockupDynamicStreamCreator.sol": {
+      "lastModificationDate": 1688828690220,
+      "contentHash": "4d285df739e12253d8064d279f9e1359",
+      "sourceName": "src/v2/periphery/BatchLockupDynamicStreamCreator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol",
+        "lib/v2-periphery/src/types/DataTypes.sol",
+        "lib/v2-periphery/src/types/Permit2.sol",
+        "lib/v2-periphery/src/types/Proxy.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "BatchLockupDynamicStreamCreator": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "BatchLockupDynamicStreamCreator.sol/BatchLockupDynamicStreamCreator.json"
+        }
+      }
+    },
+    "src/v2/periphery/BatchLockupLinearStreamCreator.sol": {
+      "lastModificationDate": 1688828708441,
+      "contentHash": "455f3e19ae4ee7e22ea007c50e4525b2",
+      "sourceName": "src/v2/periphery/BatchLockupLinearStreamCreator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol",
+        "lib/v2-periphery/src/types/DataTypes.sol",
+        "lib/v2-periphery/src/types/Permit2.sol",
+        "lib/v2-periphery/src/types/Proxy.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "BatchLockupLinearStreamCreator": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "BatchLockupLinearStreamCreator.sol/BatchLockupLinearStreamCreator.json"
+        }
+      }
+    },
+    "src/v2/periphery/BatchLockupLinearStreamCreator.t.sol": {
+      "lastModificationDate": 1688828750601,
+      "contentHash": "44bb6788ab05067d570dbbf40bcfb213",
+      "sourceName": "src/v2/periphery/BatchLockupLinearStreamCreator.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol",
+        "lib/v2-periphery/src/types/DataTypes.sol",
+        "lib/v2-periphery/src/types/Permit2.sol",
+        "lib/v2-periphery/src/types/Proxy.sol",
+        "lib/v2-periphery/test/utils/ArrayBuilder.sol",
+        "src/v2/periphery/BatchLockupLinearStreamCreator.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "BatchLockupLinearStreamCreatorTest": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "BatchLockupLinearStreamCreator.t.sol/BatchLockupLinearStreamCreatorTest.json"
+        }
+      }
+    },
+    "src/v2/periphery/DeployProxyAndInstallPlugin.sol": {
+      "lastModificationDate": 1688828773299,
+      "contentHash": "ae23417bca1574267397a3f89dcc44e8",
+      "sourceName": "src/v2/periphery/DeployProxyAndInstallPlugin.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/hooks/ISablierV2LockupSender.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2Archive.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2ProxyPlugin.sol",
+        "lib/v2-periphery/src/types/Proxy.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "ProxyDeployerAndPluginInstaller": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "DeployProxyAndInstallPlugin.sol/ProxyDeployerAndPluginInstaller.json"
+        }
+      }
+    },
+    "src/v2/periphery/SingleLockupDynamicStreamCreator.sol": {
+      "lastModificationDate": 1688828722544,
+      "contentHash": "89e0aa26b0438954afc8bd864a13b2db",
+      "sourceName": "src/v2/periphery/SingleLockupDynamicStreamCreator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol",
+        "lib/v2-periphery/src/types/DataTypes.sol",
+        "lib/v2-periphery/src/types/Permit2.sol",
+        "lib/v2-periphery/src/types/Proxy.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "SingleLockupDynamicStreamCreator": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "SingleLockupDynamicStreamCreator.sol/SingleLockupDynamicStreamCreator.json"
+        }
+      }
+    },
+    "src/v2/periphery/SingleLockupLinearStreamCreator.sol": {
+      "lastModificationDate": 1688828735137,
+      "contentHash": "f289b669ac85ce60dfa2f77107595d14",
+      "sourceName": "src/v2/periphery/SingleLockupLinearStreamCreator.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 5000
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "none",
+            "appendCBOR": false
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/v2-core/lib/prb-math/src/Common.sol",
+        "lib/v2-core/lib/prb-math/src/SD59x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD2x18.sol",
+        "lib/v2-core/lib/prb-math/src/UD60x18.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd1x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/sd59x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud2x18/ValueType.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Casting.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Constants.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Conversions.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Errors.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Helpers.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/Math.sol",
+        "lib/v2-core/lib/prb-math/src/ud60x18/ValueType.sol",
+        "lib/v2-core/src/interfaces/IAdminable.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Base.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Comptroller.sol",
+        "lib/v2-core/src/interfaces/ISablierV2Lockup.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupDynamic.sol",
+        "lib/v2-core/src/interfaces/ISablierV2LockupLinear.sol",
+        "lib/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol",
+        "lib/v2-core/src/types/DataTypes.sol",
+        "lib/v2-core/src/types/Math.sol",
+        "lib/v2-core/src/types/Tokens.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/v2-periphery/lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IAllowanceTransfer.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IEIP712.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/IPermit2.sol",
+        "lib/v2-periphery/lib/permit2/src/interfaces/ISignatureTransfer.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxy.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyPlugin.sol",
+        "lib/v2-periphery/lib/prb-proxy/src/interfaces/IPRBProxyRegistry.sol",
+        "lib/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol",
+        "lib/v2-periphery/src/types/DataTypes.sol",
+        "lib/v2-periphery/src/types/Permit2.sol",
+        "lib/v2-periphery/src/types/Proxy.sol"
+      ],
+      "versionRequirement": ">=0.8.19",
+      "artifacts": {
+        "SingleLockupLinearStreamCreator": {
+          "0.8.19+commit.7dd6d404.Darwin.appleclang": "SingleLockupLinearStreamCreator.sol/SingleLockupLinearStreamCreator.json"
+        }
+      }
+    }
+  }
+}

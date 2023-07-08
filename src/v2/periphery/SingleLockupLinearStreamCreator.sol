@@ -1,30 +1,29 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupDynamic } from "@sablier/v2-core/interfaces/ISablierV2LockupDynamic.sol";
-import { LockupDynamic } from "@sablier/v2-core/types/DataTypes.sol";
-import { ud60x18 } from "@sablier/v2-core/types/Math.sol";
+import { ISablierV2LockupLinear } from "@sablier/v2-core/interfaces/ISablierV2LockupLinear.sol";
+import { LockupLinear } from "@sablier/v2-core/types/DataTypes.sol";
+import { ud2x18, ud60x18 } from "@sablier/v2-core/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
 import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
 import { Broker } from "@sablier/v2-periphery/types/DataTypes.sol";
 import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/types/Permit2.sol";
 import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/types/Proxy.sol";
 
-contract SingleLockupDynamicStreamCreator {
+contract SingleLockupLinearStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     IAllowanceTransfer public constant PERMIT2 = IAllowanceTransfer(0x000000000022D473030F116dDEE9F6B43aC78BA3);
     IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
-    ISablierV2LockupDynamic public immutable lockupDynamic;
+    ISablierV2LockupLinear public immutable lockupLinear;
     ISablierV2ProxyTarget public immutable proxyTarget;
 
-    constructor(ISablierV2LockupDynamic lockupDynamic_, ISablierV2ProxyTarget proxyTarget_) {
-        lockupDynamic = lockupDynamic_;
+    constructor(ISablierV2LockupLinear lockupLinear_, ISablierV2ProxyTarget proxyTarget_) {
+        lockupLinear = lockupLinear_;
         proxyTarget = proxyTarget_;
     }
 
-    function singleCreateLockupDynamicStream(
-        uint256 amount0,
-        uint256 amount1,
+    function singleCreateLockupLinearStream(
+        uint256 totalAmount,
         bytes memory permit2Signature
     )
         public
@@ -35,9 +34,6 @@ contract SingleLockupDynamicStreamCreator {
         if (address(proxy) == address(0)) {
             proxy = PROXY_REGISTRY.deployFor(address(this));
         }
-
-        // Sum the segment amounts
-        uint256 totalAmount = amount0 + amount1;
 
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), totalAmount);
@@ -66,34 +62,22 @@ contract SingleLockupDynamicStreamCreator {
         permit2Params.signature = permit2Signature;
 
         // Declare the create function params
-        LockupDynamic.CreateWithMilestones memory createParams;
+        LockupLinear.CreateWithDurations memory createParams;
         createParams.sender = msg.sender; // The sender will be able to cancel the stream
         createParams.recipient = address(0xcafe); // The recipient of the streamed assets
         createParams.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         createParams.asset = DAI; // The streaming asset is DAI
         createParams.cancelable = true; // Whether the stream will be cancelable or not
+        createParams.durations = LockupLinear.Durations({
+            cliff: 4 weeks, // Assets will be unlocked only after 4 weeks
+            total: 52 weeks // Setting a total duration of ~1 year
+         });
         createParams.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare some dummy segments
-        createParams.segments = new LockupDynamic.Segment[](2);
-        createParams.segments[0] = LockupDynamic.Segment({
-            amount: uint128(amount0),
-            exponent: ud2x18(1e18),
-            milestone: uint40(block.timestamp + 4 weeks)
-        });
-        createParams.segments[1] = (
-            LockupDynamic.Segment({
-                amount: uint128(amount1),
-                exponent: ud2x18(3.14e18),
-                milestone: uint40(block.timestamp + 52 weeks)
-            })
-        );
-
         // Encode the data for the proxy target call
-        bytes memory data =
-            abi.encodeCall(proxyTarget.createWithMilestones, (lockupDynamic, createParams, permit2Params));
+        bytes memory data = abi.encodeCall(proxyTarget.createWithDurations, (lockupLinear, createParams, permit2Params));
 
-        // Create a single Lockup Dynamic stream via the proxy and Sablier's proxy target
+        // Create a single Lockup Linear stream via the proxy and Sablier's proxy target
         bytes memory response = proxy.execute(address(proxyTarget), data);
         streamId = abi.decode(response, (uint256));
     }
