@@ -29,9 +29,10 @@ contract BatchLockupDynamicStreamCreator {
         public
         returns (uint256[] memory streamIds)
     {
-        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) }); // Get the proxy for this contract
+        // Get the proxy for this contract and deploy it if it doesn't exist
+        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
         if (address(proxy) == address(0)) {
-            proxy = PROXY_REGISTRY.deployFor(address(this)); // Deploy the proxy if it doesn't exist
+            proxy = PROXY_REGISTRY.deployFor(address(this));
         }
 
         // Create a batch of two streams

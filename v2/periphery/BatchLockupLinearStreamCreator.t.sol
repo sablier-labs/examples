@@ -16,7 +16,7 @@ contract BatchLockupLinearStreamCreatorTest is Test {
 
     // Test contracts
     BatchLockupLinearStreamCreator internal creator;
-    ISablierV2LockupLinear internal sablier;
+    ISablierV2LockupLinear internal lockupLinear;
     ISablierV2ProxyTarget internal proxyTarget;
 
     function setUp() public {
@@ -24,11 +24,11 @@ contract BatchLockupLinearStreamCreatorTest is Test {
         vm.createSelectFork({ urlOrAlias: "mainnet" });
 
         // Load the Sablier contract from Ethereum Mainnet
-        sablier = ISablierV2LockupLinear(SABLIER_ADDRESS);
+        lockupLinear = ISablierV2LockupLinear(SABLIER_ADDRESS);
         proxyTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
 
         // Deploy the stream creator
-        creator = new BatchLockupLinearStreamCreator(sablier, sablierTarget);
+        creator = new BatchLockupLinearStreamCreator(lockupLinear, sablierTarget);
 
         // Mint some DAI tokens to the creator contract using the `deal` cheatcode
         deal({ token: address(creator.DAI()), to: address(creator), give: 1337e18 });
@@ -36,7 +36,7 @@ contract BatchLockupLinearStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_batchCreateLockupLinearStream() public {
-        uint256 nextStreamId = sablier.nextStreamId();
+        uint256 nextStreamId = lockupLinear.nextStreamId();
         uint256[] memory expectedStreamIds = ArrayBuilder.fillStreamIds(nextStreamId, 10);
         uint256[] memory actualStreamIds =
             creator.batchCreateLockupLinearStream({ perStreamAmount: 1337e18, batchSize: 10, signature: "" });
