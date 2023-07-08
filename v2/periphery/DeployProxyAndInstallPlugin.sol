@@ -6,7 +6,7 @@ import { ISablierV2ProxyPlugin } from "@sablier/v2-periphery/interfaces/ISablier
 
 /// @notice Example of how to deploy a Proxy and install the Sablier plugin.
 /// @dev This code is referenced in the docs:
-/// https://docs.sablier.com/contracts/v2/guides/proxy-architecture/deployandinstallplugin
+/// https://docs.sablier.com/contracts/v2/guides/proxy-architecture/deploy-and-install-plugin
 contract ProxyDeployerAndPluginInstaller {
     IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
     ISablierV2ProxyPlugin public immutable proxyPlugin;
