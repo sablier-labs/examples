@@ -17,7 +17,7 @@ contract LockupDynamicStreamCreator {
     }
 
     function createLockupDynamicStream(uint256 amount0, uint256 amount1) public returns (uint256 streamId) {
-        // Sum up the segment amounts
+        // Sum the segment amounts
         uint256 totalAmount = amount0 + amount1;
 
         // Transfer the provided amount of DAI tokens to this contract

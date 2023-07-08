@@ -24,14 +24,15 @@ contract BatchLockupLinearStreamCreator {
 
     function batchCreateLockupLinearStream(
         uint256 perStreamAmount,
-        bytes memory signature
+        bytes memory permit2Signature
     )
         public
         returns (uint256[] memory streamIds)
     {
-        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) }); // Get the proxy for this contract
+        // Get the proxy for this contract and deploy it if it doesn't exist
+        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
         if (address(proxy) == address(0)) {
-            proxy = PROXY_REGISTRY.deployFor(address(this)); // Deploy the proxy if it doesn't exist
+            proxy = PROXY_REGISTRY.deployFor(address(this));
         }
 
         // Create a batch of two streams
@@ -64,7 +65,7 @@ contract BatchLockupLinearStreamCreator {
         // Declare the Permit2 params needed by Sablier
         Permit2Params memory permit2Params;
         permit2Params.permitSingle = permitSingle;
-        permit2Params.signature = signature;
+        permit2Params.signature = permit2Signature;
 
         // Declare the first stream in the batch
         Batch.CreateWithDurations memory stream0;
@@ -99,7 +100,7 @@ contract BatchLockupLinearStreamCreator {
         bytes memory data =
             abi.encodeCall(proxyTarget.batchCreateWithDurations, (lockupLinear, DAI, batch, permit2Params));
 
-        // Create a batch of streams via the proxy and Sablier's proxy target
+        // Create a batch of Lockup Linear streams via the proxy and Sablier's proxy target
         bytes memory response = proxy.execute(address(proxyTarget), data);
         streamIds = abi.decode(response, (uint256[]));
     }
