@@ -70,6 +70,7 @@ contract BatchLockupDynamicStreamCreator {
         Batch.CreateWithMilestones memory stream0;
         stream0.sender = address(proxy); // The sender will be able to cancel the stream
         stream0.recipient = address(0xcafe); // The recipient of the streamed assets
+        stream0.totalAmount = uint128(totalAmount); // The total amount of each stream, inclusive of all fees
         stream0.cancelable = true; // Whether the stream will be cancelable or not
         stream0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
@@ -92,6 +93,7 @@ contract BatchLockupDynamicStreamCreator {
         Batch.CreateWithMilestones memory stream1;
         stream1.sender = address(proxy); // The sender will be able to cancel the stream
         stream1.recipient = address(0xbeef); // The recipient of the streamed assets
+        stream1.totalAmount = uint128(totalAmount); // The total amount of each stream, inclusive of all fees
         stream1.cancelable = false; // Whether the stream will be cancelable or not
         stream1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
