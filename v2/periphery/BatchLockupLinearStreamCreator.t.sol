@@ -10,7 +10,7 @@ import { Test } from "forge-std/Test.sol";
 import { BatchLockupLinearStreamCreator } from "./BatchLockupLinearStreamCreator.sol";
 
 contract BatchLockupLinearStreamCreatorTest is Test {
-    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/addresses
+    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/deployments
     address internal constant SABLIER_ADDRESS = address(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
     address internal constant SABLIER_TARGET_ADDRESS = address(0x297b43aE44660cA7826ef92D8353324C018573Ef);
 

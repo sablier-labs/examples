@@ -8,7 +8,7 @@ import { Test } from "forge-std/Test.sol";
 import { LockupLinearStreamCreator } from "./LockupLinearStreamCreator.sol";
 
 contract LockupLinearStreamCreatorTest is Test {
-    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/addresses
+    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/deployments
     address internal constant SABLIER_ADDRESS = address(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
 
     // Test contracts
