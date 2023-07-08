@@ -34,10 +34,10 @@ contract BatchLockupDynamicStreamCreator {
             proxy = PROXY_REGISTRY.deployFor(address(this)); // Deploy the proxy if it doesn't exist
         }
 
-        // Declare the batch size
+        // Create a batch of two streams
         uint256 batchSize = 2;
 
-        // Calculate the amount of DAI assets to transfer to this contract
+        // Calculate the combined amount of DAI assets to transfer to this contract
         uint256 transferAmount = perStreamAmount * batchSize;
 
         // Transfer the provided amount of DAI tokens to this contract
@@ -49,7 +49,7 @@ contract BatchLockupDynamicStreamCreator {
             DAI.approve({ spender: address(PERMIT2), amount: type(uint256).max });
         }
 
-        // See the full documentation at https://github.com/Uniswap/permit2
+        // Set up Permit2. See the full documentation at https://github.com/Uniswap/permit2
         IAllowanceTransfer.PermitDetails memory permitDetails;
         permitDetails.token = address(DAI);
         permitDetails.amount = uint160(transferAmount);
@@ -66,54 +66,60 @@ contract BatchLockupDynamicStreamCreator {
         permit2Params.permitSingle = permitSingle;
         permit2Params.signature = permit2Signature;
 
-        // Declare the first batch struct
-        Batch.CreateWithMilestones memory batchSingle0;
-        batchSingle0.sender = address(proxy); // The sender will be able to cancel the stream
-        batchSingle0.recipient = address(0xcafe); // The recipient of the streamed assets
-        batchSingle0.cancelable = true; // Whether the stream will be cancelable or not
-        batchSingle0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        // Declare the first stream in the batch
+        Batch.CreateWithMilestones memory stream0;
+        stream0.sender = address(proxy); // The sender will be able to cancel the stream
+        stream0.recipient = address(0xcafe); // The recipient of the streamed assets
+        stream0.cancelable = true; // Whether the stream will be cancelable or not
+        stream0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
-        batchSingle0.segments = new LockupDynamic.Segment[](2);
-        batchSingle0.segments[0] =
-            LockupDynamic.Segment({ amount: 0, exponent: ud2x18(1e18), milestone: uint40(block.timestamp + 4 weeks) });
-        batchSingle0.segments[1] = (
+        stream0.segments = new LockupDynamic.Segment[](2);
+        stream0.segments[0] = LockupDynamic.Segment({
+            amount: perStreamAmount / 2,
+            exponent: ud2x18(0.25e18),
+            milestone: uint40(block.timestamp + 1 weeks)
+        });
+        stream0.segments[1] = (
             LockupDynamic.Segment({
-                amount: uint128(perStreamAmount),
+                amount: perStreamAmount - stream0.segments[0].amount,
+                exponent: ud2x18(2.71e18),
+                milestone: uint40(block.timestamp + 24 weeks)
+            })
+        );
+
+        // Declare the second stream in the batch
+        Batch.CreateWithMilestones memory stream1;
+        stream1.sender = address(proxy); // The sender will be able to cancel the stream
+        stream1.recipient = address(0xbeef); // The recipient of the streamed assets
+        stream1.cancelable = false; // Whether the stream will be cancelable or not
+        stream1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare some dummy segments
+        stream1.segments = new LockupDynamic.Segment[](2);
+        stream1.segments[0] = LockupDynamic.Segment({
+            amount: perStreamAmount / 4,
+            exponent: ud2x18(1e18),
+            milestone: uint40(block.timestamp + 4 weeks)
+        });
+        stream1.segments[1] = (
+            LockupDynamic.Segment({
+                amount: perStreamAmount - stream1.segments[0].amount,
                 exponent: ud2x18(3.14e18),
                 milestone: uint40(block.timestamp + 52 weeks)
             })
         );
 
-        // Declare the second batch struct
-        Batch.CreateWithMilestones memory batchSingle1;
-        batchSingle1.sender = address(proxy); // The sender will be able to cancel the stream
-        batchSingle1.recipient = address(0xbeef); // The recipient of the streamed assets
-        batchSingle1.cancelable = false; // Whether the stream will be cancelable or not
-        batchSingle1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
-
-        // Declare some dummy segments
-        batchSingle1.segments = new LockupDynamic.Segment[](2);
-        batchSingle1.segments[0] =
-            LockupDynamic.Segment({ amount: 0, exponent: ud2x18(1e18), milestone: uint40(block.timestamp + 1 weeks) });
-        batchSingle1.segments[1] = (
-            LockupDynamic.Segment({
-                amount: uint128(perStreamAmount),
-                exponent: ud2x18(3.14e18),
-                milestone: uint40(block.timestamp + 26 weeks)
-            })
-        );
-
-        // Fill the batch param
+        // Fill the batch array
         Batch.CreateWithMilestones[] memory batch = new Batch.CreateWithMilestones[](batchSize);
-        batch[0] = batchSingle0;
-        batch[1] = batchSingle1;
+        batch[0] = stream0;
+        batch[1] = stream1;
 
         // Encode the data for the proxy
         bytes memory data =
             abi.encodeCall(proxyTarget.batchCreateWithMilestones, (lockupDynamic, DAI, batch, permit2Params));
 
-        // Create multiple streams via the proxy
+        // Create a batch of streams via the proxy and Sablier's proxy target
         bytes memory response = proxy.execute(address(proxyTarget), data);
         streamIds = abi.decode(response, (uint256[]));
     }

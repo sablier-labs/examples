@@ -34,10 +34,10 @@ contract BatchLockupLinearStreamCreator {
             proxy = PROXY_REGISTRY.deployFor(address(this)); // Deploy the proxy if it doesn't exist
         }
 
-        // Declare the batch size
+        // Create a batch of two streams
         uint256 batchSize = 2;
 
-        // Calculate the amount of DAI assets to transfer to this contract
+        // Calculate the combined amount of DAI assets to transfer to this contract
         uint256 transferAmount = perStreamAmount * batchSize;
 
         // Transfer the provided amount of DAI tokens to this contract
@@ -49,7 +49,7 @@ contract BatchLockupLinearStreamCreator {
             DAI.approve({ spender: address(PERMIT2), amount: type(uint256).max });
         }
 
-        // See the full documentation at https://github.com/Uniswap/permit2
+        // Set up Permit2. See the full documentation at https://github.com/Uniswap/permit2
         IAllowanceTransfer.PermitDetails memory permitDetails;
         permitDetails.token = address(DAI);
         permitDetails.amount = uint160(transferAmount);
@@ -66,32 +66,32 @@ contract BatchLockupLinearStreamCreator {
         permit2Params.permitSingle = permitSingle;
         permit2Params.signature = signature;
 
-        // Declare the first batch struct
-        Batch.CreateWithDurations memory batchSingle0;
-        batchSingle0.sender = address(proxy); // The sender will be able to cancel the stream
-        batchSingle0.recipient = address(0xcafe); // The recipient of the streamed assets
-        batchSingle0.cancelable = true; // Whether the stream will be cancelable or not
-        batchSingle0.durations = LockupLinear.Durations({
+        // Declare the first stream in the batch
+        Batch.CreateWithDurations memory stream0;
+        stream0.sender = address(proxy); // The sender will be able to cancel the stream
+        stream0.recipient = address(0xcafe); // The recipient of the streamed assets
+        stream0.cancelable = true; // Whether the stream will be cancelable or not
+        stream0.durations = LockupLinear.Durations({
             cliff: 4 weeks, // Assets will be unlocked only after 4 weeks
             total: 52 weeks // Setting a total duration of ~1 year
          });
-        batchSingle0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        stream0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare the second batch struct
-        Batch.CreateWithDurations memory batchSingle1;
-        batchSingle1.sender = address(proxy); // The sender will be able to cancel the stream
-        batchSingle1.recipient = address(0xbeef); // The recipient of the streamed assets
-        batchSingle1.cancelable = false; // Whether the stream will be cancelable or not
-        batchSingle1.durations = LockupLinear.Durations({
+        // Declare the second stream in the batch
+        Batch.CreateWithDurations memory stream1;
+        stream1.sender = address(proxy); // The sender will be able to cancel the stream
+        stream1.recipient = address(0xbeef); // The recipient of the streamed assets
+        stream1.cancelable = false; // Whether the stream will be cancelable or not
+        stream1.durations = LockupLinear.Durations({
             cliff: 1 weeks, // Assets will be unlocked only after 1 week
             total: 26 weeks // Setting a total duration of ~6 months
          });
-        batchSingle1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        stream1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Fill the batch param
         Batch.CreateWithDurations[] memory batch = new Batch.CreateWithDurations[](batchSize);
-        batch[0] = batchSingle0;
-        batch[1] = batchSingle1;
+        batch[0] = stream0;
+        batch[1] = stream1;
 
         // Encode the data for the proxy target call
         bytes memory data =
