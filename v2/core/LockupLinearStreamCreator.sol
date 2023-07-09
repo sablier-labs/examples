@@ -10,10 +10,10 @@ import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-linear
 contract LockupLinearStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    ISablierV2LockupLinear public immutable sablier;
+    ISablierV2LockupLinear public immutable lockupLinear;
 
-    constructor(ISablierV2LockupLinear sablier_) {
-        sablier = sablier_;
+    constructor(ISablierV2LockupLinear lockupLinear_) {
+        lockupLinear = lockupLinear_;
     }
 
     function createLockupLinearStream(uint256 totalAmount) public returns (uint256 streamId) {
@@ -21,7 +21,7 @@ contract LockupLinearStreamCreator {
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(sablier), totalAmount);
+        DAI.approve(address(lockupLinear), totalAmount);
 
         // Declare the params struct
         LockupLinear.CreateWithDurations memory params;
@@ -39,6 +39,6 @@ contract LockupLinearStreamCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
 
         // Create the Sablier stream using a function that sets the start time to `block.timestamp`
-        streamId = sablier.createWithDurations(params);
+        streamId = lockupLinear.createWithDurations(params);
     }
 }

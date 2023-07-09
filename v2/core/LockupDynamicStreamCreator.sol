@@ -10,10 +10,10 @@ import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-dynamic
 contract LockupDynamicStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    ISablierV2LockupDynamic public immutable sablier;
+    ISablierV2LockupDynamic public immutable lockupDynamic;
 
-    constructor(ISablierV2LockupDynamic sablier_) {
-        sablier = sablier_;
+    constructor(ISablierV2LockupDynamic lockupDynamic_) {
+        lockupDynamic = lockupDynamic_;
     }
 
     function createLockupDynamicStream(uint256 amount0, uint256 amount1) public returns (uint256 streamId) {
@@ -24,7 +24,7 @@ contract LockupDynamicStreamCreator {
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(sablier), totalAmount);
+        DAI.approve(address(lockupDynamic), totalAmount);
 
         // Declare the params struct
         LockupDynamic.CreateWithMilestones memory params;
@@ -54,6 +54,6 @@ contract LockupDynamicStreamCreator {
         );
 
         // Create the Sablier stream
-        streamId = sablier.createWithMilestones(params);
+        streamId = lockupDynamic.createWithMilestones(params);
     }
 }
