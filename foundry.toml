@@ -10,7 +10,7 @@
   optimizer_runs = 5000
   out = "out"
   solc = "0.8.19"
-  src = "src"
+  src = "v2"
   test = "test"
 
 [fmt]

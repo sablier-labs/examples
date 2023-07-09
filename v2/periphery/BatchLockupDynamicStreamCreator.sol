@@ -53,7 +53,7 @@ contract BatchLockupDynamicStreamCreator {
         // Set up Permit2. See the full documentation at https://github.com/Uniswap/permit2
         IAllowanceTransfer.PermitDetails memory permitDetails;
         permitDetails.token = address(DAI);
-        permitDetails.amount = uint160(transferAmount);
+        permitDetails.amount = uint160(perStreamAmount);
         permitDetails.expiration = type(uint48).max; // maximum expiration possible
         (,, permitDetails.nonce) =
             PERMIT2.allowance({ user: address(this), token: address(DAI), spender: address(proxy) });
@@ -71,7 +71,7 @@ contract BatchLockupDynamicStreamCreator {
         Batch.CreateWithMilestones memory stream0;
         stream0.sender = address(proxy); // The sender will be able to cancel the stream
         stream0.recipient = address(0xcafe); // The recipient of the streamed assets
-        stream0.totalAmount = uint128(transferAmount); // The total amount of each stream, inclusive of all fees
+        stream0.totalAmount = uint128(perStreamAmount); // The total amount of each stream, inclusive of all fees
         stream0.cancelable = true; // Whether the stream will be cancelable or not
         stream0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
