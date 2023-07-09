@@ -3,9 +3,18 @@ pragma solidity >=0.8.19;
 
 import { ISablierV2LockupRecipient } from "@sablier/v2-core/interfaces/hooks/ISablierV2LockupRecipient.sol";
 
-contract RecipientHooks is ISablierV2LockupRecipient {
+abstract contract RecipientHooks is ISablierV2LockupRecipient {
+    mapping(address => uint256) internal _balances;
+
     // Do something after a stream was canceled by the sender.
-    function onStreamCanceled(uint256 streamId, uint128 senderAmount, uint128 recipientAmount) external pure {
+    function onStreamCanceled(
+        uint256 streamId,
+        uint128, /* senderAmount */
+        uint128 /* recipientAmount */
+    )
+        external
+        pure
+    {
         // Liquidate the user's position.
         _liquidate({ nftId: streamId });
     }
@@ -17,8 +26,11 @@ contract RecipientHooks is ISablierV2LockupRecipient {
     }
 
     // Do something after the sender or an NFT operator withdrew funds from a stream.
-    function onStreamWithdrawn(uint256 streamId, address caller, address to, uint128 amount) external pure {
+    function onStreamWithdrawn(uint256, /* streamId */ address caller, address, /* to */ uint128 amount) external {
         // Reduce the user's balance.
-        _balances[streamId] -= amount;
+        _balances[caller] -= amount;
     }
+
+    function _liquidate(uint256 nftId) internal pure { }
+    function _updateRiskRatio(uint256 nftId) internal pure { }
 }

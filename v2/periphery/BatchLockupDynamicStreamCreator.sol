@@ -53,7 +53,7 @@ contract BatchLockupDynamicStreamCreator {
         // Set up Permit2. See the full documentation at https://github.com/Uniswap/permit2
         IAllowanceTransfer.PermitDetails memory permitDetails;
         permitDetails.token = address(DAI);
-        permitDetails.amount = uint160(transferAmount);
+        permitDetails.amount = uint160(perStreamAmount);
         permitDetails.expiration = type(uint48).max; // maximum expiration possible
         (,, permitDetails.nonce) =
             PERMIT2.allowance({ user: address(this), token: address(DAI), spender: address(proxy) });
@@ -71,20 +71,20 @@ contract BatchLockupDynamicStreamCreator {
         Batch.CreateWithMilestones memory stream0;
         stream0.sender = address(proxy); // The sender will be able to cancel the stream
         stream0.recipient = address(0xcafe); // The recipient of the streamed assets
-        stream0.totalAmount = uint128(totalAmount); // The total amount of each stream, inclusive of all fees
+        stream0.totalAmount = uint128(perStreamAmount); // The total amount of each stream, inclusive of all fees
         stream0.cancelable = true; // Whether the stream will be cancelable or not
         stream0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
         stream0.segments = new LockupDynamic.Segment[](2);
         stream0.segments[0] = LockupDynamic.Segment({
-            amount: perStreamAmount / 2,
+            amount: uint128(perStreamAmount / 2),
             exponent: ud2x18(0.25e18),
             milestone: uint40(block.timestamp + 1 weeks)
         });
         stream0.segments[1] = (
             LockupDynamic.Segment({
-                amount: perStreamAmount - stream0.segments[0].amount,
+                amount: uint128(perStreamAmount - stream0.segments[0].amount),
                 exponent: ud2x18(2.71e18),
                 milestone: uint40(block.timestamp + 24 weeks)
             })
@@ -94,20 +94,20 @@ contract BatchLockupDynamicStreamCreator {
         Batch.CreateWithMilestones memory stream1;
         stream1.sender = address(proxy); // The sender will be able to cancel the stream
         stream1.recipient = address(0xbeef); // The recipient of the streamed assets
-        stream1.totalAmount = uint128(totalAmount); // The total amount of each stream, inclusive of all fees
+        stream1.totalAmount = uint128(transferAmount); // The total amount of each stream, inclusive of all fees
         stream1.cancelable = false; // Whether the stream will be cancelable or not
         stream1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
         stream1.segments = new LockupDynamic.Segment[](2);
         stream1.segments[0] = LockupDynamic.Segment({
-            amount: perStreamAmount / 4,
+            amount: uint128(perStreamAmount / 4),
             exponent: ud2x18(1e18),
             milestone: uint40(block.timestamp + 4 weeks)
         });
         stream1.segments[1] = (
             LockupDynamic.Segment({
-                amount: perStreamAmount - stream1.segments[0].amount,
+                amount: uint128(perStreamAmount - stream1.segments[0].amount),
                 exponent: ud2x18(3.14e18),
                 milestone: uint40(block.timestamp + 52 weeks)
             })

@@ -27,7 +27,7 @@ contract LockupDynamicStreamCreator {
         DAI.approve(address(sablier), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithMilestones params;
+        LockupDynamic.CreateWithMilestones memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -35,7 +35,7 @@ contract LockupDynamicStreamCreator {
         params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
-        params.startTime = block.timestamp + 100 seconds;
+        params.startTime = uint40(block.timestamp + 100 seconds);
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare some dummy segments
