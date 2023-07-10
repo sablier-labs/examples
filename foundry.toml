@@ -11,7 +11,7 @@
   out = "out"
   solc = "0.8.19"
   src = "v2"
-  test = "test"
+  test = "v2"
 
 [fmt]
   bracket_spacing = true
@@ -22,3 +22,6 @@
   quote_style = "double"
   tab_width = 4
   wrap_comments = true
+
+[rpc_endpoints]
+  mainnet = "${RPC_URL_MAINNET}"

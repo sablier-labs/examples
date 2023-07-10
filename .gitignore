@@ -1,3 +1,6 @@
 # directories
 cache
 out
+
+# files
+*.env

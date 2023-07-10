@@ -14,6 +14,7 @@ contract LockupLinearStreamCreatorTest is Test {
     // Test contracts
     LockupLinearStreamCreator internal creator;
     ISablierV2LockupLinear internal lockupLinear;
+    address internal user;
 
     function setUp() public {
         // Fork Ethereum Mainnet
@@ -25,8 +26,18 @@ contract LockupLinearStreamCreatorTest is Test {
         // Deploy the stream creator
         creator = new LockupLinearStreamCreator(lockupLinear);
 
+        // Create a test user
+        user = payable(makeAddr("User"));
+        vm.deal({ account: user, newBalance: 1 ether });
+
         // Mint some DAI tokens to the creator contract using the `deal` cheatcode
-        deal({ token: address(creator.DAI()), to: address(creator), give: 1337e18 });
+        deal({ token: address(creator.DAI()), to: user, give: 1337e18 });
+
+        // Make the test user the `msg.sender` in all following calls
+        vm.startPrank({ msgSender: user });
+
+        // Approve the creator contract to pull DAI tokens from the test user
+        creator.DAI().approve({ spender: address(creator), amount: 1337e18 });
     }
 
     // Tests that creating streams works by checking the stream ids

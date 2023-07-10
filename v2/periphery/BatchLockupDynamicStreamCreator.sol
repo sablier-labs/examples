@@ -24,13 +24,7 @@ contract BatchLockupDynamicStreamCreator is ERC1271 {
         proxyTarget = proxyTarget_;
     }
 
-    function batchCreateLockupDynamicStream(
-        uint256 perStreamAmount,
-        bytes memory permit2Signature
-    )
-        public
-        returns (uint256[] memory streamIds)
-    {
+    function batchCreateLockupDynamicStream(uint256 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Get the proxy for this contract and deploy it if it doesn't exist
         IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
         if (address(proxy) == address(0)) {
@@ -62,12 +56,13 @@ contract BatchLockupDynamicStreamCreator is ERC1271 {
 
         IAllowanceTransfer.PermitSingle memory permitSingle;
         permitSingle.details = permitDetails;
+        permitSingle.spender = address(proxy); // the proxy will be the spender
         permitSingle.sigDeadline = type(uint48).max; // same deadline as expiration
 
         // Declare the Permit2 params needed by Sablier
         Permit2Params memory permit2Params;
         permit2Params.permitSingle = permitSingle;
-        permit2Params.signature = permit2Signature;
+        permit2Params.signature = bytes(""); // contracts don't sign transactions
 
         // Declare the first stream in the batch
         Batch.CreateWithMilestones memory stream0;
