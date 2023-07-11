@@ -35,7 +35,7 @@ contract BatchLockupLinearStreamCreatorTest is Test {
         user = payable(makeAddr("User"));
         vm.deal({ account: user, newBalance: 1 ether });
 
-        // Mint some DAI tokens to the creator contract using the `deal` cheatcode
+        // Mint some DAI tokens to the test user, which will be pulled by the creator contract
         deal({ token: address(creator.DAI()), to: user, give: 2 * 1337e18 });
 
         // Make the test user the `msg.sender` in all following calls

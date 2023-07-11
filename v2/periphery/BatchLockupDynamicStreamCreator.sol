@@ -62,7 +62,7 @@ contract BatchLockupDynamicStreamCreator is ERC1271 {
         // Declare the Permit2 params needed by Sablier
         Permit2Params memory permit2Params;
         permit2Params.permitSingle = permitSingle;
-        permit2Params.signature = bytes(""); // contracts don't sign transactions
+        permit2Params.signature = bytes(""); // dummy signature
 
         // Declare the first stream in the batch
         Batch.CreateWithMilestones memory stream0;
