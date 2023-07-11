@@ -10,7 +10,9 @@ import { Batch } from "@sablier/v2-periphery/types/DataTypes.sol";
 import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/types/Permit2.sol";
 import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/types/Proxy.sol";
 
-contract BatchLockupDynamicStreamCreator {
+import { ERC1271 } from "./ERC1271.sol";
+
+contract BatchLockupDynamicStreamCreator is ERC1271 {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     IAllowanceTransfer public constant PERMIT2 = IAllowanceTransfer(0x000000000022D473030F116dDEE9F6B43aC78BA3);
     IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
@@ -22,13 +24,7 @@ contract BatchLockupDynamicStreamCreator {
         proxyTarget = proxyTarget_;
     }
 
-    function batchCreateLockupDynamicStream(
-        uint256 perStreamAmount,
-        bytes memory permit2Signature
-    )
-        public
-        returns (uint256[] memory streamIds)
-    {
+    function batchCreateLockupDynamicStream(uint256 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Get the proxy for this contract and deploy it if it doesn't exist
         IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
         if (address(proxy) == address(0)) {
@@ -60,12 +56,13 @@ contract BatchLockupDynamicStreamCreator {
 
         IAllowanceTransfer.PermitSingle memory permitSingle;
         permitSingle.details = permitDetails;
+        permitSingle.spender = address(proxy); // the proxy will be the spender
         permitSingle.sigDeadline = type(uint48).max; // same deadline as expiration
 
         // Declare the Permit2 params needed by Sablier
         Permit2Params memory permit2Params;
         permit2Params.permitSingle = permitSingle;
-        permit2Params.signature = permit2Signature;
+        permit2Params.signature = bytes(""); // dummy signature
 
         // Declare the first stream in the batch
         Batch.CreateWithMilestones memory stream0;
