@@ -46,10 +46,10 @@ contract BatchLockupLinearStreamCreatorTest is Test {
     }
 
     // Tests that creating streams works by checking the stream ids
-    function test_batchCreateLockupLinearStream() public {
+    function test_batchCreateLockupLinearStreams() public {
         uint256 nextStreamId = lockupLinear.nextStreamId();
         uint256[] memory expectedStreamIds = ArrayBuilder.fillStreamIds(nextStreamId, 2);
-        uint256[] memory actualStreamIds = creator.batchCreateLockupLinearStream({ perStreamAmount: 1337e18 });
+        uint256[] memory actualStreamIds = creator.batchCreateLockupLinearStreams({ perStreamAmount: 1337e18 });
         assertEq(actualStreamIds, expectedStreamIds);
     }
 }

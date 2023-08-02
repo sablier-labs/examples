@@ -24,7 +24,7 @@ contract BatchLockupLinearStreamCreator is ERC1271 {
         proxyTarget = proxyTarget_;
     }
 
-    function batchCreateLockupLinearStream(uint256 perStreamAmount) public returns (uint256[] memory streamIds) {
+    function batchCreateLockupLinearStreams(uint256 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Get the proxy for this contract and deploy it if it doesn't exist
         IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
         if (address(proxy) == address(0)) {
