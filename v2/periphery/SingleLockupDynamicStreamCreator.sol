@@ -14,7 +14,7 @@ import { ERC1271 } from "./ERC1271.sol";
 contract SingleLockupDynamicStreamCreator is ERC1271 {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     IAllowanceTransfer public constant PERMIT2 = IAllowanceTransfer(0x000000000022D473030F116dDEE9F6B43aC78BA3);
-    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
+    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x584009E9eDe26e212182c9745F5c000191296a78);
     ISablierV2LockupDynamic public immutable lockupDynamic;
     ISablierV2ProxyTarget public immutable proxyTarget;
 

@@ -8,7 +8,7 @@ import { ISablierV2ProxyPlugin } from "@sablier/v2-periphery/interfaces/ISablier
 /// @dev This code is referenced in the docs:
 /// https://docs.sablier.com/contracts/v2/guides/proxy-architecture/deploy-and-install-plugin
 contract ProxyDeployerAndPluginInstaller {
-    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0xD42a2bB59775694c9Df4c7822BfFAb150e6c699D);
+    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x584009E9eDe26e212182c9745F5c000191296a78);
     ISablierV2ProxyPlugin public immutable proxyPlugin;
 
     constructor(ISablierV2ProxyPlugin proxyPlugin_) {
