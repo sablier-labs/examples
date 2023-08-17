@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.19;
 
-import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/types/Proxy.sol";
-import { ISablierV2ProxyPlugin } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyPlugin.sol";
+import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/src/types/Proxy.sol";
+import { ISablierV2ProxyPlugin } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyPlugin.sol";
 
 /// @notice Example of how to deploy a Proxy and install the Sablier plugin.
 /// @dev This code is referenced in the docs:
@@ -17,7 +17,7 @@ contract ProxyDeployerAndPluginInstaller {
 
     function deployProxyAndInstallPlugin() public returns (IPRBProxy proxy) {
         // Get the proxy for this contract
-        proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
+        proxy = PROXY_REGISTRY.getProxy({ user: address(this) });
         if (address(proxy) == address(0)) {
             // If a proxy doesn't exist, deploy one and install the plugin
             proxy = PROXY_REGISTRY.deployAndInstallPlugin({ plugin: proxyPlugin });

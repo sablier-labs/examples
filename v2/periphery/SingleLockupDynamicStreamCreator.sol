@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupDynamic } from "@sablier/v2-core/interfaces/ISablierV2LockupDynamic.sol";
-import { Broker, LockupDynamic } from "@sablier/v2-core/types/DataTypes.sol";
-import { ud2x18, ud60x18 } from "@sablier/v2-core/types/Math.sol";
-import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
-import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
-import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/types/Permit2.sol";
-import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/types/Proxy.sol";
+import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
+import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol";
+import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
+import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
+import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol";
+import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/src/types/Permit2.sol";
+import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/src/types/Proxy.sol";
 
 import { ERC1271 } from "./ERC1271.sol";
 
@@ -25,7 +25,7 @@ contract SingleLockupDynamicStreamCreator is ERC1271 {
 
     function singleCreateLockupDynamicStream(uint256 amount0, uint256 amount1) public returns (uint256 streamId) {
         // Get the proxy for this contract and deploy it if it doesn't exist
-        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ owner: address(this) });
+        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ user: address(this) });
         if (address(proxy) == address(0)) {
             proxy = PROXY_REGISTRY.deployFor(address(this));
         }

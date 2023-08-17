@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2Lockup } from "@sablier/v2-core/interfaces/ISablierV2Lockup.sol";
+import { ISablierV2Lockup } from "@sablier/v2-core/src/interfaces/ISablierV2Lockup.sol";
 
 /// @notice Examples of how to manage Sablier streams after they have been created.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/stream-management/setup

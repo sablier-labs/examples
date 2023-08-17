@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupLinear } from "@sablier/v2-core/interfaces/ISablierV2LockupLinear.sol";
-import { Broker, LockupLinear } from "@sablier/v2-core/types/DataTypes.sol";
-import { ud60x18 } from "@sablier/v2-core/types/Math.sol";
-import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
+import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
+import { Broker, LockupLinear } from "@sablier/v2-core/src/types/DataTypes.sol";
+import { ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
+import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 
 /// @notice Example of how to create a Lockup Linear stream.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-linear

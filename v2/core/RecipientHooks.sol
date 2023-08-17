@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupRecipient } from "@sablier/v2-core/interfaces/hooks/ISablierV2LockupRecipient.sol";
+import { ISablierV2LockupRecipient } from "@sablier/v2-core/src/interfaces/hooks/ISablierV2LockupRecipient.sol";
 
 abstract contract RecipientHooks is ISablierV2LockupRecipient {
     mapping(address => uint256) internal _balances;

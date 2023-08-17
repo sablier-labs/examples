@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupDynamic } from "@sablier/v2-core/interfaces/ISablierV2LockupDynamic.sol";
-import { Broker, LockupDynamic } from "@sablier/v2-core/types/DataTypes.sol";
-import { ud2x18, ud60x18 } from "@sablier/v2-core/types/Math.sol";
-import { IERC20 } from "@sablier/v2-core/types/Tokens.sol";
-import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/interfaces/ISablierV2ProxyTarget.sol";
-import { Batch } from "@sablier/v2-periphery/types/DataTypes.sol";
-import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/types/Permit2.sol";
-import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/types/Proxy.sol";
+import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
+import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol";
+import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
+import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
+import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol";
+import { Batch } from "@sablier/v2-periphery/src/types/DataTypes.sol";
+import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/src/types/Permit2.sol";
+import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/src/types/Proxy.sol";
 
 import { ERC1271 } from "./ERC1271.sol";
 
