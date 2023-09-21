@@ -2,12 +2,10 @@
 pragma solidity >=0.8.19;
 
 import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
-
 import { Test } from "forge-std/Test.sol";
 
 import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
 
-/// @dev
 contract LockupDynamicCurvesCreatorTest is Test {
     // Test contracts
     LockupDynamicCurvesCreator internal creator;
@@ -42,7 +40,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
 
-        // Let's warp 50 days into the future, i.e. half way of the stream duration.
+        // Warp 50 days into the future, i.e. half way of the stream duration.
         vm.warp({ newTimestamp: block.timestamp + 50 days });
 
         uint128 actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
@@ -59,18 +57,40 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
         uint256 currentTime = block.timestamp;
 
-        // Let's warp 50 days into the future, i.e. half way of the stream duration (unlock moment).
+        // Warp 50 days into the future, i.e. half way of the stream duration (unlock moment).
         vm.warp({ newTimestamp: currentTime + 50 days });
 
         uint128 actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
         uint128 expectedStreamedAmount = 20e18;
         assertEq(actualStreamedAmount, expectedStreamedAmount);
 
-        // Let's warp 75 days into the future, i.e. half way of the stream's last segment.
+        // Warp 75 days into the future, i.e. half way of the stream's last segment.
         vm.warp({ newTimestamp: currentTime + 75 days });
 
         actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
         expectedStreamedAmount = 21.25e18; // 0.5^{6} * 80 + 20
         assertEq(actualStreamedAmount, expectedStreamedAmount);
+    }
+
+    function test_CreateLockupDynamicStream_UnlockInSteps() public {
+        uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
+        uint256 actualStreamId = creator.createLockupDynamicStream_UnlockInSteps();
+
+        // Assert that the stream has been created.
+        assertEq(actualStreamId, expectedStreamId);
+
+        uint256 actualStreamedAmount;
+        uint256 expectedStreamedAmount;
+
+        for (uint256 i = 0; i < 10; ++i) {
+            actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
+            assertEq(actualStreamedAmount, expectedStreamedAmount);
+
+            // Sum 10 DAI on each iteration.
+            expectedStreamedAmount += 10e18;
+
+            // Warp 10 days into the future on each iteration
+            vm.warp({ newTimestamp: block.timestamp + 10 days });
+        }
     }
 }

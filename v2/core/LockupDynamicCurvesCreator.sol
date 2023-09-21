@@ -76,4 +76,44 @@ contract LockupDynamicCurvesCreator {
         // Create the Sablier stream
         streamId = lockupDynamic.createWithDeltas(params);
     }
+
+    function createLockupDynamicStream_UnlockInSteps() external returns (uint256 streamId) {
+        // Declare the total amount as 100 DAI
+        uint128 totalAmount = 100e18;
+
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), totalAmount);
+
+        // Approve the Sablier contract to spend DAI
+        DAI.approve(address(lockupDynamic), totalAmount);
+
+        // Declare the params struct
+        LockupDynamic.CreateWithDeltas memory params;
+
+        // Declare the function parameters
+        params.sender = msg.sender; // The sender will be able to cancel the stream
+        params.recipient = address(0xcafe); // The recipient of the streamed assets
+        params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
+        params.asset = DAI; // The streaming asset
+        params.cancelable = true; // Whether the stream will be cancelable or not
+        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare a twenty-size segment to match the curve
+        uint256 segmentSize = 20;
+        params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
+
+        uint256 i;
+        for (i = 0; i < segmentSize; ++i) {
+            if (i % 2 == 0) {
+                params.segments[i] =
+                    LockupDynamic.SegmentWithDelta({ amount: 0, delta: 10 days - 1 seconds, exponent: ud2x18(1e18) });
+            } else if (i % 2 == 1) {
+                params.segments[i] =
+                    LockupDynamic.SegmentWithDelta({ amount: 10e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+            }
+        }
+
+        // Create the Sablier stream
+        streamId = lockupDynamic.createWithDeltas(params);
+    }
 }
