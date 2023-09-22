@@ -7,8 +7,9 @@ import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 
 /// @notice Example of how to create a Lockup Dynamic stream with different curve shapes.
-// forgefmt: disable-next-line
-/// @dev The exact curve shapes can be found in the docs: https://docs.sablier.com/concepts/protocol/stream-types#lockup-dynamic
+/// @dev The exact curve shapes can be found in the docs:
+/// https://docs.sablier.com/concepts/protocol/stream-types#lockup-dynamic
+/// Visualizing the curves while reviewing the code is recommended. We will use "days" for the X axis.
 contract LockupDynamicCurvesCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
@@ -36,7 +37,7 @@ contract LockupDynamicCurvesCreator {
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare a single-size segment to match the curve
+        // Declare a single-size segment to match the curve shape
         params.segments = new LockupDynamic.SegmentWithDelta[](1);
         params.segments[0] =
             LockupDynamic.SegmentWithDelta({ amount: uint128(totalAmount), delta: 100 days, exponent: ud2x18(6e18) });
@@ -66,7 +67,7 @@ contract LockupDynamicCurvesCreator {
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare a three-size segment to match the curve
+        // Declare a three-size segment to match the curve shape
         params.segments = new LockupDynamic.SegmentWithDelta[](3);
         params.segments[0] =
             LockupDynamic.SegmentWithDelta({ amount: 0, delta: 50 days - 1 seconds, exponent: ud2x18(1e18) });
@@ -98,7 +99,7 @@ contract LockupDynamicCurvesCreator {
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare a twenty-size segment to match the curve
+        // Declare a twenty-size segment to match the curve shape
         uint256 segmentSize = 20;
         params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
 
