@@ -83,14 +83,11 @@ contract LockupDynamicCurvesCreatorTest is Test {
         uint256 expectedStreamedAmount;
 
         for (uint256 i = 0; i < 10; ++i) {
+            vm.warp({ newTimestamp: block.timestamp + 10 days - 1 seconds });
             actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
             assertEq(actualStreamedAmount, expectedStreamedAmount);
-
-            // Sum 10 DAI on each iteration.
             expectedStreamedAmount += 10e18;
-
-            // Warp 10 days into the future on each iteration
-            vm.warp({ newTimestamp: block.timestamp + 10 days });
+            vm.warp({ newTimestamp: block.timestamp + 1 seconds });
         }
     }
 }
