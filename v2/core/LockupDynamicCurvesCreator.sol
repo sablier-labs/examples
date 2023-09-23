@@ -6,10 +6,10 @@ import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol"
 import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 
-/// @notice Example of how to create a Lockup Dynamic stream with different curve shapes.
-/// @dev The exact curve shapes can be found in the docs:
+/// @notice Examples of how to create Lockup Dynamic streams with different curve shapes.
+/// @dev A visualization of the curve shapes can be found in the docs:
 /// https://docs.sablier.com/concepts/protocol/stream-types#lockup-dynamic
-/// Visualizing the curves while reviewing the code is recommended. We will use "days" for the X axis.
+/// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupDynamicCurvesCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
@@ -42,7 +42,7 @@ contract LockupDynamicCurvesCreator {
         params.segments[0] =
             LockupDynamic.SegmentWithDelta({ amount: uint128(totalAmount), delta: 100 days, exponent: ud2x18(6e18) });
 
-        // Create the Sablier stream
+        // Create the LockupDynamic stream
         streamId = lockupDynamic.createWithDeltas(params);
     }
 
@@ -74,7 +74,7 @@ contract LockupDynamicCurvesCreator {
         params.segments[1] = LockupDynamic.SegmentWithDelta({ amount: 20e18, delta: 1 seconds, exponent: ud2x18(1e18) });
         params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 80e18, delta: 50 days, exponent: ud2x18(6e18) });
 
-        // Create the Sablier stream
+        // Create the LockupDynamic stream
         streamId = lockupDynamic.createWithDeltas(params);
     }
 
@@ -103,18 +103,20 @@ contract LockupDynamicCurvesCreator {
         uint256 segmentSize = 20;
         params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
 
-        uint256 i;
-        for (i = 0; i < segmentSize; ++i) {
-            if (i % 2 == 0) {
-                params.segments[i] =
-                    LockupDynamic.SegmentWithDelta({ amount: 0, delta: 10 days - 1 seconds, exponent: ud2x18(1e18) });
-            } else if (i % 2 == 1) {
-                params.segments[i] =
-                    LockupDynamic.SegmentWithDelta({ amount: 10e18, delta: 1 seconds, exponent: ud2x18(1e18) });
-            }
+        // The even segments are empty and are spaced ~10 days apart
+        for (uint256 i = 0; i < segmentSize; i += 2) {
+            params.segments[i] =
+                LockupDynamic.SegmentWithDelta({ amount: 0, delta: 10 days - 1 seconds, exponent: ud2x18(1e18) });
         }
 
-        // Create the Sablier stream
+        // The odd segments are filled and have a delta of 1 second
+        uint128 unlockAmount = totalAmount / uint128(segmentSize / 2);
+        for (uint256 i = 1; i < segmentSize; i += 2) {
+            params.segments[i] =
+                LockupDynamic.SegmentWithDelta({ amount: unlockAmount, delta: 1 seconds, exponent: ud2x18(1e18) });
+        }
+
+        // Create the LockupDynamic stream
         streamId = lockupDynamic.createWithDeltas(params);
     }
 }
