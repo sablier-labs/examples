@@ -53,7 +53,7 @@ contract LockupDynamicStreamCreator {
             })
         );
 
-        // Create the Sablier stream
+        // Create the LockupDynamic stream
         streamId = lockupDynamic.createWithMilestones(params);
     }
 }

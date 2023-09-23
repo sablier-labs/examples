@@ -38,7 +38,7 @@ contract LockupLinearStreamCreator {
          });
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
 
-        // Create the Sablier stream using a function that sets the start time to `block.timestamp`
+        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
         streamId = lockupLinear.createWithDurations(params);
     }
 }
