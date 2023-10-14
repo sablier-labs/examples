@@ -2,7 +2,6 @@
 
 [profile.default]
   bytecode_hash = "none"
-  cbor_metadata = false
   evm_version = "paris"
   fuzz = { runs = 1_000 }
   libs = ["lib"]
