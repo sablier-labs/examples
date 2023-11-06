@@ -3,7 +3,6 @@ pragma solidity >=0.8.19;
 
 import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
 import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol";
-import { ArrayBuilder } from "@sablier/v2-periphery-test/utils/ArrayBuilder.sol";
 
 import { Test } from "forge-std/Test.sol";
 
@@ -48,8 +47,10 @@ contract BatchLockupLinearStreamCreatorTest is Test {
     // Tests that creating streams works by checking the stream ids
     function test_batchCreateLockupLinearStreams() public {
         uint256 nextStreamId = lockupLinear.nextStreamId();
-        uint256[] memory expectedStreamIds = ArrayBuilder.fillStreamIds(nextStreamId, 2);
         uint256[] memory actualStreamIds = creator.batchCreateLockupLinearStreams({ perStreamAmount: 1337e18 });
+        uint256[] memory expectedStreamIds = new uint256[](2);
+        expectedStreamIds[0] = nextStreamId;
+        expectedStreamIds[1] = nextStreamId + 1;
         assertEq(actualStreamIds, expectedStreamIds);
     }
 }

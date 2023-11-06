@@ -1,4 +1,7 @@
-@sablier/v2-core/=lib/v2-core/
-@sablier/v2-periphery-test/=lib/v2-periphery/test/
-@sablier/v2-periphery/=lib/v2-periphery
+@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/
+@prb/math/=node_modules/@prb/math/
+@prb/proxy/=node_modules/@prb/proxy/
+@sablier/v2-core/=node_modules/@sablier/v2-core/
+@sablier/v2-periphery/=node_modules/@sablier/v2-periphery/
+@uniswap/permit2/=node_modules/@uniswap/permit2/src/
 forge-std/=lib/forge-std/src/

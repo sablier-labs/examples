@@ -1,5 +1,6 @@
 # directories
 cache
+node_modules
 out
 
 # files
