@@ -5,32 +5,17 @@ import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablier
 import { LockupLinear } from "@sablier/v2-core/src/types/DataTypes.sol";
 import { ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
-import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol";
-import { Batch, Broker } from "@sablier/v2-periphery/src/types/DataTypes.sol";
-import { IAllowanceTransfer, Permit2Params } from "@sablier/v2-periphery/src/types/Permit2.sol";
-import { IPRBProxy, IPRBProxyRegistry } from "@sablier/v2-periphery/src/types/Proxy.sol";
+import { Batch, Broker } from "../../lib/v2-periphery/src/types/DataTypes.sol";
+import { ISablierV2Batch } from "../../lib/v2-periphery/src/interfaces/ISablierV2Batch.sol";
 
-import { ERC1271 } from "./ERC1271.sol";
-
-contract BatchLockupLinearStreamCreator is ERC1271 {
+contract BatchLockupLinearStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    IAllowanceTransfer public constant PERMIT2 = IAllowanceTransfer(0x000000000022D473030F116dDEE9F6B43aC78BA3);
-    IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x584009E9eDe26e212182c9745F5c000191296a78);
-    ISablierV2LockupLinear public immutable lockupLinear;
-    ISablierV2ProxyTarget public immutable proxyTarget;
-
-    constructor(ISablierV2LockupLinear lockupLinear_, ISablierV2ProxyTarget proxyTarget_) {
-        lockupLinear = lockupLinear_;
-        proxyTarget = proxyTarget_;
-    }
+    // See https://docs.sablier.com/contracts/v2/deployments for all deployments
+    ISablierV2Batch public constant BATCH = ISablierV2Batch(0x62D0d5BF3151Fdf6C8d9Be6aad2747DB6c5239A9);
+    ISablierV2LockupLinear public constant LOCKUP_LINEAR =
+        ISablierV2LockupLinear(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
 
     function batchCreateLockupLinearStreams(uint256 perStreamAmount) public returns (uint256[] memory streamIds) {
-        // Get the proxy for this contract and deploy it if it doesn't exist
-        IPRBProxy proxy = PROXY_REGISTRY.getProxy({ user: address(this) });
-        if (address(proxy) == address(0)) {
-            proxy = PROXY_REGISTRY.deployFor(address(this));
-        }
-
         // Create a batch of two streams
         uint256 batchSize = 2;
 
@@ -40,34 +25,16 @@ contract BatchLockupLinearStreamCreator is ERC1271 {
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), transferAmount);
 
-        // Approve the Permit2 contract to spend DAI
-        uint256 allowance = DAI.allowance(address(this), address(PERMIT2));
+        // Approve the Batch contract to spend DAI
+        uint256 allowance = DAI.allowance(address(this), address(BATCH));
         if (allowance < transferAmount) {
-            DAI.approve({ spender: address(PERMIT2), amount: type(uint256).max });
+            DAI.approve({ spender: address(BATCH), amount: type(uint256).max });
         }
-
-        // Set up Permit2. See the full documentation at https://github.com/Uniswap/permit2
-        IAllowanceTransfer.PermitDetails memory permitDetails;
-        permitDetails.token = address(DAI);
-        permitDetails.amount = uint160(transferAmount);
-        permitDetails.expiration = type(uint48).max; // maximum expiration possible
-        (,, permitDetails.nonce) =
-            PERMIT2.allowance({ user: address(this), token: address(DAI), spender: address(proxy) });
-
-        IAllowanceTransfer.PermitSingle memory permitSingle;
-        permitSingle.details = permitDetails;
-        permitSingle.spender = address(proxy); // the proxy will be the spender
-        permitSingle.sigDeadline = type(uint48).max; // same deadline as expiration
-
-        // Declare the Permit2 params needed by Sablier
-        Permit2Params memory permit2Params;
-        permit2Params.permitSingle = permitSingle;
-        permit2Params.signature = bytes(""); // dummy signature
 
         // Declare the first stream in the batch
         Batch.CreateWithDurations memory stream0;
-        stream0.sender = address(proxy); // The sender will be able to cancel the stream
-        stream0.recipient = address(0xcafe); // The recipient of the streamed assets
+        stream0.sender = address(0xABCD); // The sender to stream the assets, he will be able to cancel the stream
+        stream0.recipient = address(0xCAFE); // The recipient of the streamed assets
         stream0.totalAmount = uint128(perStreamAmount); // The total amount of each stream, inclusive of all fees
         stream0.cancelable = true; // Whether the stream will be cancelable or not
         stream0.durations = LockupLinear.Durations({
@@ -78,8 +45,8 @@ contract BatchLockupLinearStreamCreator is ERC1271 {
 
         // Declare the second stream in the batch
         Batch.CreateWithDurations memory stream1;
-        stream1.sender = address(proxy); // The sender will be able to cancel the stream
-        stream1.recipient = address(0xbeef); // The recipient of the streamed assets
+        stream1.sender = address(0xABCD); // The sender to stream the assets, he will be able to cancel the stream
+        stream1.recipient = address(0xBEEF); // The recipient of the streamed assets
         stream1.totalAmount = uint128(perStreamAmount); // The total amount of each stream, inclusive of all fees
         stream1.cancelable = false; // Whether the stream will be cancelable or not
         stream1.durations = LockupLinear.Durations({
@@ -93,12 +60,6 @@ contract BatchLockupLinearStreamCreator is ERC1271 {
         batch[0] = stream0;
         batch[1] = stream1;
 
-        // Encode the data for the proxy target call
-        bytes memory data =
-            abi.encodeCall(proxyTarget.batchCreateWithDurations, (lockupLinear, DAI, batch, permit2Params));
-
-        // Create a batch of Lockup Linear streams via the proxy and Sablier's proxy target
-        bytes memory response = proxy.execute(address(proxyTarget), data);
-        streamIds = abi.decode(response, (uint256[]));
+        streamIds = BATCH.createWithDurations(LOCKUP_LINEAR, DAI, batch);
     }
 }

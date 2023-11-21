@@ -1,34 +1,22 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
-import { ISablierV2ProxyTarget } from "@sablier/v2-periphery/src/interfaces/ISablierV2ProxyTarget.sol";
-
 import { Test } from "forge-std/Test.sol";
 
 import { BatchLockupLinearStreamCreator } from "./BatchLockupLinearStreamCreator.sol";
 
 contract BatchLockupLinearStreamCreatorTest is Test {
-    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/deployments
-    address internal constant SABLIER_ADDRESS = address(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
-    address internal constant SABLIER_TARGET_ADDRESS = address(0x297b43aE44660cA7826ef92D8353324C018573Ef);
-
     // Test contracts
     BatchLockupLinearStreamCreator internal creator;
-    ISablierV2LockupLinear internal lockupLinear;
-    ISablierV2ProxyTarget internal proxyTarget;
+
     address internal user;
 
     function setUp() public {
         // Fork Ethereum Mainnet
         vm.createSelectFork({ urlOrAlias: "mainnet" });
 
-        // Load the Sablier contract from Ethereum Mainnet
-        lockupLinear = ISablierV2LockupLinear(SABLIER_ADDRESS);
-        proxyTarget = ISablierV2ProxyTarget(SABLIER_TARGET_ADDRESS);
-
         // Deploy the stream creator
-        creator = new BatchLockupLinearStreamCreator(lockupLinear, proxyTarget);
+        creator = new BatchLockupLinearStreamCreator();
 
         // Create a test user
         user = payable(makeAddr("User"));
@@ -46,7 +34,7 @@ contract BatchLockupLinearStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_batchCreateLockupLinearStreams() public {
-        uint256 nextStreamId = lockupLinear.nextStreamId();
+        uint256 nextStreamId = creator.LOCKUP_LINEAR().nextStreamId();
         uint256[] memory actualStreamIds = creator.batchCreateLockupLinearStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
