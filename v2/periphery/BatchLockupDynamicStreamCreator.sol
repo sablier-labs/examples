@@ -2,11 +2,10 @@
 pragma solidity >=0.8.19;
 
 import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
-import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol";
 import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
-import { Batch } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 import { ISablierV2Batch } from "@sablier/v2-periphery/src/interfaces/ISablierV2Batch.sol";
+import { Batch, Broker, LockupDynamic } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 
 contract BatchLockupDynamicStreamCreator {
     // Mainnet addresses

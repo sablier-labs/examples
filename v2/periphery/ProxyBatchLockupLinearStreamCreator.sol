@@ -16,7 +16,6 @@ contract ProxyBatchLockupLinearStreamCreator {
         ISablierV2LockupLinear(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
     ISablierV2ProxyTarget public constant PROXY_TARGET_APPROVE =
         ISablierV2ProxyTarget(0x638a7aC8315767cEAfc57a6f5e3559454347C3f6);
-
     IPRBProxyRegistry public constant PROXY_REGISTRY = IPRBProxyRegistry(0x584009E9eDe26e212182c9745F5c000191296a78);
 
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {

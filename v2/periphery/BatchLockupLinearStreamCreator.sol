@@ -4,8 +4,8 @@ pragma solidity >=0.8.19;
 import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
 import { ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
 import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
-import { ISablierV2Batch } from "@sablier/v2-periphery/src/interfaces/ISablierV2Batch.sol";
-import { Batch, Broker, LockupLinear } from "@sablier/v2-periphery/src/types/DataTypes.sol";
+import { ISablierV2Batch } from "../../lib/v2-periphery/src/interfaces/ISablierV2Batch.sol";
+import { Batch, Broker, LockupLinear } from "../../lib/v2-periphery/src/types/DataTypes.sol";
 
 contract BatchLockupLinearStreamCreator {
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
