@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.19;
 
-import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
 import { Test } from "forge-std/Test.sol";
 
 import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
@@ -9,7 +8,7 @@ import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
 contract LockupDynamicCurvesCreatorTest is Test {
     // Test contracts
     LockupDynamicCurvesCreator internal creator;
-    ISablierV2LockupDynamic internal lockupDynamic;
+
     address internal user;
 
     function setUp() public {
@@ -33,9 +32,9 @@ contract LockupDynamicCurvesCreatorTest is Test {
         creator.DAI().approve({ spender: address(creator), amount: 1337e18 });
     }
 
-    function test_CreateLockupDynamicStream_Exponential() public {
+    function test_CreateStream_Exponential() public {
         uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
-        uint256 actualStreamId = creator.createLockupDynamicStream_Exponential();
+        uint256 actualStreamId = creator.createStream_Exponential();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -48,9 +47,9 @@ contract LockupDynamicCurvesCreatorTest is Test {
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 
-    function test_CreateLockupDynamicStream_ExponentialCliff() public {
+    function test_CreateStream_ExponentialCliff() public {
         uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
-        uint256 actualStreamId = creator.createLockupDynamicStream_ExponentialCliff();
+        uint256 actualStreamId = creator.createStream_ExponentialCliff();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -72,9 +71,9 @@ contract LockupDynamicCurvesCreatorTest is Test {
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 
-    function test_CreateLockupDynamicStream_UnlockInSteps() public {
+    function test_CreateStream_UnlockInSteps() public {
         uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
-        uint256 actualStreamId = creator.createLockupDynamicStream_UnlockInSteps();
+        uint256 actualStreamId = creator.createStream_UnlockInSteps();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);

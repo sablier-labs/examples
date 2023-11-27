@@ -9,14 +9,12 @@ import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 /// @notice Example of how to create a Lockup Linear stream.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-linear
 contract LockupLinearStreamCreator {
+    // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    ISablierV2LockupLinear public immutable lockupLinear;
+    ISablierV2LockupLinear public constant lockupLinear =
+        ISablierV2LockupLinear(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
 
-    constructor(ISablierV2LockupLinear lockupLinear_) {
-        lockupLinear = lockupLinear_;
-    }
-
-    function createLockupLinearStream(uint256 totalAmount) public returns (uint256 streamId) {
+    function createStream(uint256 totalAmount) public returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
@@ -28,7 +26,7 @@ contract LockupLinearStreamCreator {
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
-        params.recipient = address(0xcafe); // The recipient of the streamed assets
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
         params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not

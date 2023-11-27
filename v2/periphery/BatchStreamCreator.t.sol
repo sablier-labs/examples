@@ -8,8 +8,8 @@ import { BatchLockupLinearStreamCreator } from "./BatchLockupLinearStreamCreator
 
 contract BatchStreamCreatorTest is Test {
     // Test contracts
-    BatchLockupDynamicStreamCreator internal creatorDynamic;
-    BatchLockupLinearStreamCreator internal creatorLinear;
+    BatchLockupDynamicStreamCreator internal dynamicCreator;
+    BatchLockupLinearStreamCreator internal linearCreator;
 
     address internal user;
 
@@ -18,22 +18,22 @@ contract BatchStreamCreatorTest is Test {
         vm.createSelectFork({ urlOrAlias: "mainnet" });
 
         // Deploy the stream creators
-        creatorDynamic = new BatchLockupDynamicStreamCreator();
-        creatorLinear = new BatchLockupLinearStreamCreator();
+        dynamicCreator = new BatchLockupDynamicStreamCreator();
+        linearCreator = new BatchLockupLinearStreamCreator();
 
         // Create a test user
         user = payable(makeAddr("User"));
         vm.deal({ account: user, newBalance: 1 ether });
 
         // Mint some DAI tokens to the test user, which will be pulled by the creator contracts
-        deal({ token: address(creatorLinear.DAI()), to: user, give: 4 * 1337e18 });
+        deal({ token: address(linearCreator.DAI()), to: user, give: 4 * 1337e18 });
 
         // Make the test user the `msg.sender` in all following calls
         vm.startPrank({ msgSender: user });
 
         // Approve the creator contracts to pull DAI tokens from the test user
-        creatorDynamic.DAI().approve({ spender: address(creatorDynamic), amount: 2 * 1337e18 });
-        creatorLinear.DAI().approve({ spender: address(creatorLinear), amount: 2 * 1337e18 });
+        dynamicCreator.DAI().approve({ spender: address(dynamicCreator), amount: 2 * 1337e18 });
+        linearCreator.DAI().approve({ spender: address(linearCreator), amount: 2 * 1337e18 });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -42,8 +42,8 @@ contract BatchStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_BatchLockupDynamicStreamCreator() public {
-        uint256 nextStreamId = creatorDynamic.LOCKUP_DYNAMIC().nextStreamId();
-        uint256[] memory actualStreamIds = creatorDynamic.batchCreateStreams({ perStreamAmount: 1337e18 });
+        uint256 nextStreamId = dynamicCreator.LOCKUP_DYNAMIC().nextStreamId();
+        uint256[] memory actualStreamIds = dynamicCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
         expectedStreamIds[1] = nextStreamId + 1;
@@ -56,8 +56,8 @@ contract BatchStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_BatchLockupLinearStreamCreator() public {
-        uint256 nextStreamId = creatorLinear.LOCKUP_LINEAR().nextStreamId();
-        uint256[] memory actualStreamIds = creatorLinear.batchCreateStreams({ perStreamAmount: 1337e18 });
+        uint256 nextStreamId = linearCreator.LOCKUP_LINEAR().nextStreamId();
+        uint256[] memory actualStreamIds = linearCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
         expectedStreamIds[1] = nextStreamId + 1;

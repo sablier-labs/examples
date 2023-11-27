@@ -9,14 +9,12 @@ import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 /// @notice Example of how to create a Lockup Dynamic stream.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-dynamic
 contract LockupDynamicStreamCreator {
+    // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    ISablierV2LockupDynamic public immutable lockupDynamic;
+    ISablierV2LockupDynamic public constant lockupDynamic =
+        ISablierV2LockupDynamic(0x39EFdC3dbB57B2388CcC4bb40aC4CB1226Bc9E44);
 
-    constructor(ISablierV2LockupDynamic lockupDynamic_) {
-        lockupDynamic = lockupDynamic_;
-    }
-
-    function createLockupDynamicStream(uint256 amount0, uint256 amount1) public returns (uint256 streamId) {
+    function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {
         // Sum the segment amounts
         uint256 totalAmount = amount0 + amount1;
 
@@ -31,7 +29,7 @@ contract LockupDynamicStreamCreator {
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
-        params.recipient = address(0xcafe); // The recipient of the streamed assets
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
         params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
@@ -41,13 +39,13 @@ contract LockupDynamicStreamCreator {
         // Declare some dummy segments
         params.segments = new LockupDynamic.Segment[](2);
         params.segments[0] = LockupDynamic.Segment({
-            amount: uint128(amount0),
+            amount: amount0,
             exponent: ud2x18(1e18),
             milestone: uint40(block.timestamp + 4 weeks)
         });
         params.segments[1] = (
             LockupDynamic.Segment({
-                amount: uint128(amount1),
+                amount: amount1,
                 exponent: ud2x18(3.14e18),
                 milestone: uint40(block.timestamp + 52 weeks)
             })

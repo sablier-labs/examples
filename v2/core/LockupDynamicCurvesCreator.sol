@@ -16,7 +16,7 @@ contract LockupDynamicCurvesCreator {
     ISablierV2LockupDynamic public constant lockupDynamic =
         ISablierV2LockupDynamic(0x39EFdC3dbB57B2388CcC4bb40aC4CB1226Bc9E44);
 
-    function createLockupDynamicStream_Exponential() external returns (uint256 streamId) {
+    function createStream_Exponential() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -31,7 +31,7 @@ contract LockupDynamicCurvesCreator {
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
-        params.recipient = address(0xcafe); // The recipient of the streamed assets
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
@@ -46,7 +46,7 @@ contract LockupDynamicCurvesCreator {
         streamId = lockupDynamic.createWithDeltas(params);
     }
 
-    function createLockupDynamicStream_ExponentialCliff() external returns (uint256 streamId) {
+    function createStream_ExponentialCliff() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -61,7 +61,7 @@ contract LockupDynamicCurvesCreator {
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
-        params.recipient = address(0xcafe); // The recipient of the streamed assets
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
@@ -78,7 +78,7 @@ contract LockupDynamicCurvesCreator {
         streamId = lockupDynamic.createWithDeltas(params);
     }
 
-    function createLockupDynamicStream_UnlockInSteps() external returns (uint256 streamId) {
+    function createStream_UnlockInSteps() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -93,7 +93,7 @@ contract LockupDynamicCurvesCreator {
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
-        params.recipient = address(0xcafe); // The recipient of the streamed assets
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
