@@ -41,14 +41,14 @@ contract LockupLinearStreamCreatorTest is Test {
         uint128 amount0 = 1337e18 / 2;
         uint128 amount1 = 1337e18 - amount0;
 
-        uint256 expectedStreamId = dynamicCreator.lockupDynamic().nextStreamId();
+        uint256 expectedStreamId = dynamicCreator.LOCKUP_DYNAMIC().nextStreamId();
         uint256 actualStreamId = dynamicCreator.createStream(amount0, amount1);
         assertEq(actualStreamId, expectedStreamId);
     }
 
     // Tests that creating streams works by checking the stream ids
     function test_LockupLinearStreamCreator() public {
-        uint256 expectedStreamId = linearCreator.lockupLinear().nextStreamId();
+        uint256 expectedStreamId = linearCreator.LOCKUP_LINEAR().nextStreamId();
         uint256 actualStreamId = linearCreator.createStream({ totalAmount: 1337e18 });
         assertEq(actualStreamId, expectedStreamId);
     }

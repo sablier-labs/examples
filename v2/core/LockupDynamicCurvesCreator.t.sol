@@ -33,7 +33,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
     }
 
     function test_CreateStream_Exponential() public {
-        uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
         uint256 actualStreamId = creator.createStream_Exponential();
 
         // Assert that the stream has been created.
@@ -42,13 +42,13 @@ contract LockupDynamicCurvesCreatorTest is Test {
         // Warp 50 days into the future, i.e. half way of the stream duration.
         vm.warp({ newTimestamp: block.timestamp + 50 days });
 
-        uint128 actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
+        uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         uint128 expectedStreamedAmount = 1.5625e18; // 0.5^{6} * 100 + 0
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 
     function test_CreateStream_ExponentialCliff() public {
-        uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
         uint256 actualStreamId = creator.createStream_ExponentialCliff();
 
         // Assert that the stream has been created.
@@ -59,20 +59,20 @@ contract LockupDynamicCurvesCreatorTest is Test {
         // Warp 50 days into the future, i.e. half way of the stream duration (unlock moment).
         vm.warp({ newTimestamp: currentTime + 50 days });
 
-        uint128 actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
+        uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         uint128 expectedStreamedAmount = 20e18;
         assertEq(actualStreamedAmount, expectedStreamedAmount);
 
         // Warp 75 days into the future, i.e. half way of the stream's last segment.
         vm.warp({ newTimestamp: currentTime + 75 days });
 
-        actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
+        actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         expectedStreamedAmount = 21.25e18; // 0.5^{6} * 80 + 20
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 
     function test_CreateStream_UnlockInSteps() public {
-        uint256 expectedStreamId = creator.lockupDynamic().nextStreamId();
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
         uint256 actualStreamId = creator.createStream_UnlockInSteps();
 
         // Assert that the stream has been created.
@@ -83,7 +83,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
         for (uint256 i = 0; i < 10; ++i) {
             vm.warp({ newTimestamp: block.timestamp + 10 days - 1 seconds });
-            actualStreamedAmount = creator.lockupDynamic().streamedAmountOf(actualStreamId);
+            actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
             assertEq(actualStreamedAmount, expectedStreamedAmount);
             expectedStreamedAmount += 10e18;
             vm.warp({ newTimestamp: block.timestamp + 1 seconds });

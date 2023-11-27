@@ -11,7 +11,7 @@ import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 contract LockupLinearStreamCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    ISablierV2LockupLinear public constant lockupLinear =
+    ISablierV2LockupLinear public constant LOCKUP_LINEAR =
         ISablierV2LockupLinear(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
 
     function createStream(uint256 totalAmount) public returns (uint256 streamId) {
@@ -19,7 +19,7 @@ contract LockupLinearStreamCreator {
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(lockupLinear), totalAmount);
+        DAI.approve(address(LOCKUP_LINEAR), totalAmount);
 
         // Declare the params struct
         LockupLinear.CreateWithDurations memory params;
@@ -37,6 +37,6 @@ contract LockupLinearStreamCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
 
         // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
-        streamId = lockupLinear.createWithDurations(params);
+        streamId = LOCKUP_LINEAR.createWithDurations(params);
     }
 }

@@ -13,7 +13,7 @@ import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 contract LockupDynamicCurvesCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-    ISablierV2LockupDynamic public constant lockupDynamic =
+    ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
         ISablierV2LockupDynamic(0x39EFdC3dbB57B2388CcC4bb40aC4CB1226Bc9E44);
 
     function createStream_Exponential() external returns (uint256 streamId) {
@@ -24,7 +24,7 @@ contract LockupDynamicCurvesCreator {
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(lockupDynamic), totalAmount);
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
         LockupDynamic.CreateWithDeltas memory params;
@@ -43,7 +43,7 @@ contract LockupDynamicCurvesCreator {
             LockupDynamic.SegmentWithDelta({ amount: uint128(totalAmount), delta: 100 days, exponent: ud2x18(6e18) });
 
         // Create the LockupDynamic stream
-        streamId = lockupDynamic.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
     }
 
     function createStream_ExponentialCliff() external returns (uint256 streamId) {
@@ -54,7 +54,7 @@ contract LockupDynamicCurvesCreator {
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(lockupDynamic), totalAmount);
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
         LockupDynamic.CreateWithDeltas memory params;
@@ -75,7 +75,7 @@ contract LockupDynamicCurvesCreator {
         params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 80e18, delta: 50 days, exponent: ud2x18(6e18) });
 
         // Create the LockupDynamic stream
-        streamId = lockupDynamic.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
     }
 
     function createStream_UnlockInSteps() external returns (uint256 streamId) {
@@ -86,7 +86,7 @@ contract LockupDynamicCurvesCreator {
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
         // Approve the Sablier contract to spend DAI
-        DAI.approve(address(lockupDynamic), totalAmount);
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
         LockupDynamic.CreateWithDeltas memory params;
@@ -117,6 +117,6 @@ contract LockupDynamicCurvesCreator {
         }
 
         // Create the LockupDynamic stream
-        streamId = lockupDynamic.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
     }
 }
