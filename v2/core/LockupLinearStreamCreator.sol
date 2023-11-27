@@ -14,7 +14,7 @@ contract LockupLinearStreamCreator {
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
         ISablierV2LockupLinear(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
 
-    function createStream(uint256 totalAmount) public returns (uint256 streamId) {
+    function createStream(uint128 totalAmount) public returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), totalAmount);
 
@@ -27,7 +27,7 @@ contract LockupLinearStreamCreator {
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
         params.recipient = address(0xCAFE); // The recipient of the streamed assets
-        params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
+        params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.durations = LockupLinear.Durations({

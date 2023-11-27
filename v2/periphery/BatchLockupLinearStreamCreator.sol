@@ -26,10 +26,7 @@ contract BatchLockupLinearStreamCreator {
         DAI.transferFrom(msg.sender, address(this), transferAmount);
 
         // Approve the Batch contract to spend DAI
-        uint256 allowance = DAI.allowance(address(this), address(BATCH));
-        if (allowance < transferAmount) {
-            DAI.approve({ spender: address(BATCH), amount: type(uint256).max });
-        }
+        DAI.approve({ spender: address(BATCH), amount: transferAmount });
 
         // Declare the first stream in the batch
         Batch.CreateWithDurations memory stream0;
