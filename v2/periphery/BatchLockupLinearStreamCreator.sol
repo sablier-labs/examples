@@ -8,6 +8,7 @@ import { ISablierV2Batch } from "@sablier/v2-periphery/src/interfaces/ISablierV2
 import { Batch, Broker, LockupLinear } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 
 contract BatchLockupLinearStreamCreator {
+    // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
     ISablierV2Batch public constant BATCH = ISablierV2Batch(0x62D0d5BF3151Fdf6C8d9Be6aad2747DB6c5239A9);
