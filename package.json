@@ -16,10 +16,8 @@
     "dependencies": {
       "@openzeppelin/contracts": "4.9.2",
       "@prb/math": "4.0.1",
-      "@prb/proxy": "4.0.1",
       "@sablier/v2-core": "1.0.2",
-      "@sablier/v2-periphery": "1.0.3",
-      "@uniswap/permit2": "github:sablier-labs/permit2#d7ff3125ef485ee0788e8f990150fad805fc9c53"
+      "@sablier/v2-periphery": "1.0.3"
     },
     "homepage": "https://github.com/sablier-labs/examples#readme",
     "keywords": [

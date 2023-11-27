@@ -11,18 +11,12 @@ dependencies:
   '@prb/math':
     specifier: 4.0.1
     version: 4.0.1
-  '@prb/proxy':
-    specifier: 4.0.1
-    version: 4.0.1
   '@sablier/v2-core':
     specifier: 1.0.2
     version: 1.0.2(@openzeppelin/contracts@4.9.2)(@prb/math@4.0.1)
   '@sablier/v2-periphery':
     specifier: 1.0.3
     version: 1.0.3(@openzeppelin/contracts@4.9.2)(@prb/proxy@4.0.1)(@sablier/v2-core@1.0.2)
-  '@uniswap/permit2':
-    specifier: github:sablier-labs/permit2#d7ff3125ef485ee0788e8f990150fad805fc9c53
-    version: github.com/sablier-labs/permit2/d7ff3125ef485ee0788e8f990150fad805fc9c53
 
 devDependencies:
   prettier:
@@ -530,12 +524,6 @@ packages:
 
   github.com/sablier-labs/permit2/4ea99fe3a01bb526cba6370f1e07d247a718ea51:
     resolution: {tarball: https://codeload.github.com/sablier-labs/permit2/tar.gz/4ea99fe3a01bb526cba6370f1e07d247a718ea51}
-    name: '@uniswap/permit2'
-    version: 1.0.0
-    dev: false
-
-  github.com/sablier-labs/permit2/d7ff3125ef485ee0788e8f990150fad805fc9c53:
-    resolution: {tarball: https://codeload.github.com/sablier-labs/permit2/tar.gz/d7ff3125ef485ee0788e8f990150fad805fc9c53}
     name: '@uniswap/permit2'
     version: 1.0.0
     dev: false
