@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { ud2x18 } from "@prb/math/src/UD2x18.sol";
+import { ud60x18 } from "@prb/math/src/UD60x18.sol";
 import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
 import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol";
-import { ud2x18, ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
-import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 
 /// @notice Example of how to create a Lockup Dynamic stream.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-dynamic
@@ -12,7 +13,7 @@ contract LockupDynamicStreamCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x39EFdC3dbB57B2388CcC4bb40aC4CB1226Bc9E44);
+        ISablierV2LockupDynamic(0x3C7Cd8bE42489252CbCc6dC94a17F7f4ec74437E);
 
     function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {
         // Sum the segment amounts

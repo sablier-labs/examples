@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.19;
 
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { ud60x18 } from "@prb/math/src/UD60x18.sol";
 import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
-import { ud60x18 } from "@sablier/v2-core/src/types/Math.sol";
-import { IERC20 } from "@sablier/v2-core/src/types/Tokens.sol";
 import { ISablierV2Batch } from "@sablier/v2-periphery/src/interfaces/ISablierV2Batch.sol";
 import { Batch, Broker, LockupLinear } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 
@@ -11,9 +11,9 @@ contract BatchLockupLinearStreamCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
-    ISablierV2Batch public constant BATCH = ISablierV2Batch(0x62D0d5BF3151Fdf6C8d9Be6aad2747DB6c5239A9);
+    ISablierV2Batch public constant BATCH = ISablierV2Batch(0xEa07DdBBeA804E7fe66b958329F8Fa5cDA95Bd55);
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
-        ISablierV2LockupLinear(0xB10daee1FCF62243aE27776D7a92D39dC8740f95);
+        ISablierV2LockupLinear(0xe99AEff5BB41d0d7340e7B0c8001F593768ba0E5);
 
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Create a batch of two streams

@@ -9,16 +9,22 @@ dependencies:
     specifier: 4.9.2
     version: 4.9.2
   '@prb/math':
-    specifier: 4.0.1
-    version: 4.0.1
+    specifier: 4.0.2
+    version: 4.0.2
   '@sablier/v2-core':
-    specifier: 1.0.2
-    version: 1.0.2(@openzeppelin/contracts@4.9.2)(@prb/math@4.0.1)
+    specifier: 1.1.1
+    version: 1.1.1(@prb/math@4.0.2)
   '@sablier/v2-periphery':
-    specifier: 1.0.3
-    version: 1.0.3(@openzeppelin/contracts@4.9.2)(@prb/proxy@4.0.1)(@sablier/v2-core@1.0.2)
+    specifier: 1.1.0
+    version: 1.1.0(@sablier/v2-core@1.1.1)
 
 devDependencies:
+  ds-test:
+    specifier: github:dapphub/ds-test/#e282159d5170298eb2455a6c05280ab5a73a4ef0
+    version: github.com/dapphub/ds-test//e282159d5170298eb2455a6c05280ab5a73a4ef0
+  forge-std:
+    specifier: github:foundry-rs/forge-std#v1.5.6
+    version: github.com/foundry-rs/forge-std/e8a047e3f40f13fa37af6fe14e6e06283d9a060e
   prettier:
     specifier: ^3.0.0
     version: 3.0.3
@@ -54,35 +60,27 @@ packages:
     resolution: {integrity: sha512-mO+y6JaqXjWeMh9glYVzVu8HYPGknAAnWyxTRhGeckOruyXQMNnlcW6w/Dx9ftLeIQk6N+ZJFuVmTwF7lEIFrg==}
     dev: false
 
-  /@prb/math@4.0.1:
-    resolution: {integrity: sha512-ANTz2KMV+dMdZ57mWgDTR6jZo5uQzUczQEHCxd7CvJZZ9yafnfPhUUILHvvigIOZ85fZbTPVkC8YoRG1z5Qf7g==}
+  /@prb/math@4.0.2:
+    resolution: {integrity: sha512-kJgqvXR6iyU7+N959RzggSFhBdnRuSDnc/bs8u6MzdWw7aYIUaAr+uMVdpP6Dheypjerd7sfJgFOs19FRFhscg==}
     dev: false
 
-  /@prb/proxy@4.0.1:
-    resolution: {integrity: sha512-uphCpNzkhT3aKia5/KKJz2eHyeYGnJeiFt3IeehtylaXxfOK3iS1bsxljyR+XjtzldSA6aWtiKg0MnhEHw/IWg==}
-    dev: false
-
-  /@sablier/v2-core@1.0.2(@openzeppelin/contracts@4.9.2)(@prb/math@4.0.1):
-    resolution: {integrity: sha512-BjobBTRLuh38fQsHtFGVsQI1XN9JXatldxbS+aFxlhYaU77fQimCejYrBqP7W1wQZnBAvdXRdKNPUskdUpM5nw==}
+  /@sablier/v2-core@1.1.1(@prb/math@4.0.2):
+    resolution: {integrity: sha512-gi9tYlNm5z29tfRwU/RM3Ljo/yvCpy4cmLosAYkhBTcdheZkqfkhZLgSKFv2OVq+0aKxH+YvzqGlt/ZtDhAeXg==}
     peerDependencies:
-      '@openzeppelin/contracts': 4.9.2
-      '@prb/math': 4.0.1
+      '@prb/math': 4.0.x
     dependencies:
       '@openzeppelin/contracts': 4.9.2
-      '@prb/math': 4.0.1
+      '@prb/math': 4.0.2
     dev: false
 
-  /@sablier/v2-periphery@1.0.3(@openzeppelin/contracts@4.9.2)(@prb/proxy@4.0.1)(@sablier/v2-core@1.0.2):
-    resolution: {integrity: sha512-0W3cLkiJ5iXMuFWN5WkgsmtQ+LRbVV+RBqaoRiXOS749yGApkEhS32PHWmwjJ229RrjrpujmrfgoIahEIrHAkg==}
+  /@sablier/v2-periphery@1.1.0(@sablier/v2-core@1.1.1):
+    resolution: {integrity: sha512-Gg6paNZ6mzzs64zf2Jq8SLOFY/rawrnNGuFFxpXPws9dyyrwtLDpnRDJlaP9QdVRSQ9zSjF56VwbvuRDQbrQ8Q==}
     peerDependencies:
-      '@openzeppelin/contracts': 4.9.2
-      '@prb/proxy': 4.0.1
-      '@sablier/v2-core': 1.0.1
+      '@sablier/v2-core': 1.1.1
     dependencies:
       '@openzeppelin/contracts': 4.9.2
-      '@prb/proxy': 4.0.1
-      '@sablier/v2-core': 1.0.2(@openzeppelin/contracts@4.9.2)(@prb/math@4.0.1)
-      '@uniswap/permit2': github.com/sablier-labs/permit2/4ea99fe3a01bb526cba6370f1e07d247a718ea51
+      '@prb/math': 4.0.2
+      '@sablier/v2-core': 1.1.1(@prb/math@4.0.2)
     dev: false
 
   /@solidity-parser/parser@0.16.1:
@@ -522,8 +520,14 @@ packages:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
-  github.com/sablier-labs/permit2/4ea99fe3a01bb526cba6370f1e07d247a718ea51:
-    resolution: {tarball: https://codeload.github.com/sablier-labs/permit2/tar.gz/4ea99fe3a01bb526cba6370f1e07d247a718ea51}
-    name: '@uniswap/permit2'
+  github.com/dapphub/ds-test//e282159d5170298eb2455a6c05280ab5a73a4ef0:
+    resolution: {tarball: https://codeload.github.com/dapphub/ds-test//tar.gz/e282159d5170298eb2455a6c05280ab5a73a4ef0}
+    name: ds-test
     version: 1.0.0
-    dev: false
+    dev: true
+
+  github.com/foundry-rs/forge-std/e8a047e3f40f13fa37af6fe14e6e06283d9a060e:
+    resolution: {tarball: https://codeload.github.com/foundry-rs/forge-std/tar.gz/e8a047e3f40f13fa37af6fe14e6e06283d9a060e}
+    name: forge-std
+    version: 1.5.6
+    dev: true
