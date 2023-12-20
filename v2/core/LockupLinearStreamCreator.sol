@@ -12,7 +12,7 @@ contract LockupLinearStreamCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
-        ISablierV2LockupLinear(0xe99AEff5BB41d0d7340e7B0c8001F593768ba0E5);
+        ISablierV2LockupLinear(0xAFb979d9afAd1aD27C5eFf4E27226E3AB9e5dCC9);
 
     function createStream(uint128 totalAmount) public returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract

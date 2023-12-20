@@ -14,7 +14,7 @@ contract BatchLockupDynamicStreamCreator {
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
     ISablierV2Batch public constant BATCH = ISablierV2Batch(0xEa07DdBBeA804E7fe66b958329F8Fa5cDA95Bd55);
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x3C7Cd8bE42489252CbCc6dC94a17F7f4ec74437E);
+        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
 
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Create a batch of two streams

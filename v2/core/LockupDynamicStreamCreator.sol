@@ -13,7 +13,7 @@ contract LockupDynamicStreamCreator {
     // Mainnet addresses
     IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x3C7Cd8bE42489252CbCc6dC94a17F7f4ec74437E);
+        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
 
     function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {
         // Sum the segment amounts

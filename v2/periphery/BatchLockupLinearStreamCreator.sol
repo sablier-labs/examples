@@ -13,7 +13,7 @@ contract BatchLockupLinearStreamCreator {
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
     ISablierV2Batch public constant BATCH = ISablierV2Batch(0xEa07DdBBeA804E7fe66b958329F8Fa5cDA95Bd55);
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
-        ISablierV2LockupLinear(0xe99AEff5BB41d0d7340e7B0c8001F593768ba0E5);
+        ISablierV2LockupLinear(0xAFb979d9afAd1aD27C5eFf4E27226E3AB9e5dCC9);
 
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Create a batch of two streams

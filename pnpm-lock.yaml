@@ -12,11 +12,11 @@ dependencies:
     specifier: 4.0.2
     version: 4.0.2
   '@sablier/v2-core':
-    specifier: 1.1.1
-    version: 1.1.1(@prb/math@4.0.2)
+    specifier: 1.1.2
+    version: 1.1.2(@prb/math@4.0.2)
   '@sablier/v2-periphery':
-    specifier: 1.1.0
-    version: 1.1.0(@sablier/v2-core@1.1.1)
+    specifier: 1.1.1
+    version: 1.1.1(@sablier/v2-core@1.1.2)
 
 devDependencies:
   ds-test:
@@ -64,8 +64,8 @@ packages:
     resolution: {integrity: sha512-kJgqvXR6iyU7+N959RzggSFhBdnRuSDnc/bs8u6MzdWw7aYIUaAr+uMVdpP6Dheypjerd7sfJgFOs19FRFhscg==}
     dev: false
 
-  /@sablier/v2-core@1.1.1(@prb/math@4.0.2):
-    resolution: {integrity: sha512-gi9tYlNm5z29tfRwU/RM3Ljo/yvCpy4cmLosAYkhBTcdheZkqfkhZLgSKFv2OVq+0aKxH+YvzqGlt/ZtDhAeXg==}
+  /@sablier/v2-core@1.1.2(@prb/math@4.0.2):
+    resolution: {integrity: sha512-b9tSDVlwNc28l/kuBnizqYQ399OxS5kL03m9d9v79WH/9IMjrEFq0dhVX/sMsIWvzj3GXZ60P1oL1QWymeLXJQ==}
     peerDependencies:
       '@prb/math': 4.0.x
     dependencies:
@@ -73,14 +73,14 @@ packages:
       '@prb/math': 4.0.2
     dev: false
 
-  /@sablier/v2-periphery@1.1.0(@sablier/v2-core@1.1.1):
-    resolution: {integrity: sha512-Gg6paNZ6mzzs64zf2Jq8SLOFY/rawrnNGuFFxpXPws9dyyrwtLDpnRDJlaP9QdVRSQ9zSjF56VwbvuRDQbrQ8Q==}
+  /@sablier/v2-periphery@1.1.1(@sablier/v2-core@1.1.2):
+    resolution: {integrity: sha512-HzuaL0KPrceh0m4nlCO3tBZh/LenOsMO6hhkwhCsKn7D5Rk/DYt6dQECH7l4mKc6lFfYqeLF7Utj6DFYP7CbUA==}
     peerDependencies:
-      '@sablier/v2-core': 1.1.1
+      '@sablier/v2-core': 1.1.2
     dependencies:
       '@openzeppelin/contracts': 4.9.2
       '@prb/math': 4.0.2
-      '@sablier/v2-core': 1.1.1(@prb/math@4.0.2)
+      '@sablier/v2-core': 1.1.2(@prb/math@4.0.2)
     dev: false
 
   /@solidity-parser/parser@0.16.1:
