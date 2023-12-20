@@ -1,50 +1,50 @@
 {
-    "name": "examples",
-    "description": "Solidity examples for on-chain interaction with Sablier V2",
-    "version": "1.0.0",
-    "author": {
-      "name": "Sablier Labs Ltd",
-      "url": "https://sablier.com"
-    },
-    "bugs": {
-      "url": "https://github.com/sablier-labs/examples/issues"
-    },
-    "devDependencies": {
-      "prettier": "^3.0.0",
-      "solhint": "^3.4.1"
-    },
-    "dependencies": {
-      "@openzeppelin/contracts": "4.9.2",
-      "@prb/math": "4.0.1",
-      "@prb/proxy": "4.0.1",
-      "@sablier/v2-core": "1.0.2",
-      "@sablier/v2-periphery": "1.0.3",
-      "@uniswap/permit2": "github:sablier-labs/permit2#d7ff3125ef485ee0788e8f990150fad805fc9c53"
-    },
-    "homepage": "https://github.com/sablier-labs/examples#readme",
-    "keywords": [
-      "asset-streaming",
-      "blockchain",
-      "cryptoasset-streaming",
-      "cryptoassets",
-      "ethereum",
-      "foundry",
-      "money-streaming",
-      "real-time-finance",
-      "sablier",
-      "sablier-v2",
-      "smart-contracts",
-      "solidity",
-      "token-streaming"
-    ],
-    "license": "GPL-3.0-or-later",
-    "private": true,
-    "repository": "github.com:sablier-labs/examples",
-    "scripts": {
-      "clean": "rimraf cache out",
-      "lint": "pnpm lint:sol && pnpm prettier:check",
-      "lint:sol": "forge fmt --check && pnpm solhint \"{script,src,test}/**/*.sol\"",
-      "prettier:check": "prettier --check \"**/*.{json,md,yml}\"",
-      "prettier:write": "prettier --write \"**/*.{json,md,yml}\""
-    }
+  "name": "examples",
+  "description": "Solidity examples for on-chain interaction with Sablier V2",
+  "version": "1.0.0",
+  "author": {
+    "name": "Sablier Labs Ltd",
+    "url": "https://sablier.com"
+  },
+  "bugs": {
+    "url": "https://github.com/sablier-labs/examples/issues"
+  },
+  "devDependencies": {
+    "@prb/test": "0.6.4",
+    "forge-std": "github:foundry-rs/forge-std#v1.5.6",
+    "prettier": "^2.8.8",
+    "solhint": "^4.0.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "4.9.2",
+    "@prb/math": "4.0.2",
+    "@sablier/v2-core": "1.1.2",
+    "@sablier/v2-periphery": "1.1.1"
+  },
+  "homepage": "https://github.com/sablier-labs/examples#readme",
+  "keywords": [
+    "asset-streaming",
+    "blockchain",
+    "cryptoasset-streaming",
+    "cryptoassets",
+    "ethereum",
+    "foundry",
+    "money-streaming",
+    "real-time-finance",
+    "sablier",
+    "sablier-v2",
+    "smart-contracts",
+    "solidity",
+    "token-streaming"
+  ],
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "repository": "github.com:sablier-labs/examples",
+  "scripts": {
+    "clean": "rimraf cache out",
+    "lint": "yarn lint:sol && yarn prettier:check",
+    "lint:sol": "forge fmt --check && yarn solhint \"{script,src,test}/**/*.sol\"",
+    "prettier:check": "prettier --check \"**/*.{json,md,yml}\"",
+    "prettier:write": "prettier --write \"**/*.{json,md,yml}\""
   }
+}

@@ -8,7 +8,7 @@
   optimizer = true
   optimizer_runs = 5000
   out = "out"
-  solc = "0.8.21"
+  solc = "0.8.23"
   src = "v2"
   test = "v2"
 
