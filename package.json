@@ -10,10 +10,10 @@
     "url": "https://github.com/sablier-labs/examples/issues"
   },
   "devDependencies": {
-    "ds-test": "github:dapphub/ds-test/#e282159d5170298eb2455a6c05280ab5a73a4ef0",
+    "@prb/test": "0.6.4",
     "forge-std": "github:foundry-rs/forge-std#v1.5.6",
-    "prettier": "^3.0.0",
-    "solhint": "^3.4.1"
+    "prettier": "^2.8.8",
+    "solhint": "^4.0.0"
   },
   "dependencies": {
     "@openzeppelin/contracts": "4.9.2",
@@ -42,8 +42,8 @@
   "repository": "github.com:sablier-labs/examples",
   "scripts": {
     "clean": "rimraf cache out",
-    "lint": "pnpm lint:sol && pnpm prettier:check",
-    "lint:sol": "forge fmt --check && pnpm solhint \"{script,src,test}/**/*.sol\"",
+    "lint": "yarn lint:sol && yarn prettier:check",
+    "lint:sol": "forge fmt --check && yarn solhint \"{script,src,test}/**/*.sol\"",
     "prettier:check": "prettier --check \"**/*.{json,md,yml}\"",
     "prettier:write": "prettier --write \"**/*.{json,md,yml}\""
   }

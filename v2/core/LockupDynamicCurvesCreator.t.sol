@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.19;
 
-import { Test } from "forge-std/src/Test.sol";
+import { PRBTest } from "@prb/test/src/PRBTest.sol";
+import { StdCheats } from "forge-std/src/StdCheats.sol";
 
 import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
 
-contract LockupDynamicCurvesCreatorTest is Test {
+contract LockupDynamicCurvesCreatorTest is PRBTest, StdCheats {
     // Test contracts
     LockupDynamicCurvesCreator internal creator;
 
@@ -40,7 +41,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
         assertEq(actualStreamId, expectedStreamId);
 
         // Warp 50 days into the future, i.e. half way of the stream duration.
-        vm.warp({ newTimestamp: block.timestamp + 50 days });
+        vm.warp({ timestamp: block.timestamp + 50 days });
 
         uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         uint128 expectedStreamedAmount = 1.5625e18; // 0.5^{6} * 100 + 0
@@ -57,14 +58,14 @@ contract LockupDynamicCurvesCreatorTest is Test {
         uint256 currentTime = block.timestamp;
 
         // Warp 50 days into the future, i.e. half way of the stream duration (unlock moment).
-        vm.warp({ newTimestamp: currentTime + 50 days });
+        vm.warp({ timestamp: currentTime + 50 days });
 
         uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         uint128 expectedStreamedAmount = 20e18;
         assertEq(actualStreamedAmount, expectedStreamedAmount);
 
         // Warp 75 days into the future, i.e. half way of the stream's last segment.
-        vm.warp({ newTimestamp: currentTime + 75 days });
+        vm.warp({ timestamp: currentTime + 75 days });
 
         actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         expectedStreamedAmount = 21.25e18; // 0.5^{6} * 80 + 20
@@ -82,11 +83,11 @@ contract LockupDynamicCurvesCreatorTest is Test {
         uint256 expectedStreamedAmount;
 
         for (uint256 i = 0; i < 10; ++i) {
-            vm.warp({ newTimestamp: block.timestamp + 10 days - 1 seconds });
+            vm.warp({ timestamp: block.timestamp + 10 days - 1 seconds });
             actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
             assertEq(actualStreamedAmount, expectedStreamedAmount);
             expectedStreamedAmount += 10e18;
-            vm.warp({ newTimestamp: block.timestamp + 1 seconds });
+            vm.warp({ timestamp: block.timestamp + 1 seconds });
         }
     }
 }

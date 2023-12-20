@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.19;
 
-import { Test } from "forge-std/src/Test.sol";
+import { PRBTest } from "@prb/test/src/PRBTest.sol";
+import { StdCheats } from "forge-std/src/StdCheats.sol";
 
 import { BatchLockupDynamicStreamCreator } from "./BatchLockupDynamicStreamCreator.sol";
 import { BatchLockupLinearStreamCreator } from "./BatchLockupLinearStreamCreator.sol";
 
-contract BatchStreamCreatorTest is Test {
+contract BatchStreamCreatorTest is PRBTest, StdCheats {
     // Test contracts
     BatchLockupDynamicStreamCreator internal dynamicCreator;
     BatchLockupLinearStreamCreator internal linearCreator;
