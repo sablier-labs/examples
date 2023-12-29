@@ -4,7 +4,6 @@
   bytecode_hash = "none"
   evm_version = "paris"
   fuzz = { runs = 1_000 }
-  libs = ["lib"]
   optimizer = true
   optimizer_runs = 5000
   out = "out"
