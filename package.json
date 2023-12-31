@@ -41,7 +41,7 @@
   "private": true,
   "repository": "github.com:sablier-labs/examples",
   "scripts": {
-    "clean": "rimraf cache out",
+    "clean": "rm -rf cache out",
     "lint": "yarn lint:sol && yarn prettier:check",
     "lint:sol": "forge fmt --check && yarn solhint \"{script,src,test}/**/*.sol\"",
     "prettier:check": "prettier --check \"**/*.{json,md,yml}\"",
