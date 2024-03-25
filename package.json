@@ -10,8 +10,7 @@
     "url": "https://github.com/sablier-labs/examples/issues"
   },
   "devDependencies": {
-    "@prb/test": "0.6.4",
-    "forge-std": "github:foundry-rs/forge-std#v1.5.6",
+    "forge-std": "github:foundry-rs/forge-std#v1.8.1",
     "prettier": "^2.8.8",
     "solhint": "^4.0.0"
   },
