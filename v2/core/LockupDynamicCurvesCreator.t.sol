@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.19;
 
+import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
 import { Test } from "forge-std/src/Test.sol";
 
 import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
 
 contract LockupDynamicCurvesCreatorTest is Test {
+    ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
+        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+
     // Test contracts
     LockupDynamicCurvesCreator internal creator;
 
@@ -81,12 +85,113 @@ contract LockupDynamicCurvesCreatorTest is Test {
         uint256 actualStreamedAmount;
         uint256 expectedStreamedAmount;
 
-        for (uint256 i = 0; i < 10; ++i) {
-            vm.warp({ newTimestamp: block.timestamp + 10 days - 1 seconds });
+        for (uint256 i = 0; i < 4; ++i) {
+            vm.warp({ newTimestamp: block.timestamp + 25 days - 1 seconds });
             actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+            assertEq(actualStreamedAmount, expectedStreamedAmount);
+            expectedStreamedAmount += 25e18;
+            vm.warp({ newTimestamp: block.timestamp + 1 seconds });
+        }
+    }
+
+    function test_CreateStream_MonthlyUnlocks() public {
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+        uint256 actualStreamId = creator.createStream_MonthlyUnlocks();
+
+        // Assert that the stream has been created.
+        assertEq(actualStreamId, expectedStreamId);
+
+        uint256 actualStreamedAmount;
+        uint256 expectedStreamedAmount;
+
+        for (uint256 i = 0; i < 12; ++i) {
+            vm.warp({ newTimestamp: block.timestamp + 30 days - 1 seconds });
+            actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+
             assertEq(actualStreamedAmount, expectedStreamedAmount);
             expectedStreamedAmount += 10e18;
             vm.warp({ newTimestamp: block.timestamp + 1 seconds });
         }
+    }
+
+    function test_CreateStream_Timelock() external {
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+        uint256 actualStreamId = creator.createStream_Timelock();
+
+        // Assert that the stream has been created.
+        assertEq(actualStreamId, expectedStreamId);
+
+        uint256 currentTime = block.timestamp;
+
+        // Warp 90 days - 1 second into the future, i.e. exactly 1 second before unlock.
+        vm.warp({ newTimestamp: currentTime + 90 days - 1 seconds });
+
+        uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        uint128 expectedStreamedAmount = 0;
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+
+        // Warp 90 days into the future, i.e. the unlock moment.
+        vm.warp({ newTimestamp: currentTime + 90 days });
+
+        actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        expectedStreamedAmount = 100e18;
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+    }
+
+    function test_CreateStream_UnlockLinear() external {
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+        uint256 actualStreamId = creator.createStream_UnlockLinear();
+
+        // Assert that the stream has been created.
+        assertEq(actualStreamId, expectedStreamId);
+
+        uint256 currentTime = block.timestamp;
+
+        // Warp 1 second into the future, i.e. the initial unlock.
+        vm.warp({ newTimestamp: currentTime + 1 seconds });
+
+        uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        uint128 expectedStreamedAmount = 25e18;
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+
+        // Warp 50 days into the second segment (4320000 seconds).
+        vm.warp({ newTimestamp: currentTime + 50 days + 1 seconds });
+
+        // total duration of segment: 8639999 seconds (100 days - 1 second)
+        // amount to be stream in the current segment: 75e18
+
+        actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        expectedStreamedAmount = 62.87878787878787875e18; // (0.500000057870377068)^{1} * 75 + 25
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+    }
+
+    function test_CreateStream_UnlockCliffLinear() external {
+        uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+        uint256 actualStreamId = creator.createStream_UnlockCliffLinear();
+
+        // Assert that the stream has been created.
+        assertEq(actualStreamId, expectedStreamId);
+
+        uint256 currentTime = block.timestamp;
+
+        // Warp 1 second into the future, i.e. the initial unlock.
+        vm.warp({ newTimestamp: currentTime + 1 seconds });
+
+        uint128 actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        uint128 expectedStreamedAmount = 25e18;
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+
+        // Warp 50 days into the future.
+        vm.warp({ newTimestamp: currentTime + 50 days });
+
+        // Assert that the streamed amount has remained the same.
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+
+        // Warp 75 days into the future.
+        vm.warp({ newTimestamp: currentTime + 75 days });
+
+        actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        expectedStreamedAmount = 62.5e18; // (0.50)^{1} * 75 + 25
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 }
