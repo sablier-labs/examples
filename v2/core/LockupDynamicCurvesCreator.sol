@@ -100,14 +100,14 @@ contract LockupDynamicCurvesCreator {
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare a twenty-size segment to match the curve shape
-        uint256 segmentSize = 20;
+        // Declare a eight-size segment to match the curve shape
+        uint256 segmentSize = 8;
         params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
 
-        // The even segments are empty and are spaced ~10 days apart
+        // The even segments are empty and are spaced ~25 days apart
         for (uint256 i = 0; i < segmentSize; i += 2) {
             params.segments[i] =
-                LockupDynamic.SegmentWithDelta({ amount: 0, delta: 10 days - 1 seconds, exponent: ud2x18(1e18) });
+                LockupDynamic.SegmentWithDelta({ amount: 0, delta: 25 days - 1 seconds, exponent: ud2x18(1e18) });
         }
 
         // The odd segments are filled and have a delta of 1 second
@@ -116,6 +116,143 @@ contract LockupDynamicCurvesCreator {
             params.segments[i] =
                 LockupDynamic.SegmentWithDelta({ amount: unlockAmount, delta: 1 seconds, exponent: ud2x18(1e18) });
         }
+
+        // Create the LockupDynamic stream
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+    }
+
+    function createStream_MonthlyUnlocks() external returns (uint256 streamId) {
+        // Declare the total amount as 120 DAI
+        uint128 totalAmount = 120e18;
+
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), totalAmount);
+
+        // Approve the Sablier contract to spend DAI
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
+
+        // Declare the params struct
+        LockupDynamic.CreateWithDeltas memory params;
+
+        // Declare the function parameters
+        params.sender = msg.sender; // The sender will be able to cancel the stream
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
+        params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
+        params.asset = DAI; // The streaming asset
+        params.cancelable = true; // Whether the stream will be cancelable or not
+        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare a twenty four size segment to match the curve shape
+        uint256 segmentSize = 24;
+        params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
+
+        // The even segments are empty and are spaced 30 days apart (~one month)
+        for (uint256 i = 0; i < segmentSize; i += 2) {
+            params.segments[i] =
+                LockupDynamic.SegmentWithDelta({ amount: 0, delta: 30 days - 1 seconds, exponent: ud2x18(1e18) });
+        }
+
+        // The odd segments are filled and have a delta of 1 second
+        uint128 unlockAmount = totalAmount / uint128(segmentSize / 2);
+        for (uint256 i = 1; i < segmentSize; i += 2) {
+            params.segments[i] =
+                LockupDynamic.SegmentWithDelta({ amount: unlockAmount, delta: 1 seconds, exponent: ud2x18(1e18) });
+        }
+
+        // Create the LockupDynamic stream
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+    }
+
+    function createStream_Timelock() external returns (uint256 streamId) {
+        // Declare the total amount as 100 DAI
+        uint128 totalAmount = 100e18;
+
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), totalAmount);
+
+        // Approve the Sablier contract to spend DAI
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
+
+        // Declare the params struct
+        LockupDynamic.CreateWithDeltas memory params;
+
+        // Declare the function parameters
+        params.sender = msg.sender; // The sender will be able to cancel the stream
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
+        params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
+        params.asset = DAI; // The streaming asset
+        params.cancelable = true; // Whether the stream will be cancelable or not
+        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare a two-size segment to match the curve shape
+        params.segments = new LockupDynamic.SegmentWithDelta[](2);
+        params.segments[0] =
+            LockupDynamic.SegmentWithDelta({ amount: 0, delta: 90 days - 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[1] =
+            LockupDynamic.SegmentWithDelta({ amount: 100e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+
+        // Create the LockupDynamic stream
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+    }
+
+    function createStream_UnlockLinear() external returns (uint256 streamId) {
+        // Declare the total amount as 100 DAI
+        uint128 totalAmount = 100e18;
+
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), totalAmount);
+
+        // Approve the Sablier contract to spend DAI
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
+
+        // Declare the params struct
+        LockupDynamic.CreateWithDeltas memory params;
+
+        // Declare the function parameters
+        params.sender = msg.sender; // The sender will be able to cancel the stream
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
+        params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
+        params.asset = DAI; // The streaming asset
+        params.cancelable = true; // Whether the stream will be cancelable or not
+        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare a two-size segment to match the curve shape
+        params.segments = new LockupDynamic.SegmentWithDelta[](2);
+        params.segments[0] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[1] =
+            LockupDynamic.SegmentWithDelta({ amount: 75e18, delta: 100 days - 1 days, exponent: ud2x18(1e18) });
+
+        // Create the LockupDynamic stream
+        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+    }
+
+    function createStream_UnlockCliffLinear() external returns (uint256 streamId) {
+        // Declare the total amount as 100 DAI
+        uint128 totalAmount = 100e18;
+
+        // Transfer the provided amount of DAI tokens to this contract
+        DAI.transferFrom(msg.sender, address(this), totalAmount);
+
+        // Approve the Sablier contract to spend DAI
+        DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
+
+        // Declare the params struct
+        LockupDynamic.CreateWithDeltas memory params;
+
+        // Declare the function parameters
+        params.sender = msg.sender; // The sender will be able to cancel the stream
+        params.recipient = address(0xCAFE); // The recipient of the streamed assets
+        params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
+        params.asset = DAI; // The streaming asset
+        params.cancelable = true; // Whether the stream will be cancelable or not
+        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+
+        // Declare a three-size segment to match the curve shape
+        params.segments = new LockupDynamic.SegmentWithDelta[](3);
+        params.segments[0] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[1] =
+            LockupDynamic.SegmentWithDelta({ amount: 0, delta: 50 days - 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 75e18, delta: 50 days, exponent: ud2x18(1e18) });
 
         // Create the LockupDynamic stream
         streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
