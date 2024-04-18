@@ -100,7 +100,7 @@ contract LockupDynamicCurvesCreator {
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare a eigth-size segment to match the curve shape
+        // Declare a eight-size segment to match the curve shape
         uint256 segmentSize = 8;
         params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
 
