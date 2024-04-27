@@ -2,6 +2,7 @@
 pragma solidity >=0.8.19;
 
 import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
+import { console2 } from "forge-std/src/console2.sol";
 import { Test } from "forge-std/src/Test.sol";
 
 import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
@@ -38,7 +39,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_Exponential() public {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_Exponential();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for Exponential shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -53,7 +63,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_ExponentialCliff() public {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_ExponentialCliff();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for ExponentialCliff shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -77,7 +96,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_UnlockInSteps() public {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_UnlockInSteps();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for UnlockInSteps shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -96,7 +124,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_MonthlyUnlocks() public {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_MonthlyUnlocks();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for MonthlyUnlocks shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -116,7 +153,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_Timelock() external {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_Timelock();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for Timelock shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -140,7 +186,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_UnlockLinear() external {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_UnlockLinear();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for UnlockLinear shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -167,7 +222,16 @@ contract LockupDynamicCurvesCreatorTest is Test {
 
     function test_CreateStream_UnlockCliffLinear() external {
         uint256 expectedStreamId = creator.LOCKUP_DYNAMIC().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = creator.createStream_UnlockCliffLinear();
+        uint256 afterGas = gasleft();
+
+        console2.log(
+            "Gas used: %d for UnlockCliffLinear shape with segments length: %d",
+            beforeGas - afterGas,
+            creator.LOCKUP_DYNAMIC().getSegments(actualStreamId).length
+        );
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
