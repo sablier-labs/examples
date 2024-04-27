@@ -2,6 +2,7 @@
 pragma solidity >=0.8.19;
 
 import { Test } from "forge-std/src/Test.sol";
+import { console2 } from "forge-std/src/console2.sol";
 
 import { LockupDynamicStreamCreator } from "./LockupDynamicStreamCreator.sol";
 import { LockupLinearStreamCreator } from "./LockupLinearStreamCreator.sol";
@@ -49,7 +50,13 @@ contract LockupLinearStreamCreatorTest is Test {
     // Tests that creating streams works by checking the stream ids
     function test_LockupLinearStreamCreator() public {
         uint256 expectedStreamId = linearCreator.LOCKUP_LINEAR().nextStreamId();
+
+        uint256 beforeGas = gasleft();
         uint256 actualStreamId = linearCreator.createStream({ totalAmount: 1337e18 });
+        uint256 afterGas = gasleft();
+
+        console2.log("Gas used: %d for a simple linear stream.", beforeGas - afterGas);
+
         assertEq(actualStreamId, expectedStreamId);
     }
 }
