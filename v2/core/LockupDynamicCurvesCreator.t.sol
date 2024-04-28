@@ -181,7 +181,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
         uint128 expectedStreamedAmount = 25e18;
         assertEq(actualStreamedAmount, expectedStreamedAmount);
 
-        // Warp 50 days second into the future.
+        // Warp 50 days into the future.
         vm.warp({ newTimestamp: currentTime + 50 days });
 
         // Assert that the streamed amount has remained the same.
