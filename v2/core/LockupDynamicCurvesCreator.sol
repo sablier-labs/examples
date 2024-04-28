@@ -247,12 +247,13 @@ contract LockupDynamicCurvesCreator {
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
-        // Declare a three-size segment to match the curve shape
-        params.segments = new LockupDynamic.SegmentWithDelta[](3);
+        // Declare a four-size segment to match the curve shape
+        params.segments = new LockupDynamic.SegmentWithDelta[](4);
         params.segments[0] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
         params.segments[1] =
             LockupDynamic.SegmentWithDelta({ amount: 0, delta: 50 days - 1 seconds, exponent: ud2x18(1e18) });
-        params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 75e18, delta: 50 days, exponent: ud2x18(1e18) });
+        params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[3] = LockupDynamic.SegmentWithDelta({ amount: 50e18, delta: 50 days, exponent: ud2x18(1e18) });
 
         // Create the LockupDynamic stream
         streamId = LOCKUP_DYNAMIC.createWithDeltas(params);

@@ -181,17 +181,26 @@ contract LockupDynamicCurvesCreatorTest is Test {
         uint128 expectedStreamedAmount = 25e18;
         assertEq(actualStreamedAmount, expectedStreamedAmount);
 
-        // Warp 50 days into the future.
+        // Warp 50 days second into the future.
         vm.warp({ newTimestamp: currentTime + 50 days });
 
         // Assert that the streamed amount has remained the same.
+        actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
         assertEq(actualStreamedAmount, expectedStreamedAmount);
 
-        // Warp 75 days into the future.
-        vm.warp({ newTimestamp: currentTime + 75 days });
+        // Warp 50 days plus a second into the future, i.e. after the cliff unlock.
+        vm.warp({ newTimestamp: currentTime + 50 days + 1 seconds });
+
+        // Assert that the streamed amount has increased by the cliff amount.
+        actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
+        expectedStreamedAmount = 50e18;
+        assertEq(actualStreamedAmount, expectedStreamedAmount);
+
+        // Warp 75 days plus a second into the future.
+        vm.warp({ newTimestamp: currentTime + 75 days + 1 });
 
         actualStreamedAmount = creator.LOCKUP_DYNAMIC().streamedAmountOf(actualStreamId);
-        expectedStreamedAmount = 62.5e18; // (0.50)^{1} * 75 + 25
+        expectedStreamedAmount = 75e18; // (0.50)^{1} * 50 + 50
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 }
