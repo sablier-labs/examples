@@ -6,7 +6,7 @@ import { Test } from "forge-std/src/Test.sol";
 import { LockupDynamicStreamCreator } from "./LockupDynamicStreamCreator.sol";
 import { LockupLinearStreamCreator } from "./LockupLinearStreamCreator.sol";
 
-contract LockupLinearStreamCreatorTest is Test {
+contract LockupStreamCreatorTest is Test {
     // Test contracts
     LockupDynamicStreamCreator internal dynamicCreator;
     LockupLinearStreamCreator internal linearCreator;
