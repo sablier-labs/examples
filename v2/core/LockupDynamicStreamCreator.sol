@@ -34,6 +34,7 @@ contract LockupDynamicStreamCreator {
         params.totalAmount = uint128(totalAmount); // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
+        params.transferable = true; // Whether the stream will be transferable or not
         params.startTime = uint40(block.timestamp + 100 seconds);
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
