@@ -30,6 +30,7 @@ contract LockupLinearStreamCreator {
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.asset = DAI; // The streaming asset
         params.cancelable = true; // Whether the stream will be cancelable or not
+        params.transferable = true; // Whether the stream will be transferable or not
         params.durations = LockupLinear.Durations({
             cliff: 4 weeks, // Assets will be unlocked only after 4 weeks
             total: 52 weeks // Setting a total duration of ~1 year
