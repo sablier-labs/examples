@@ -32,8 +32,8 @@ contract BatchStreamCreatorTest is Test {
         vm.startPrank({ msgSender: user });
 
         // Approve the creator contracts to pull DAI tokens from the test user
-        dynamicCreator.DAI().approve({ spender: address(dynamicCreator), amount: 2 * 1337e18 });
-        linearCreator.DAI().approve({ spender: address(linearCreator), amount: 2 * 1337e18 });
+        dynamicCreator.DAI().approve({ spender: address(dynamicCreator), value: 2 * 1337e18 });
+        linearCreator.DAI().approve({ spender: address(linearCreator), value: 2 * 1337e18 });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -33,7 +33,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
         vm.startPrank({ msgSender: user });
 
         // Approve the creator contract to pull DAI tokens from the test user
-        creator.DAI().approve({ spender: address(creator), amount: 1337e18 });
+        creator.DAI().approve({ spender: address(creator), value: 1337e18 });
     }
 
     function test_CreateStream_Exponential() public {

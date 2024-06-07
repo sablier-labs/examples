@@ -32,8 +32,8 @@ contract LockupStreamCreatorTest is Test {
         vm.startPrank({ msgSender: user });
 
         // Approve the creator contracts to pull DAI tokens from the test user
-        linearCreator.DAI().approve({ spender: address(dynamicCreator), amount: 1337e18 });
-        linearCreator.DAI().approve({ spender: address(linearCreator), amount: 1337e18 });
+        linearCreator.DAI().approve({ spender: address(dynamicCreator), value: 1337e18 });
+        linearCreator.DAI().approve({ spender: address(linearCreator), value: 1337e18 });
     }
 
     // Tests that creating streams works by checking the stream ids
