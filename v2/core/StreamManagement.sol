@@ -28,7 +28,7 @@ contract StreamManagement {
 
     // This function can be called by either the recipient or an approved NFT operator
     function withdrawMultiple(uint256[] calldata streamIds, uint128[] calldata amounts) external {
-        sablier.withdrawMultiple({ streamIds: streamIds, to: address(0xcafe), amounts: amounts });
+        sablier.withdrawMultiple({ streamIds: streamIds, amounts: amounts });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -26,7 +26,7 @@ contract LockupDynamicStreamCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithMilestones memory params;
+        LockupDynamic.CreateWithTimestamps memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -43,17 +43,17 @@ contract LockupDynamicStreamCreator {
         params.segments[0] = LockupDynamic.Segment({
             amount: amount0,
             exponent: ud2x18(1e18),
-            milestone: uint40(block.timestamp + 4 weeks)
+            timestamp: uint40(block.timestamp + 4 weeks)
         });
         params.segments[1] = (
             LockupDynamic.Segment({
                 amount: amount1,
                 exponent: ud2x18(3.14e18),
-                milestone: uint40(block.timestamp + 52 weeks)
+                timestamp: uint40(block.timestamp + 52 weeks)
             })
         );
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithMilestones(params);
+        streamId = LOCKUP_DYNAMIC.createWithTimestamps(params);
     }
 }
