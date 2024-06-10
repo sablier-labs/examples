@@ -24,7 +24,9 @@ abstract contract RecipientHooks is ISablierV2LockupRecipient {
         view
     {
         // Check: the caller is the lockup contract.
-        require(msg.sender == sablierLockup, "unauthorized");
+        if (msg.sender != sablierLockup) {
+            revert CallerNotSablierContract(msg.sender, sablierLockup);
+        }
 
         // Liquidate the user's position.
         _liquidate({ nftId: streamId });
