@@ -1,25 +1,26 @@
 # Full reference https://github.com/foundry-rs/foundry/tree/master/config
 
 [profile.default]
-  bytecode_hash = "none"
-  evm_version = "paris"
-  fuzz = { runs = 1_000 }
-  optimizer = true
-  optimizer_runs = 5000
-  out = "out"
-  solc = "0.8.23"
-  src = "v2"
-  test = "v2"
+bytecode_hash = "none"
+evm_version = "shanghai"
+fuzz = { runs = 1_000 }
+optimizer = true
+optimizer_runs = 5000
+out = "out"
+solc = "0.8.26"
+src = "v2"
+test = "v2"
 
 [fmt]
-  bracket_spacing = true
-  int_types = "long"
-  line_length = 120
-  multiline_func_header = "all"
-  number_underscore = "thousands"
-  quote_style = "double"
-  tab_width = 4
-  wrap_comments = true
+bracket_spacing = true
+int_types = "long"
+line_length = 120
+multiline_func_header = "all"
+number_underscore = "thousands"
+quote_style = "double"
+tab_width = 4
+wrap_comments = true
 
 [rpc_endpoints]
-  mainnet = "${RPC_URL_MAINNET}"
+mainnet = "${RPC_URL_MAINNET}"
+sepolia = "${RPC_URL_SEPOLIA}"
