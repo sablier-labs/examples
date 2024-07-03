@@ -14,8 +14,8 @@ contract LockupStreamCreatorTest is Test {
     address internal user;
 
     function setUp() public {
-        // Fork Ethereum Mainnet
-        vm.createSelectFork({ urlOrAlias: "mainnet" });
+        // Fork Ethereum Sepolia
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
 
         // Deploy the stream creators
         dynamicCreator = new LockupDynamicStreamCreator();

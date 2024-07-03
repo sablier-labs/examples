@@ -8,7 +8,7 @@ import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
 
 contract LockupDynamicCurvesCreatorTest is Test {
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+        ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
     // Test contracts
     LockupDynamicCurvesCreator internal creator;
@@ -16,8 +16,8 @@ contract LockupDynamicCurvesCreatorTest is Test {
     address internal user;
 
     function setUp() public {
-        // Fork Ethereum Mainnet
-        vm.createSelectFork({ urlOrAlias: "mainnet" });
+        // Fork Ethereum Sepolia
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
 
         // Deploy the stream creator
         creator = new LockupDynamicCurvesCreator();

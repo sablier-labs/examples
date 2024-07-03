@@ -12,10 +12,10 @@ import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol"
 /// https://docs.sablier.com/concepts/protocol/stream-types#lockup-dynamic
 /// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupDynamicCurvesCreator {
-    // Mainnet addresses
-    IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+    // Sepolia addresses
+    IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+        ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
     function createStream_Exponential() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI

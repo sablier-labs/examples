@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.19;
 
-import { ISablierV2Recipient } from "@sablier/v2-core/src/interfaces/hooks/ISablierV2Recipient.sol";
+import { ISablierLockupRecipient } from "@sablier/v2-core/src/interfaces/ISablierLockupRecipient.sol";
 
-abstract contract RecipientHooks is ISablierV2Recipient {
+abstract contract RecipientHooks is ISablierLockupRecipient {
     mapping(address => uint256) internal _balances;
 
     constructor(address sablierLockup_) {
@@ -11,13 +11,14 @@ abstract contract RecipientHooks is ISablierV2Recipient {
     }
 
     // Do something after a stream was canceled by the sender.
-    function onLockupStreamCanceled(
+    function onSablierLockupCancel(
         uint256 streamId,
         uint128, /* senderAmount */
         uint128 /* recipientAmount */
     )
         external
-        view
+        pure
+        returns (bytes4 selector)
     {
         // Check: the caller is the lockup contract.
         if (msg.sender != sablierLockup) {
@@ -26,25 +27,24 @@ abstract contract RecipientHooks is ISablierV2Recipient {
 
         // Liquidate the user's position.
         _liquidate({ nftId: streamId });
-    }
 
-    // Do something after a stream was renounced by the sender.
-    function onLockupStreamRenounced(uint256 streamId) external pure {
-        // Update the risk ratio.
-        _updateRiskRatio({ nftId: streamId });
+        return ISablierLockupRecipient.onSablierLockupCancel.selector;
     }
 
     // Do something after the sender or an NFT operator withdrew funds from a stream.
-    function onLockupStreamWithdrawn(
+    function onSablierLockupWithdraw(
         uint256, /* streamId */
         address caller,
         address, /* to */
         uint128 amount
     )
         external
+        returns (bytes4 selector)
     {
         // Reduce the user's balance.
         _balances[caller] -= amount;
+
+        return ISablierLockupRecipient.onSablierLockupWithdraw.selector;
     }
 
     function _liquidate(uint256 nftId) internal pure { }

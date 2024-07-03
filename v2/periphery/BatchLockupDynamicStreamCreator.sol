@@ -9,12 +9,12 @@ import { ISablierV2BatchLockup } from "@sablier/v2-periphery/src/interfaces/ISab
 import { BatchLockup, Broker, LockupDynamic } from "@sablier/v2-periphery/src/types/DataTypes.sol";
 
 contract BatchLockupDynamicStreamCreator {
-    // Mainnet addresses
-    IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+    // Sepolia addresses
+    IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
-    ISablierV2BatchLockup public constant BATCH = ISablierV2BatchLockup(0xEa07DdBBeA804E7fe66b958329F8Fa5cDA95Bd55);
+    ISablierV2BatchLockup public constant BATCH = ISablierV2BatchLockup(0x04A9c14b7a000640419aD5515Db4eF4172C00E31);
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+        ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Create a batch of two streams
@@ -34,6 +34,7 @@ contract BatchLockupDynamicStreamCreator {
         stream0.sender = address(0xABCD); // The sender to stream the assets, he will be able to cancel the stream
         stream0.recipient = address(0xCAFE); // The recipient of the streamed assets
         stream0.totalAmount = perStreamAmount; // The total amount of each stream, inclusive of all fees
+        stream0.startTime = uint40(block.timestamp); // The start time of the stream
         stream0.cancelable = true; // Whether the stream will be cancelable or not
         stream0.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
@@ -57,6 +58,7 @@ contract BatchLockupDynamicStreamCreator {
         stream1.sender = address(0xABCD); // The sender to stream the assets, he will be able to cancel the stream
         stream1.recipient = address(0xBEEF); // The recipient of the streamed assets
         stream1.totalAmount = uint128(perStreamAmount); // The total amount of each stream, inclusive of all fees
+        stream1.startTime = uint40(block.timestamp); // The start time of the stream
         stream1.cancelable = false; // Whether the stream will be cancelable or not
         stream1.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
