@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity >=0.8.19;
+pragma solidity >=0.8.22;
 
 import { ISablierV2Lockup } from "@sablier/v2-core/src/interfaces/ISablierV2Lockup.sol";
 
@@ -28,7 +28,7 @@ contract StreamManagement {
 
     // This function can be called by either the recipient or an approved NFT operator
     function withdrawMultiple(uint256[] calldata streamIds, uint128[] calldata amounts) external {
-        sablier.withdrawMultiple({ streamIds: streamIds, to: address(0xcafe), amounts: amounts });
+        sablier.withdrawMultiple({ streamIds: streamIds, amounts: amounts });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

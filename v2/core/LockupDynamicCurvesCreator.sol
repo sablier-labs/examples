@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity >=0.8.19;
+pragma solidity >=0.8.22;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { ud2x18 } from "@prb/math/src/UD2x18.sol";
@@ -12,11 +12,12 @@ import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol"
 /// https://docs.sablier.com/concepts/protocol/stream-types#lockup-dynamic
 /// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupDynamicCurvesCreator {
-    // Mainnet addresses
-    IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+    // Sepolia addresses
+    IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+        ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream_Exponential() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
@@ -28,7 +29,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -40,12 +41,15 @@ contract LockupDynamicCurvesCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare a single-size segment to match the curve shape
-        params.segments = new LockupDynamic.SegmentWithDelta[](1);
-        params.segments[0] =
-            LockupDynamic.SegmentWithDelta({ amount: uint128(totalAmount), delta: 100 days, exponent: ud2x18(6e18) });
+        params.segments = new LockupDynamic.SegmentWithDuration[](1);
+        params.segments[0] = LockupDynamic.SegmentWithDuration({
+            amount: uint128(totalAmount),
+            duration: 100 days,
+            exponent: ud2x18(6e18)
+        });
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 
     function createStream_ExponentialCliff() external returns (uint256 streamId) {
@@ -59,7 +63,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -70,14 +74,16 @@ contract LockupDynamicCurvesCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare a three-size segment to match the curve shape
-        params.segments = new LockupDynamic.SegmentWithDelta[](3);
+        params.segments = new LockupDynamic.SegmentWithDuration[](3);
         params.segments[0] =
-            LockupDynamic.SegmentWithDelta({ amount: 0, delta: 50 days - 1 seconds, exponent: ud2x18(1e18) });
-        params.segments[1] = LockupDynamic.SegmentWithDelta({ amount: 20e18, delta: 1 seconds, exponent: ud2x18(1e18) });
-        params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 80e18, delta: 50 days, exponent: ud2x18(6e18) });
+            LockupDynamic.SegmentWithDuration({ amount: 0, duration: 50 days - 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[1] =
+            LockupDynamic.SegmentWithDuration({ amount: 20e18, duration: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[2] =
+            LockupDynamic.SegmentWithDuration({ amount: 80e18, duration: 50 days, exponent: ud2x18(6e18) });
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 
     function createStream_UnlockInSteps() external returns (uint256 streamId) {
@@ -91,7 +97,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -103,23 +109,23 @@ contract LockupDynamicCurvesCreator {
 
         // Declare a eight-size segment to match the curve shape
         uint256 segmentSize = 8;
-        params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
+        params.segments = new LockupDynamic.SegmentWithDuration[](segmentSize);
 
         // The even segments are empty and are spaced ~25 days apart
         for (uint256 i = 0; i < segmentSize; i += 2) {
             params.segments[i] =
-                LockupDynamic.SegmentWithDelta({ amount: 0, delta: 25 days - 1 seconds, exponent: ud2x18(1e18) });
+                LockupDynamic.SegmentWithDuration({ amount: 0, duration: 25 days - 1 seconds, exponent: ud2x18(1e18) });
         }
 
         // The odd segments are filled and have a delta of 1 second
         uint128 unlockAmount = totalAmount / uint128(segmentSize / 2);
         for (uint256 i = 1; i < segmentSize; i += 2) {
             params.segments[i] =
-                LockupDynamic.SegmentWithDelta({ amount: unlockAmount, delta: 1 seconds, exponent: ud2x18(1e18) });
+                LockupDynamic.SegmentWithDuration({ amount: unlockAmount, duration: 1 seconds, exponent: ud2x18(1e18) });
         }
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 
     function createStream_MonthlyUnlocks() external returns (uint256 streamId) {
@@ -133,7 +139,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -145,23 +151,23 @@ contract LockupDynamicCurvesCreator {
 
         // Declare a twenty four size segment to match the curve shape
         uint256 segmentSize = 24;
-        params.segments = new LockupDynamic.SegmentWithDelta[](segmentSize);
+        params.segments = new LockupDynamic.SegmentWithDuration[](segmentSize);
 
         // The even segments are empty and are spaced 30 days apart (~one month)
         for (uint256 i = 0; i < segmentSize; i += 2) {
             params.segments[i] =
-                LockupDynamic.SegmentWithDelta({ amount: 0, delta: 30 days - 1 seconds, exponent: ud2x18(1e18) });
+                LockupDynamic.SegmentWithDuration({ amount: 0, duration: 30 days - 1 seconds, exponent: ud2x18(1e18) });
         }
 
         // The odd segments are filled and have a delta of 1 second
         uint128 unlockAmount = totalAmount / uint128(segmentSize / 2);
         for (uint256 i = 1; i < segmentSize; i += 2) {
             params.segments[i] =
-                LockupDynamic.SegmentWithDelta({ amount: unlockAmount, delta: 1 seconds, exponent: ud2x18(1e18) });
+                LockupDynamic.SegmentWithDuration({ amount: unlockAmount, duration: 1 seconds, exponent: ud2x18(1e18) });
         }
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 
     function createStream_Timelock() external returns (uint256 streamId) {
@@ -175,7 +181,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -186,14 +192,14 @@ contract LockupDynamicCurvesCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare a two-size segment to match the curve shape
-        params.segments = new LockupDynamic.SegmentWithDelta[](2);
+        params.segments = new LockupDynamic.SegmentWithDuration[](2);
         params.segments[0] =
-            LockupDynamic.SegmentWithDelta({ amount: 0, delta: 90 days - 1 seconds, exponent: ud2x18(1e18) });
+            LockupDynamic.SegmentWithDuration({ amount: 0, duration: 90 days - 1 seconds, exponent: ud2x18(1e18) });
         params.segments[1] =
-            LockupDynamic.SegmentWithDelta({ amount: 100e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+            LockupDynamic.SegmentWithDuration({ amount: 100e18, duration: 1 seconds, exponent: ud2x18(1e18) });
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 
     function createStream_UnlockLinear() external returns (uint256 streamId) {
@@ -207,7 +213,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -218,13 +224,14 @@ contract LockupDynamicCurvesCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare a two-size segment to match the curve shape
-        params.segments = new LockupDynamic.SegmentWithDelta[](2);
-        params.segments[0] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments = new LockupDynamic.SegmentWithDuration[](2);
+        params.segments[0] =
+            LockupDynamic.SegmentWithDuration({ amount: 25e18, duration: 1 seconds, exponent: ud2x18(1e18) });
         params.segments[1] =
-            LockupDynamic.SegmentWithDelta({ amount: 75e18, delta: 100 days - 1 days, exponent: ud2x18(1e18) });
+            LockupDynamic.SegmentWithDuration({ amount: 75e18, duration: 100 days - 1 days, exponent: ud2x18(1e18) });
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 
     function createStream_UnlockCliffLinear() external returns (uint256 streamId) {
@@ -238,7 +245,7 @@ contract LockupDynamicCurvesCreator {
         DAI.approve(address(LOCKUP_DYNAMIC), totalAmount);
 
         // Declare the params struct
-        LockupDynamic.CreateWithDeltas memory params;
+        LockupDynamic.CreateWithDurations memory params;
 
         // Declare the function parameters
         params.sender = msg.sender; // The sender will be able to cancel the stream
@@ -249,14 +256,17 @@ contract LockupDynamicCurvesCreator {
         params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
 
         // Declare a four-size segment to match the curve shape
-        params.segments = new LockupDynamic.SegmentWithDelta[](4);
-        params.segments[0] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments = new LockupDynamic.SegmentWithDuration[](4);
+        params.segments[0] =
+            LockupDynamic.SegmentWithDuration({ amount: 25e18, duration: 1 seconds, exponent: ud2x18(1e18) });
         params.segments[1] =
-            LockupDynamic.SegmentWithDelta({ amount: 0, delta: 50 days - 1 seconds, exponent: ud2x18(1e18) });
-        params.segments[2] = LockupDynamic.SegmentWithDelta({ amount: 25e18, delta: 1 seconds, exponent: ud2x18(1e18) });
-        params.segments[3] = LockupDynamic.SegmentWithDelta({ amount: 50e18, delta: 50 days, exponent: ud2x18(1e18) });
+            LockupDynamic.SegmentWithDuration({ amount: 0, duration: 50 days - 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[2] =
+            LockupDynamic.SegmentWithDuration({ amount: 25e18, duration: 1 seconds, exponent: ud2x18(1e18) });
+        params.segments[3] =
+            LockupDynamic.SegmentWithDuration({ amount: 50e18, duration: 50 days, exponent: ud2x18(1e18) });
 
         // Create the LockupDynamic stream
-        streamId = LOCKUP_DYNAMIC.createWithDeltas(params);
+        streamId = LOCKUP_DYNAMIC.createWithDurations(params);
     }
 }

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
-pragma solidity >=0.8.19;
+pragma solidity >=0.8.22;
 
 import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
 import { Test } from "forge-std/src/Test.sol";
@@ -8,7 +8,7 @@ import { LockupDynamicCurvesCreator } from "./LockupDynamicCurvesCreator.sol";
 
 contract LockupDynamicCurvesCreatorTest is Test {
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+        ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
     // Test contracts
     LockupDynamicCurvesCreator internal creator;
@@ -16,8 +16,8 @@ contract LockupDynamicCurvesCreatorTest is Test {
     address internal user;
 
     function setUp() public {
-        // Fork Ethereum Mainnet
-        vm.createSelectFork({ urlOrAlias: "mainnet" });
+        // Fork Ethereum Sepolia
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
 
         // Deploy the stream creator
         creator = new LockupDynamicCurvesCreator();
@@ -33,7 +33,7 @@ contract LockupDynamicCurvesCreatorTest is Test {
         vm.startPrank({ msgSender: user });
 
         // Approve the creator contract to pull DAI tokens from the test user
-        creator.DAI().approve({ spender: address(creator), amount: 1337e18 });
+        creator.DAI().approve({ spender: address(creator), value: 1337e18 });
     }
 
     function test_CreateStream_Exponential() public {
