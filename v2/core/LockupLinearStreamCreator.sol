@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity >=0.8.19;
+pragma solidity >=0.8.22;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { ud60x18 } from "@prb/math/src/UD60x18.sol";
@@ -9,7 +9,7 @@ import { Broker, LockupLinear } from "@sablier/v2-core/src/types/DataTypes.sol";
 /// @notice Example of how to create a Lockup Linear stream.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-linear
 contract LockupLinearStreamCreator {
-    // Sepolia addresses
+    // sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
         ISablierV2LockupLinear(0x3E435560fd0a03ddF70694b35b673C25c65aBB6C);

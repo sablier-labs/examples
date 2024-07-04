@@ -1,15 +1,17 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
-pragma solidity >=0.8.19;
+pragma solidity >=0.8.22;
 
 import { Test } from "forge-std/src/Test.sol";
 
-import { BatchLockupDynamicStreamCreator } from "./BatchLockupDynamicStreamCreator.sol";
-import { BatchLockupLinearStreamCreator } from "./BatchLockupLinearStreamCreator.sol";
+import { BatchLDStreamCreator } from "./BatchLDStreamCreator.sol";
+import { BatchLLStreamCreator } from "./BatchLLStreamCreator.sol";
+import { BatchLTStreamCreator } from "./BatchLTStreamCreator.sol";
 
 contract BatchStreamCreatorTest is Test {
     // Test contracts
-    BatchLockupDynamicStreamCreator internal dynamicCreator;
-    BatchLockupLinearStreamCreator internal linearCreator;
+    BatchLDStreamCreator internal dynamicCreator;
+    BatchLLStreamCreator internal linearCreator;
+    BatchLTStreamCreator internal tranchedCreator;
 
     address internal user;
 
@@ -18,15 +20,16 @@ contract BatchStreamCreatorTest is Test {
         vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
 
         // Deploy the stream creators
-        dynamicCreator = new BatchLockupDynamicStreamCreator();
-        linearCreator = new BatchLockupLinearStreamCreator();
+        dynamicCreator = new BatchLDStreamCreator();
+        linearCreator = new BatchLLStreamCreator();
+        tranchedCreator = new BatchLTStreamCreator();
 
         // Create a test user
         user = payable(makeAddr("User"));
         vm.deal({ account: user, newBalance: 1 ether });
 
         // Mint some DAI tokens to the test user, which will be pulled by the creator contracts
-        deal({ token: address(linearCreator.DAI()), to: user, give: 4 * 1337e18 });
+        deal({ token: address(linearCreator.DAI()), to: user, give: 6 * 1337e18 });
 
         // Make the test user the `msg.sender` in all following calls
         vm.startPrank({ msgSender: user });
@@ -34,6 +37,7 @@ contract BatchStreamCreatorTest is Test {
         // Approve the creator contracts to pull DAI tokens from the test user
         dynamicCreator.DAI().approve({ spender: address(dynamicCreator), value: 2 * 1337e18 });
         linearCreator.DAI().approve({ spender: address(linearCreator), value: 2 * 1337e18 });
+        tranchedCreator.DAI().approve({ spender: address(tranchedCreator), value: 2 * 1337e18 });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -58,6 +62,20 @@ contract BatchStreamCreatorTest is Test {
     function test_BatchLockupLinearStreamCreator() public {
         uint256 nextStreamId = linearCreator.LOCKUP_LINEAR().nextStreamId();
         uint256[] memory actualStreamIds = linearCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
+        uint256[] memory expectedStreamIds = new uint256[](2);
+        expectedStreamIds[0] = nextStreamId;
+        expectedStreamIds[1] = nextStreamId + 1;
+        assertEq(actualStreamIds, expectedStreamIds);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+                                   LOCKUP-DYNAMIC
+    //////////////////////////////////////////////////////////////////////////*/
+
+    // Tests that creating streams works by checking the stream ids
+    function test_BatchLockupTranchedStreamCreator() public {
+        uint256 nextStreamId = tranchedCreator.LOCKUP_TRANCHED().nextStreamId();
+        uint256[] memory actualStreamIds = tranchedCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
         expectedStreamIds[1] = nextStreamId + 1;
