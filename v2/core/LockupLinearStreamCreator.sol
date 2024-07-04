@@ -14,6 +14,7 @@ contract LockupLinearStreamCreator {
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
         ISablierV2LockupLinear(0x3E435560fd0a03ddF70694b35b673C25c65aBB6C);
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream(uint128 totalAmount) public returns (uint256 streamId) {
         // Transfer the provided amount of DAI tokens to this contract
         DAI.transferFrom(msg.sender, address(this), totalAmount);

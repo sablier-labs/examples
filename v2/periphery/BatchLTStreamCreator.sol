@@ -17,6 +17,7 @@ contract BatchLTStreamCreator {
     ISablierV2BatchLockup public constant BATCH_LOCKUP =
         ISablierV2BatchLockup(0xEa07DdBBeA804E7fe66b958329F8Fa5cDA95Bd55);
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Create a batch of two streams
         uint256 batchSize = 2;

@@ -17,6 +17,7 @@ contract LockupDynamicCurvesCreator {
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
         ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream_Exponential() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;

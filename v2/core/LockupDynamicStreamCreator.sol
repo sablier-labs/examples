@@ -15,6 +15,7 @@ contract LockupDynamicStreamCreator {
     ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
         ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {
         // Sum the segment amounts
         uint256 totalAmount = amount0 + amount1;

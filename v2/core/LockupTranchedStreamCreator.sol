@@ -14,6 +14,7 @@ contract LockupTranchedStreamCreator {
     ISablierV2LockupTranched public constant LOCKUP_TRANCHED =
         ISablierV2LockupTranched(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {
         // Sum the segment amounts
         uint256 totalAmount = amount0 + amount1;
