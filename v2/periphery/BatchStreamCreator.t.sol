@@ -17,7 +17,7 @@ contract BatchStreamCreatorTest is Test {
 
     function setUp() public {
         // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_755 });
 
         // Deploy the stream creators
         dynamicCreator = new BatchLDStreamCreator();

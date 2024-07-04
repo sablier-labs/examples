@@ -12,7 +12,7 @@ contract LockupTranchedStreamCreator {
     // sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     ISablierV2LockupTranched public constant LOCKUP_TRANCHED =
-        ISablierV2LockupTranched(0x7CC7e125d83A581ff438608490Cc0f7bDff79127);
+        ISablierV2LockupTranched(0x3a1beA13A8C24c0EA2b8fAE91E4b2762A59D7aF5);
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {

@@ -13,9 +13,9 @@ contract BatchLLStreamCreator {
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
     ISablierV2LockupLinear public constant LOCKUP_LINEAR =
-        ISablierV2LockupLinear(0xAFb979d9afAd1aD27C5eFf4E27226E3AB9e5dCC9);
+        ISablierV2LockupLinear(0x3E435560fd0a03ddF70694b35b673C25c65aBB6C);
     ISablierV2BatchLockup public constant BATCH_LOCKUP =
-        ISablierV2BatchLockup(0xEa07DdBBeA804E7fe66b958329F8Fa5cDA95Bd55);
+        ISablierV2BatchLockup(0x04A9c14b7a000640419aD5515Db4eF4172C00E31);
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
@@ -50,7 +50,7 @@ contract BatchLLStreamCreator {
         stream1.recipient = address(0xBEEF); // The recipient of the streamed assets
         stream1.totalAmount = perStreamAmount; // The total amount of each stream, inclusive of all fees
         stream1.cancelable = false; // Whether the stream will be cancelable or not
-        stream0.transferable = false; // Whether the recipient can transfer the NFT or not
+        stream1.transferable = false; // Whether the recipient can transfer the NFT or not
         stream1.durations = LockupLinear.Durations({
             cliff: 1 weeks, // Assets will be unlocked only after 1 week
             total: 26 weeks // Setting a total duration of ~6 months

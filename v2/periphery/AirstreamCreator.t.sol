@@ -14,7 +14,7 @@ contract AirstreamCreatorTest is Test {
 
     function setUp() public {
         // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_246_059 });
 
         // Deploy the airstream creator
         airstreamCreator = new AirstreamCreator();
@@ -32,7 +32,7 @@ contract AirstreamCreatorTest is Test {
         ISablierV2MerkleLL merkleLL = airstreamCreator.createLLAirstream();
 
         // Assert the merkleLL contract was created with correct params
-        assertEq(user, merkleLL.admin(), "admin");
+        assertEq(address(0xBeeF), merkleLL.admin(), "admin");
         assertEq(
             0x4e07408562bedb8b60ce05c1decfe3ad16b722309875f562c03d02d7aaacb123, merkleLL.MERKLE_ROOT(), "merkle-root"
         );
