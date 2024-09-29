@@ -7,7 +7,7 @@ import { SablierV2LockupLinear } from "@sablier/v2-core/src/SablierV2LockupLinea
 import { ISablierV2NFTDescriptor } from "@sablier/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol";
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import { IERC721Errors } from "@openzeppelin/contracts/interfaces/draft-IERC6093.sol";
-import { StreamCustomManagement } from "./StreamCustomManagement.sol";
+import { StreamManagementWithHook } from "./StreamManagementWithHook.sol";
 
 contract TEST is ERC20 {
     constructor(address to) ERC20("TEST", "TEST") {
@@ -15,10 +15,10 @@ contract TEST is ERC20 {
     }
 }
 
-contract StreamCustomManagementTest is Test {
+contract StreamManagementWithHookTest is Test {
     ERC20 internal token;
     SablierV2LockupLinear internal sablierLockup;
-    StreamCustomManagement internal management;
+    StreamManagementWithHook internal management;
 
     address internal sablierOwner;
     address internal bob;
@@ -42,15 +42,15 @@ contract StreamCustomManagementTest is Test {
             ISablierV2NFTDescriptor(address(0)) // Irrelevant for test purposes
         );
 
-        // Initialize StreamCustomManagement contract
-        management = new StreamCustomManagement(sablierLockup, token);
+        // Initialize StreamManagementWithHook contract
+        management = new StreamManagementWithHook(sablierLockup, token);
     }
 
     // Test creating a stream from Bob (Project Owner) to Alice (Investor)
-    function test_create() public {
+    function test_create_stream_from_management() public {
         uint128 amount = 10 ether;
 
-        // Approve StreamCustomManagement to spend 10 TEST on behalf of Bob
+        // Approve StreamManagementWithHook to spend 10 TEST on behalf of Bob
         vm.startPrank(bob);
         token.approve(address(management), amount);
 
@@ -66,8 +66,8 @@ contract StreamCustomManagementTest is Test {
         assertEq(address(sablierLockup.getAsset(streamId)), address(token));
         assertEq(sablierLockup.getRecipient(streamId), address(management));
         assertEq(sablierLockup.getDepositedAmount(streamId), amount);
+        assertEq(sablierLockup.isCancelable(streamId), true);
         assertEq(sablierLockup.isTransferable(streamId), false);
-        assertEq(sablierLockup.isCancelable(streamId), false);
         assertEq(sablierLockup.isDepleted(streamId), false);
         assertEq(sablierLockup.isStream(streamId), true);
         assertEq(sablierLockup.isCold(streamId), false);
@@ -90,7 +90,7 @@ contract StreamCustomManagementTest is Test {
         // Advance time enough to make cliff period over and the total duration to be over
         vm.warp({ newTimestamp: block.timestamp + 60 weeks });
 
-        // Calls to Sablier Lockup "withdraw" should revert
+        // Calls to Sablier Lockup "withdraw" should revert due to hook restrictions
         vm.startPrank(bob);
         vm.expectRevert();
         sablierLockup.withdraw(streamId, address(management), 1 ether);
@@ -152,7 +152,7 @@ contract StreamCustomManagementTest is Test {
 
     // Test that withdrawMax works as expected and burns the Sablier ERC721 token when called from the management
     // contract
-    function test_withdrawMax_from_management() public {
+    function test_withdraw_max_from_management() public {
         // Whitelist the management contract in the Sablier Lockup contract hooks
         vm.startPrank(sablierOwner);
         sablierLockup.allowToHook(address(management));
@@ -190,7 +190,7 @@ contract StreamCustomManagementTest is Test {
     function test_ERC721_operations_revert() public {
         uint128 amount = 10 ether;
 
-        // Approve StreamCustomManagement to spend 10 TEST on behalf of Bob
+        // Approve StreamManagementWithHook to spend 10 TEST on behalf of Bob
         vm.startPrank(bob);
         token.approve(address(management), amount);
 
