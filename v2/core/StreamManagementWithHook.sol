@@ -40,7 +40,7 @@ contract StreamManagementWithHook is ISablierLockupRecipient {
     function create(address recipient, uint128 totalAmount) external returns (uint256 streamId) {
         // Security check: Verify that this contract is allowed to be hook'd by Sablier's SablierV2LockupLinear.
         // This will make sure that no one else can alter the withdrawal state or logic of this contract's stream.
-        if (!sablier.isAllowedToHook(address(this))) Unauthorized.selector.revertWith(); 
+        if (!sablier.isAllowedToHook(address(this))) revert Unauthorized();
 
         token.transferFrom(msg.sender, address(this), totalAmount);
         token.approve(address(sablier), totalAmount);

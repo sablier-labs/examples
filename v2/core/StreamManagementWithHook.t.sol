@@ -48,6 +48,11 @@ contract StreamManagementWithHookTest is Test {
 
     // Test creating a stream from Bob (Project Owner) to Alice (Investor)
     function test_create_stream_from_management() public {
+        // Whitelist the management contract in the Sablier Lockup contract hooks
+        vm.startPrank(sablierOwner);
+        sablierLockup.allowToHook(address(management));
+        vm.stopPrank();
+
         uint128 amount = 10 ether;
 
         // Approve StreamManagementWithHook to spend 10 TEST on behalf of Bob
@@ -188,6 +193,11 @@ contract StreamManagementWithHookTest is Test {
 
     // Test that ERC721 operations like transferFrom and burn revert if the stream is not depleted
     function test_ERC721_operations_revert() public {
+        // Whitelist the management contract in the Sablier Lockup contract hooks
+        vm.startPrank(sablierOwner);
+        sablierLockup.allowToHook(address(management));
+        vm.stopPrank();
+
         uint128 amount = 10 ether;
 
         // Approve StreamManagementWithHook to spend 10 TEST on behalf of Bob
