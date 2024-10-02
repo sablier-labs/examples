@@ -16,7 +16,7 @@ contract FlowStreamCreator {
         sablierFlow = _sablierFlow;
     }
 
-    // Create a stream that sends 1000 USDC per month for 30 days
+    // Create a stream that sends 1000 USDC per month
     function createStream_1T_PerMonth() external returns (uint256 streamId) {
         uint128 amount = 1000e6;
         UD21x18 ratePerSecond =
