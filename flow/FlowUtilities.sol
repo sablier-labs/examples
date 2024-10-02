@@ -4,8 +4,8 @@ pragma solidity >=0.8.22;
 import { IERC20Metadata } from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import { ud21x18, UD21x18 } from "@prb/math/src/UD21x18.sol";
 
-/// @dev A utility library to calculate the rate per second for a given amount of tokens for a specific duration, and
-/// the amounts streamed over a various periods of time.
+/// @dev A utility library to calculate the rate per second for a given amount of tokens over a specific duration, and
+/// the amounts streamed over various periods of time.
 library FlowUtilities {
     /// @notice This function calculates the rate per second for a given amount of tokens for a specific duration.
     /// @dev The rate per second is a 18 decimal fixed-point number and it is calculated as `amount / duration`.
@@ -76,7 +76,7 @@ library FlowUtilities {
     /// @param ratePerSecond The rate per second as a fixed-point number.
     /// @return amountPerWeek The amount streamed over a week.
     function calculateAmountStreamedPerWeek(UD21x18 ratePerSecond) internal pure returns (uint128 amountPerWeek) {
-        amountPerWeek = uint128(ratePerSecond.unwrap() / 1 weeks);
+        amountPerWeek = ratePerSecond.unwrap() * 1 weeks;
     }
 
     /// @notice This function calculates the amount streamed over a month for a given rate per second.
@@ -84,7 +84,7 @@ library FlowUtilities {
     /// @param ratePerSecond The rate per second as a fixed-point number.
     /// @return amountPerMonth The amount streamed over a month.
     function calculateAmountStreamedPerMonth(UD21x18 ratePerSecond) internal pure returns (uint128 amountPerMonth) {
-        amountPerMonth = uint128(ratePerSecond.unwrap() / 30 days);
+        amountPerMonth = ratePerSecond.unwrap() * 30 days;
     }
 
     /// @notice This function calculates the amount streamed over a year for a given rate per second.
@@ -92,6 +92,6 @@ library FlowUtilities {
     /// @param ratePerSecond The rate per second as a fixed-point number.
     /// @return amountPerYear The amount streamed over a year.
     function calculateAmountStreamedPerYear(UD21x18 ratePerSecond) internal pure returns (uint128 amountPerYear) {
-        amountPerYear = uint128(ratePerSecond.unwrap() / 365 days);
+        amountPerYear = ratePerSecond.unwrap() * 365 days;
     }
 }
