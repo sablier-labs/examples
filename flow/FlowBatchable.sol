@@ -22,7 +22,7 @@ contract FlowBatchable {
         UD21x18 newRatePerSecond = ud21x18(0.0001e18);
         uint128 depositAmount = 1000e6;
 
-        // The calldata declared as bytes
+        // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
         calls[0] = abi.encodeCall(sablierFlow.adjustRatePerSecond, (streamId, newRatePerSecond));
         calls[1] = abi.encodeCall(sablierFlow.deposit, (streamId, depositAmount));
@@ -38,7 +38,7 @@ contract FlowBatchable {
         UD21x18 firstRatePerSecond = ud21x18(0.0001e18);
         UD21x18 secondRatePerSecond = ud21x18(0.0002e18);
 
-        // The calldata declared as bytes
+        // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
         calls[0] = abi.encodeCall(sablierFlow.create, (sender, firstRecipient, firstRatePerSecond, USDC, true));
         calls[1] = abi.encodeCall(sablierFlow.create, (sender, secondRecipient, secondRatePerSecond, USDC, true));
@@ -68,7 +68,7 @@ contract FlowBatchable {
 
         streamId = sablierFlow.nextStreamId();
 
-        // The calldata declared as bytes
+        // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
         calls[0] = abi.encodeCall(sablierFlow.create, (sender, recipient, ratePerSecond, USDC, true));
         calls[1] = abi.encodeCall(sablierFlow.depositViaBroker, (streamId, depositAmount, broker));
@@ -109,7 +109,7 @@ contract FlowBatchable {
 
     /// @dev A function to pause a stream and withdraw the maximum available funds.
     function pauseAndWithdrawMax(uint256 streamId) external {
-        // The calldata declared as bytes
+        // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
         calls[0] = abi.encodeCall(sablierFlow.pause, (streamId));
         calls[1] = abi.encodeCall(sablierFlow.withdrawMax, (streamId, address(0xCAFE)));
@@ -120,7 +120,7 @@ contract FlowBatchable {
 
     /// @dev A function to void a stream and withdraw what is left.
     function voidAndWithdrawMax(uint256 streamId) external {
-        // The calldata declared as bytes
+        // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
         calls[0] = abi.encodeCall(sablierFlow.void, (streamId));
         calls[1] = abi.encodeCall(sablierFlow.withdrawMax, (streamId, address(0xCAFE)));
