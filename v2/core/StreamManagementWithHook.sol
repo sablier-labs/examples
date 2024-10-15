@@ -1,55 +1,69 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.22;
 
-import { ud60x18 } from "@prb/math/src/UD60x18.sol";
-import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
-import { Broker, LockupLinear } from "@sablier/v2-core/src/types/DataTypes.sol";
-import { ISablierLockupRecipient } from "@sablier/v2-core/src/interfaces/ISablierLockupRecipient.sol";
-
-import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import { ud60x18 } from "@prb/math/src/UD60x18.sol";
+import { ISablierLockupRecipient } from "@sablier/v2-core/src/interfaces/ISablierLockupRecipient.sol";
+import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
+import { Broker, LockupLinear } from "@sablier/v2-core/src/types/DataTypes.sol";
 
-/// @notice Example of creating and managing Sablier streams with custom restrictions using hooks.
+/// @notice Example of creating Sablier streams and managing them on behalf of users with some withdrawal restrictions
+/// powered by Sablier hooks.
+/// @dev To read more about the hooks, visit https://docs.sablier.com/concepts/protocol/hooks.
 contract StreamManagementWithHook is ISablierLockupRecipient {
     using SafeERC20 for IERC20;
 
-    IERC20 public immutable token;
-    ISablierV2LockupLinear public immutable sablier;
-
-    mapping(uint256 => address) internal _streamRecipients;
-
-    error Unauthorized();
-    error CallerNotThisContract();
     error CallerNotSablierContract(address caller, address sablierLockup);
+    error CallerNotThisContract();
+    error Unauthorized();
 
+    ISablierV2LockupLinear public immutable sablier;
+    IERC20 public immutable token;
+    mapping(uint256 streamId => address beneficiary) internal _streamBeneficiaries;
+
+    /// @dev This modifier will restrict the function to be called only by the stream beneficiary.
+    modifier onlyStreamBeneficiary(uint256 streamId) {
+        if (msg.sender != _streamBeneficiaries[streamId]) revert Unauthorized();
+        _;
+    }
+
+    /// @dev Constructor will set the address of the lockup contract and ERC20 token.
     constructor(ISablierV2LockupLinear sablier_, IERC20 token_) {
         sablier = sablier_;
         token = token_;
     }
 
+    function getStreamBeneficiary(uint256 streamId) external view returns (address) {
+        return _streamBeneficiaries[streamId];
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
-                                    01-CREATE
+                                       CREATE
     //////////////////////////////////////////////////////////////////////////*/
 
-    /// @notice Creates a non-cancelable, non-transferable stream with custom recipient.
-    /// @dev The stream recipient is this contract; actual recipient is managed via mapping.
-    /// @param recipient The address that will receive the stream's benefits.
+    /// @notice Creates a non-cancelable, non-transferable stream on behalf of `beneficiary`.
+    /// @dev The stream recipient is set to `this` contract to have control over "withdraw" from streams. Actual
+    /// recipient is managed via `_streamBeneficiaries` mapping.
+    /// @param beneficiary The ultimate recipient of the stream's token.
     /// @param totalAmount The total amount of tokens to be streamed.
-    /// @return streamId The unique ID of the created stream.
-    function create(address recipient, uint128 totalAmount) external returns (uint256 streamId) {
-        // Security check: Verify that this contract is allowed to be hook'd by Sablier's SablierV2LockupLinear.
-        // This will make sure that no one else can alter the withdrawal state or logic of this contract's stream.
+    /// @return streamId The stream Id.
+    function create(address beneficiary, uint128 totalAmount) external returns (uint256 streamId) {
+        // Check: verify that this contract is allowed to hook into Sablier Lockup.
         if (!sablier.isAllowedToHook(address(this))) revert Unauthorized();
 
+        // Transfer tokens to this contract and approve Sablier to spend them.
         token.transferFrom(msg.sender, address(this), totalAmount);
         token.approve(address(sablier), totalAmount);
 
         LockupLinear.CreateWithDurations memory params;
-        params.transferable = false; // Not transferable
-        params.cancelable = true; // Cancelable
-        params.recipient = address(this); // This will be the address owning the NFT from SablierV2Lockup contract.
-        params.sender = address(this); // This is the only address that can call the "cancel" function.
+        params.transferable = false;
+        params.cancelable = true;
+        // Set `this` as the recipient of the Stream. Only `this` will be able to call the "withdraw" function.
+        params.recipient = address(this);
+        // Set `this` as the sender of the Stream. Only `this` will be able to call the "cancel" function
+        params.sender = address(this);
         params.totalAmount = totalAmount;
         params.asset = token;
         params.durations = LockupLinear.Durations({
@@ -58,101 +72,41 @@ contract StreamManagementWithHook is ISablierLockupRecipient {
          });
         params.broker = Broker(address(0), ud60x18(0)); // No broker fee
 
-        // Create the stream with the specified parameters.
+        // Create the stream.
         streamId = sablier.createWithDurations(params);
 
-        // Store the recipient of the stream according to this contract's logic.
-        _streamRecipients[streamId] = recipient;
-
-        // Add more custom logic here
+        // Set the `beneficiary` .
+        _streamBeneficiaries[streamId] = beneficiary;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-                                    02-WITHDRAW
+                                     WITHDRAW
     //////////////////////////////////////////////////////////////////////////*/
 
-    // This function can be called by the allowed recipient
-    function withdraw(uint256 streamId, uint128 amount) external {
-        address recipient = _streamRecipients[streamId];
-
-        _customRestrictionsSucceeded(recipient);
-
-        // Withdraw the specified amount from the stream. To the allowed recipient.
-        sablier.withdraw({ streamId: streamId, to: recipient, amount: amount });
-
-        // If the stream is depleted, burn the stream.
-        if (sablier.isDepleted(streamId)) sablier.burn(streamId);
+    /// @dev This function can only be called by the stream beneficiary.
+    function withdraw(uint256 streamId, uint128 amount) external onlyStreamBeneficiary(streamId) {
+        // Withdraw the specified amount from the stream to the stream beneficiary.
+        sablier.withdraw({ streamId: streamId, to: _streamBeneficiaries[streamId], amount: amount });
     }
 
-    // This function can be called by the allowed recipient
-    function withdrawMax(uint256 streamId) external {
-        address recipient = _streamRecipients[streamId];
-
-        if (recipient != msg.sender) revert Unauthorized();
-
-        _customRestrictionsSucceeded(recipient);
-
-        // Withdraw the maximum amount from the stream. To the allowed recipient.
-        sablier.withdrawMax({ streamId: streamId, to: recipient });
-
-        // If the stream is depleted, burn the stream.
-        if (sablier.isDepleted(streamId)) sablier.burn(streamId);
-    }
-
-    // This function allows to add custom restrictions to withdrawals
-    function _customRestrictionsSucceeded(address recipient) internal view returns (bool) {
-        // Add custom restrictions to withdrawals here
-
-        if (recipient != msg.sender) revert Unauthorized();
-
-        return true;
+    /// @dev This function can only be called by the stream beneficiary.
+    function withdrawMax(uint256 streamId) external onlyStreamBeneficiary(streamId) {
+        // Withdraw the maximum amount from the stream to the stream beneficiary.
+        sablier.withdrawMax({ streamId: streamId, to: _streamBeneficiaries[streamId] });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-                                     03-CANCEL
+                                       HOOKS
     //////////////////////////////////////////////////////////////////////////*/
 
-    // This function can be called by either the sender or the recipient
-    function cancel(uint256 streamId) external {
-        // Can add custom logic here
-
-        // Cancel the stream
-        sablier.cancel(streamId);
-    }
-
-    // This function can be called only by the sender
-    function cancelMultiple(uint256[] calldata streamIds) external {
-        // Can add custom logic here
-
-        // Cancel the streams
-        sablier.cancelMultiple(streamIds);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-                                    04-RENOUNCE
-    //////////////////////////////////////////////////////////////////////////*/
-
-    // This function can be called only by the sender
-    function renounce(uint256 streamId) external {
-        // Can add custom logic here
-
-        // Renounce the stream
-        sablier.renounce(streamId);
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-                               HOOKS
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /// @inheritdoc IERC165
+    // {IERC165-supportsInterface} implementation as required by `ISablierLockupRecipient` interface.
     function supportsInterface(bytes4 interfaceId) public pure override(IERC165) returns (bool) {
         return interfaceId == 0xf8ee98d3;
     }
 
-    /// @notice Hook executed during SablierV2LockupLinear 'withdraw' function.
-    ///
-    /// @dev Reverts withdrawals from Sablier contracts if the caller is not this contract, preventing unauthorized
-    /// withdrawals to this contract that might alter the intended flow of the stream.
+    /// @notice This will be called by Sablier contract everytime withdraw is called on a stream.
+    /// @dev Reverts if the `caller` is not `this` contract, preventing anyone else from calling the publicly callable
+    /// "withdraw" function.
     function onSablierLockupWithdraw(
         uint256, /* streamId */
         address caller,
@@ -161,41 +115,36 @@ contract StreamManagementWithHook is ISablierLockupRecipient {
     )
         external
         view
-        returns (bytes4)
+        returns (bytes4 selector)
     {
-        // Check: the caller is the lockup contract.
+        // Check: the `msg.sender` is the lockup contract.
         if (msg.sender != address(sablier)) {
             revert CallerNotSablierContract(msg.sender, address(sablier));
         }
 
-        // Check: this condition will make revert possible calls to Sablier's SablierV2LockupLinear smart contract
-        // "withdraw" public function from any address except this contract.
+        // Check: the `caller` is `this` contract.
         if (caller != address(this)) revert CallerNotThisContract();
 
         return ISablierLockupRecipient.onSablierLockupWithdraw.selector;
     }
 
-    /// @notice Hook executed during SablierV2LockupLinear 'cancel' function.
-    ///
-    /// @dev This hook doesn't work like the withdrawal hook, since the the cancel function in SablierV2Lockup contract
-    /// is strictly restricted to be called by the `params.sender` address in the stream creation function. So, no need to 
-    /// do the same as the above webhook logic.
+    /// @notice This will be called by Sablier contract when cancel is called on a stream.
+    /// @dev Since only the stream sender, which is `this` contract, can cancel the stream, this function does not
+    /// require a check similar to `onSablierLockupWithdraw`.
     function onSablierLockupCancel(
         uint256, /* streamId */
-        address sender,
+        address, /* sender */
         uint128, /* senderAmount */
         uint128 /* recipientAmount */
     )
         external
         view
-        returns (bytes4)
+        returns (bytes4 selector)
     {
-        // Check: the caller is the lockup contract.
+        // Check: the `msg.sender` is the lockup contract.
         if (msg.sender != address(sablier)) {
             revert CallerNotSablierContract(msg.sender, address(sablier));
         }
-
-        // Custom logic here
 
         return ISablierLockupRecipient.onSablierLockupCancel.selector;
     }
