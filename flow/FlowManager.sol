@@ -3,7 +3,7 @@ pragma solidity >=0.8.22;
 
 import { ud21x18, UD21x18 } from "@prb/math/src/UD21x18.sol";
 
-import { ISablierFlow } from "../repos/flow/src/interfaces/ISablierFlow.sol";
+import { ISablierFlow } from "@sablier/flow/src/interfaces/ISablierFlow.sol";
 
 contract FlowManager {
     ISablierFlow public immutable sablierFlow;
@@ -17,7 +17,7 @@ contract FlowManager {
     }
 
     function deposit(uint256 streamId) external {
-        sablierFlow.deposit(streamId, 3.14159e18);
+        sablierFlow.deposit(streamId, 3.14159e18, msg.sender, address(0xCAFE));
     }
 
     function depositAndPause(uint256 streamId) external {
