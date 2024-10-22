@@ -15,8 +15,6 @@ contract MockERC20 is ERC20 {
 }
 
 contract StreamManagementWithHookTest is Test {
-    error CallerNotThisContract();
-
     StreamManagementWithHook internal streamManager;
     ISablierV2LockupLinear internal sablierLockup;
 
@@ -32,9 +30,7 @@ contract StreamManagementWithHookTest is Test {
         // Create a test users
         alice = makeAddr("Alice");
         bob = makeAddr("Bob");
-        sablierAdmin = payable(makeAddr("SablierOwner"));
-
-        vm.deal(sablierAdmin, 1 ether);
+        sablierAdmin = payable(makeAddr("SablierAdmin"));
 
         // Create a mock ERC20 token and send 1M tokens to Bob
         token = new MockERC20(bob);
@@ -58,7 +54,7 @@ contract StreamManagementWithHookTest is Test {
         token.approve(address(streamManager), type(uint128).max);
     }
 
-    // Test creating a stream from Bob (Project Owner) to Alice (Beneficiary)
+    // Test creating a stream from Bob (Stream Manager Owner) to Alice (Beneficiary)
     function test_Create() public {
         // Create a stream with Alice as the beneficiary
         uint256 streamId = streamManager.create({ beneficiary: alice, totalAmount: amount });
@@ -79,7 +75,7 @@ contract StreamManagementWithHookTest is Test {
         assertEq(sablierLockup.isTransferable(streamId), false);
 
         // Check streamManager details are correct
-        assertEq(streamManager.getStreamBeneficiary(streamId), alice);
+        assertEq(streamManager.streamBeneficiaries(streamId), alice);
     }
 
     modifier givenStreamsCreated() {
@@ -94,11 +90,11 @@ contract StreamManagementWithHookTest is Test {
         // Warp time to exceed total duration
         vm.warp({ newTimestamp: block.timestamp + 60 weeks });
 
-        // Prank Alice to be the caller
+        // Prank Alice to be the `msg.sender`.
         vm.startPrank(alice);
 
-        // Since bob is the caller, `withdraw` to Sablier stream should revert due to hook restriction
-        vm.expectRevert(abi.encodeWithSelector(CallerNotThisContract.selector));
+        // Since Alice is the `msg.sender`, `withdraw` to Sablier stream should revert due to hook restriction
+        vm.expectRevert(abi.encodeWithSelector(StreamManagementWithHook.CallerNotThisContract.selector));
         sablierLockup.withdraw(DEFAULT_STREAM_ID, address(streamManager), 1e18);
     }
 
@@ -107,17 +103,17 @@ contract StreamManagementWithHookTest is Test {
         // Advance time enough to make cliff period over and the total duration to be over
         vm.warp({ newTimestamp: block.timestamp + 60 weeks });
 
-        // Prank Alice to be the caller
+        // Prank Alice to be the `msg.sender`
         vm.startPrank(alice);
 
         // Alice can withdraw from the streamManager contract
         streamManager.withdraw(DEFAULT_STREAM_ID, 1e18);
 
-        assertEq(token.balanceOf(alice), 1 ether);
+        assertEq(token.balanceOf(alice), 1e18);
 
         // Withdraw max tokens from the stream
         streamManager.withdrawMax(DEFAULT_STREAM_ID);
 
-        assertEq(token.balanceOf(alice), 10 ether);
+        assertEq(token.balanceOf(alice), 10e18);
     }
 }
