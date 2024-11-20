@@ -7,7 +7,7 @@ import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablier
 import { Broker, LockupLinear } from "@sablier/v2-core/src/types/DataTypes.sol";
 import { Test } from "forge-std/src/Test.sol";
 
-import { StakeSablierNFT } from "../StakeSablierNFT.sol";
+import { StakeSablierNFT } from "../../StakeSablierNFT.sol";
 
 struct StreamOwner {
     address addr;
@@ -27,12 +27,12 @@ struct Users {
 
 abstract contract StakeSablierNFT_Fork_Test is Test {
     // Errors
-    error AlreadyStaking(address account, uint256 tokenId);
-    error DifferentStreamingAsset(uint256 tokenId, IERC20 rewardToken);
+    error AlreadyStaking(address account, uint256 streamId);
+    error DifferentStreamingToken(uint256 streamId, IERC20 rewardToken);
     error ProvidedRewardTooHigh();
     error StakingAlreadyActive();
-    error UnauthorizedCaller(address account, uint256 tokenId);
-    error ZeroAddress(uint256 tokenId);
+    error UnauthorizedCaller(address account, uint256 streamId);
+    error ZeroAddress(address account);
     error ZeroAmount();
     error ZeroDuration();
 
@@ -40,8 +40,8 @@ abstract contract StakeSablierNFT_Fork_Test is Test {
     event RewardAdded(uint256 reward);
     event RewardDurationUpdated(uint256 newDuration);
     event RewardPaid(address indexed user, uint256 reward);
-    event Staked(address indexed user, uint256 tokenId);
-    event Unstaked(address indexed user, uint256 tokenId);
+    event Staked(address indexed user, uint256 streamId);
+    event Unstaked(address indexed user, uint256 streamId);
 
     IERC20 public constant DAI = IERC20(0x776b6fC2eD15D6Bb5Fc32e0c89DE68683118c62A);
     IERC20 public constant USDC = IERC20(0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238);

@@ -7,7 +7,7 @@ contract Stake_Test is StakeSablierNFT_Fork_Test {
     function test_RevertWhen_StreamingAssetIsNotRewardAsset() external {
         resetPrank({ msgSender: users.bob.addr });
 
-        vm.expectRevert(abi.encodeWithSelector(DifferentStreamingAsset.selector, users.bob.streamId, DAI));
+        vm.expectRevert(abi.encodeWithSelector(DifferentStreamingToken.selector, users.bob.streamId, DAI));
         stakingContract.stake(users.bob.streamId);
     }
 
@@ -40,7 +40,7 @@ contract Stake_Test is StakeSablierNFT_Fork_Test {
 
         // Assertions: storage variables.
         assertEq(stakingContract.stakedAssets(users.joe.streamId), users.joe.addr);
-        assertEq(stakingContract.stakedTokenId(users.joe.addr), users.joe.streamId);
+        assertEq(stakingContract.stakedStreamId(users.joe.addr), users.joe.streamId);
 
         assertEq(stakingContract.totalERC20StakedSupply(), AMOUNT_IN_STREAM * 2);
 
