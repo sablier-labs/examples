@@ -1,7 +1,7 @@
 name: "CI"
 
 env:
-  RPC_URL_SEPOLIA: ${{ secrets.RPC_URL_SEPOLIA }}
+  SEPOLIA_RPC_URL: ${{ secrets.SEPOLIA_RPC_URL }}
   FOUNDRY_PROFILE: "ci"
 
 on:
