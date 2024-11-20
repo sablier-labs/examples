@@ -4,7 +4,7 @@ pragma solidity >=0.8.19;
 import { StakeSablierNFT_Fork_Test } from "../StakeSablierNFT.t.sol";
 
 contract Unstake_Test is StakeSablierNFT_Fork_Test {
-    function test_RevertWhen_CallerNotAuthorized() external {
+    function test_RevertWhen_CallerIsNotStaker() external {
         // Change the caller to a non staker.
         resetPrank({ msgSender: users.bob.addr });
 
@@ -12,20 +12,13 @@ contract Unstake_Test is StakeSablierNFT_Fork_Test {
         stakingContract.unstake(users.bob.streamId);
     }
 
-    modifier whenCallerIsAuthorized() {
-        _;
-    }
-
-    modifier givenStaked() {
+    function test_WhenCallerIsStaker() external {
         // Change the caller to a non staker and stake a stream.
         resetPrank({ msgSender: users.joe.addr });
         stakingContract.stake(users.joe.streamId);
 
         vm.warp(block.timestamp + 1 days);
-        _;
-    }
 
-    function test_Unstake() external whenCallerIsAuthorized givenStaked {
         // Expect {Unstaked} event to be emitted.
         vm.expectEmit({ emitter: address(stakingContract) });
         emit Unstaked(users.joe.addr, users.joe.streamId);
@@ -37,8 +30,8 @@ contract Unstake_Test is StakeSablierNFT_Fork_Test {
         assertEq(SABLIER.ownerOf(users.joe.streamId), users.joe.addr);
 
         // Assert: `stakedAssets` and `stakedStreamId` have been deleted from storage.
-        assertEq(stakingContract.stakedAssets(users.joe.streamId), address(0));
-        assertEq(stakingContract.stakedStreamId(users.joe.addr), 0);
+        assertEq(stakingContract.stakedUsers(users.joe.streamId), address(0));
+        assertEq(stakingContract.stakedStreams(users.joe.addr), 0);
 
         // Assert: `totalERC20StakedSupply` has been updated.
         assertEq(stakingContract.totalERC20StakedSupply(), AMOUNT_IN_STREAM);

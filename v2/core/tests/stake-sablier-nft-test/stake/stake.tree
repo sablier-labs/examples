@@ -1,12 +1,12 @@
-stake.t.sol
-├── when the streaming token is not same as the reward token
-│   └── it should revert
-└── when the streaming token is same as the reward token
-    ├── when the user is already staking
-    │   └── it should revert
-    └── when the user is not already staking
-        ├── it should transfer the sablier NFT from the caller to the staking contract
-        ├── it should update {streamOwner} and {stakedTokenId}
-        ├── it should update {totalERC20StakedSupply}
-        ├── it should update {updateReward} storage variables
-        └── it should emit a {Staked} event
+Stake_Test
+├── given streaming token is not reward token
+│  └── it should revert
+└── given streaming token is reward token
+   ├── when already staking
+   │  └── it should revert
+   └── when not already staking
+      ├── it should transfer the sablier NFT from the caller to the staking contract
+      ├── it should update {streamOwner} and {stakedTokenId}
+      ├── it should update {totalERC20StakedSupply}
+      ├── it should update {updateReward} storage variables
+      └── it should emit a {Staked} event
