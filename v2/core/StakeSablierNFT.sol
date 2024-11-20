@@ -74,11 +74,11 @@ contract StakeSablierNFT is Adminable, ERC721Holder, ISablierLockupRecipient {
     ///   - If you used Lockup Dynamic, you should use the LockupDynamic contract address.
     ISablierV2Lockup public sablierLockup;
 
-    /// @dev The owners of the streams mapped by stream IDs.
-    mapping(uint256 streamId => address account) public stakedUsers;
-
     /// @dev The staked stream IDs mapped by user addresses.
     mapping(address account => uint256 streamId) public stakedStreams;
+
+    /// @dev The owners of the streams mapped by stream IDs.
+    mapping(uint256 streamId => address account) public stakedUsers;
 
     /// @dev The timestamp when the staking ends.
     uint256 public stakingEndTime;
