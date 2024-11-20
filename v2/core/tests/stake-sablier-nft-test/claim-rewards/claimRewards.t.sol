@@ -4,7 +4,7 @@ pragma solidity >=0.8.19;
 import { StakeSablierNFT_Fork_Test } from "../StakeSablierNFT.t.sol";
 
 contract ClaimRewards_Test is StakeSablierNFT_Fork_Test {
-    function test_ClaimRewards_WhenNonStaker() external {
+    function test_WhenCallerIsNotStaker() external {
         // Change the caller to a staker.
         resetPrank({ msgSender: users.joe.addr });
 
@@ -19,15 +19,12 @@ contract ClaimRewards_Test is StakeSablierNFT_Fork_Test {
         stakingContract.claimRewards();
     }
 
-    modifier givenStaked() {
-        // Change the caller to a staker.
+    function test_WhenCallerIsStaker() external {
+        // Prank the caller to a staker.
         resetPrank({ msgSender: users.alice.addr });
 
         vm.warp(block.timestamp + 1 days);
-        _;
-    }
 
-    function test_ClaimRewards() external givenStaked {
         uint256 expectedReward = 1 days * rewardRate;
         uint256 initialBalance = rewardToken.balanceOf(users.alice.addr);
 

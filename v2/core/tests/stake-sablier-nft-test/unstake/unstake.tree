@@ -1,0 +1,9 @@
+Unstake_Test
+├── when caller is not staker
+│  └── it should revert
+└── when caller is staker
+   ├── it should transfer the sablier NFT to the caller
+   ├── it should delete {streamOwner} and {stakedTokenId}
+   ├── it should update {totalERC20StakedSupply}
+   ├── it should update {updateReward} storage variables
+   └── it should emit a {Unstaked} event

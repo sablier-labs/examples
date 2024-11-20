@@ -4,30 +4,28 @@ pragma solidity >=0.8.19;
 import { StakeSablierNFT_Fork_Test } from "../StakeSablierNFT.t.sol";
 
 contract Stake_Test is StakeSablierNFT_Fork_Test {
-    function test_RevertWhen_StreamingAssetIsNotRewardAsset() external {
+    function test_RevertGiven_StreamingTokenIsNotRewardToken() external {
         resetPrank({ msgSender: users.bob.addr });
 
-        vm.expectRevert(abi.encodeWithSelector(DifferentStreamingAsset.selector, users.bob.streamId, DAI));
+        vm.expectRevert(abi.encodeWithSelector(DifferentStreamingToken.selector, users.bob.streamId, DAI));
         stakingContract.stake(users.bob.streamId);
     }
 
-    modifier whenStreamingAssetIsRewardAsset() {
+    modifier givenStreamingTokenIsRewardToken() {
         _;
     }
 
-    function test_RevertWhen_AlreadyStaking() external whenStreamingAssetIsRewardAsset {
+    function test_RevertWhen_AlreadyStaking() external givenStreamingTokenIsRewardToken {
         resetPrank({ msgSender: users.alice.addr });
 
         vm.expectRevert(abi.encodeWithSelector(AlreadyStaking.selector, users.alice.addr, users.alice.streamId));
         stakingContract.stake(users.alice.streamId);
     }
 
-    modifier notAlreadyStaking() {
+    function test_WhenNotAlreadyStaking() external givenStreamingTokenIsRewardToken {
+        // Prank to Joe who is not a staker.
         resetPrank({ msgSender: users.joe.addr });
-        _;
-    }
 
-    function test_Stake() external whenStreamingAssetIsRewardAsset notAlreadyStaking {
         // Expect {Staked} event to be emitted.
         vm.expectEmit({ emitter: address(stakingContract) });
         emit Staked(users.joe.addr, users.joe.streamId);
@@ -39,8 +37,8 @@ contract Stake_Test is StakeSablierNFT_Fork_Test {
         assertEq(SABLIER.ownerOf(users.joe.streamId), address(stakingContract));
 
         // Assertions: storage variables.
-        assertEq(stakingContract.stakedAssets(users.joe.streamId), users.joe.addr);
-        assertEq(stakingContract.stakedTokenId(users.joe.addr), users.joe.streamId);
+        assertEq(stakingContract.stakedUsers(users.joe.streamId), users.joe.addr);
+        assertEq(stakingContract.stakedStreams(users.joe.addr), users.joe.streamId);
 
         assertEq(stakingContract.totalERC20StakedSupply(), AMOUNT_IN_STREAM * 2);
 

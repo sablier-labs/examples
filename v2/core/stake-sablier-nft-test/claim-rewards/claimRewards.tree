@@ -1,5 +1,0 @@
-claimRewards.t.sol
-├── given the caller is not a staker
-│   └── it should not transfer the rewards
-└── given the caller is a staker
-    └── it should transfer the rewards

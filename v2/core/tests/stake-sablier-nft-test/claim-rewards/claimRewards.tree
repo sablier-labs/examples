@@ -1,0 +1,5 @@
+ClaimRewards_Test
+├── when caller is not staker
+│  └── it should not transfer the rewards
+└── when caller is staker
+   └── it should transfer the rewards
