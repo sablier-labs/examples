@@ -41,6 +41,7 @@
   "private": true,
   "repository": "github.com:sablier-labs/examples",
   "scripts": {
+    "build": "bun run build:flow && bun run build:lockup",
     "build:flow": "FOUNDRY_PROFILE=flow forge build",
     "build:lockup": "FOUNDRY_PROFILE=lockup forge build",
     "clean": "rm -rf cache out",
