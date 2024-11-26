@@ -6,9 +6,13 @@
     "contract-name-camelcase": "off",
     "func-name-mixedcase": "off",
     "func-visibility": ["error", { "ignoreConstructors": true }],
+    "gas-custom-errors": "off",
+    "immutable-vars-naming": "off",
     "max-line-length": ["error", 124],
     "named-parameters-mapping": "warn",
     "no-console": "off",
-    "not-rely-on-time": "off"
+    "no-empty-blocks": "off",
+    "not-rely-on-time": "off",
+    "one-contract-per-file": "off"
   }
 }

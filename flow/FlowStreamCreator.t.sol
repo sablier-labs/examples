@@ -34,13 +34,13 @@ contract FlowStreamCreator_Test is Test {
         streamCreator.USDC().approve({ spender: address(streamCreator), value: 1_000_000e6 });
     }
 
-    function test_CreateStream_1T_PerMonth() external {
+    function test_CreateStream_1K_PerMonth() external {
         uint256 expectedStreamId = flow.nextStreamId();
 
-        uint256 actualStreamId = streamCreator.createStream_1T_PerMonth();
+        uint256 actualStreamId = streamCreator.createStream_1K_PerMonth();
         assertEq(actualStreamId, expectedStreamId);
 
-        // Warp more than 30 days into the future to see if the debt accumulated is more than 1 thousand
+        // Warp slightly over 30 days so that the debt accumulated is slightly over 1000 USDC.
         vm.warp({ newTimestamp: block.timestamp + 30 days + 1 seconds });
 
         assertGe(flow.totalDebtOf(actualStreamId), 1000e6);
@@ -52,7 +52,7 @@ contract FlowStreamCreator_Test is Test {
         uint256 actualStreamId = streamCreator.createStream_1M_PerYear();
         assertEq(actualStreamId, expectedStreamId);
 
-        // Warp more than 30 days into the future to see if the debt accumulated is more than 1 thousand
+        // Warp slightly over 365 days so that the debt accumulated is slightly over 1M USDC.
         vm.warp({ newTimestamp: block.timestamp + 365 days + 1 seconds });
 
         assertGe(flow.totalDebtOf(actualStreamId), 1_000_000e6);
