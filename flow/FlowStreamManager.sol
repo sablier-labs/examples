@@ -5,7 +5,7 @@ import { ud21x18 } from "@prb/math/src/UD21x18.sol";
 
 import { ISablierFlow } from "@sablier/flow/src/interfaces/ISablierFlow.sol";
 
-contract FlowManager {
+contract FlowStreamManager {
     ISablierFlow public immutable sablierFlow;
 
     constructor(ISablierFlow sablierFlow_) {
