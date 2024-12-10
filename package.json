@@ -17,7 +17,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "5.0.2",
     "@prb/math": "4.1.0",
-    "@sablier/flow": "github:sablier-labs/flow",
+    "@sablier/flow": "^1.0.0",
     "@sablier/v2-core": "1.2.0",
     "@sablier/v2-periphery": "1.2.0"
   },
