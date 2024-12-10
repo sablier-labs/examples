@@ -5,22 +5,16 @@ import { Test } from "forge-std/src/Test.sol";
 
 import { FlowBatchable } from "./FlowBatchable.sol";
 
-import { IFlowNFTDescriptor, SablierFlow } from "@sablier/flow/src/SablierFlow.sol";
-
 contract FlowBatchable_Test is Test {
     FlowBatchable internal batchable;
-    SablierFlow internal flow;
     address internal user;
 
     function setUp() external {
         // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
-
-        // Deploy a SablierFlow contract
-        flow = new SablierFlow({ initialAdmin: address(this), initialNFTDescriptor: IFlowNFTDescriptor(address(this)) });
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_250_564 });
 
         // Deploy the batchable contract
-        batchable = new FlowBatchable(flow);
+        batchable = new FlowBatchable();
 
         user = makeAddr("User");
 
@@ -35,7 +29,7 @@ contract FlowBatchable_Test is Test {
     }
 
     function test_CreateMultiple() external {
-        uint256 nextStreamIdBefore = flow.nextStreamId();
+        uint256 nextStreamIdBefore = batchable.FLOW().nextStreamId();
 
         uint256[] memory actualStreamIds = batchable.createMultiple();
         uint256[] memory expectedStreamIds = new uint256[](2);
@@ -46,7 +40,7 @@ contract FlowBatchable_Test is Test {
     }
 
     function test_CreateAndDepositViaBroker() external {
-        uint256 nextStreamIdBefore = flow.nextStreamId();
+        uint256 nextStreamIdBefore = batchable.FLOW().nextStreamId();
 
         uint256[] memory actualStreamIds = batchable.createMultipleAndDepositViaBroker();
         uint256[] memory expectedStreamIds = new uint256[](2);

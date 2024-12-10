@@ -5,22 +5,16 @@ import { Test } from "forge-std/src/Test.sol";
 
 import { FlowStreamCreator } from "./FlowStreamCreator.sol";
 
-import { IFlowNFTDescriptor, SablierFlow } from "@sablier/flow/src/SablierFlow.sol";
-
 contract FlowStreamCreator_Test is Test {
     FlowStreamCreator internal streamCreator;
-    SablierFlow internal flow;
     address internal user;
 
     function setUp() external {
         // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_816 });
-
-        // Deploy a SablierFlow contract
-        flow = new SablierFlow({ initialAdmin: address(this), initialNFTDescriptor: IFlowNFTDescriptor(address(this)) });
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_250_564 });
 
         // Deploy the FlowStreamCreator contract
-        streamCreator = new FlowStreamCreator(flow);
+        streamCreator = new FlowStreamCreator();
 
         user = makeAddr("User");
 
@@ -35,7 +29,7 @@ contract FlowStreamCreator_Test is Test {
     }
 
     function test_CreateStream_1K_PerMonth() external {
-        uint256 expectedStreamId = flow.nextStreamId();
+        uint256 expectedStreamId = streamCreator.FLOW().nextStreamId();
 
         uint256 actualStreamId = streamCreator.createStream_1K_PerMonth();
         assertEq(actualStreamId, expectedStreamId);
@@ -43,11 +37,11 @@ contract FlowStreamCreator_Test is Test {
         // Warp slightly over 30 days so that the debt accumulated is slightly over 1000 USDC.
         vm.warp({ newTimestamp: block.timestamp + 30 days + 1 seconds });
 
-        assertGe(flow.totalDebtOf(actualStreamId), 1000e6);
+        assertGe(streamCreator.FLOW().totalDebtOf(actualStreamId), 1000e6);
     }
 
     function test_CreateStream_1M_PerYear() external {
-        uint256 expectedStreamId = flow.nextStreamId();
+        uint256 expectedStreamId = streamCreator.FLOW().nextStreamId();
 
         uint256 actualStreamId = streamCreator.createStream_1M_PerYear();
         assertEq(actualStreamId, expectedStreamId);
@@ -55,6 +49,6 @@ contract FlowStreamCreator_Test is Test {
         // Warp slightly over 365 days so that the debt accumulated is slightly over 1M USDC.
         vm.warp({ newTimestamp: block.timestamp + 365 days + 1 seconds });
 
-        assertGe(flow.totalDebtOf(actualStreamId), 1_000_000e6);
+        assertGe(streamCreator.FLOW().totalDebtOf(actualStreamId), 1_000_000e6);
     }
 }
