@@ -54,11 +54,11 @@ library FlowUtilities {
         view
         returns (UD21x18 ratePerSecond)
     {
-        // Get the decimals of the token.
-        uint8 decimals = IERC20Metadata(token).decimals();
-
         // Calculate the duration.
         uint40 duration = end - start;
+
+        // Get the decimals of the token.
+        uint8 decimals = IERC20Metadata(token).decimals();
 
         if (decimals == 18) {
             return ud21x18(amount / duration);
