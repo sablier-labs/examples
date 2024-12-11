@@ -20,7 +20,7 @@ contract StreamManagementWithHookTest is Test {
 
     ERC20 internal token;
     uint128 internal amount = 10e18;
-    uint256 internal DEFAULT_STREAM_ID;
+    uint256 internal defaultStreamId;
 
     address internal alice;
     address internal bob;
@@ -80,8 +80,8 @@ contract StreamManagementWithHookTest is Test {
 
     modifier givenStreamsCreated() {
         // Create a stream with Alice as the beneficiary
-        DEFAULT_STREAM_ID = streamManager.create({ beneficiary: alice, totalAmount: amount });
-        require(DEFAULT_STREAM_ID == 1, "Stream creation failed");
+        defaultStreamId = streamManager.create({ beneficiary: alice, totalAmount: amount });
+        require(defaultStreamId == 1, "Stream creation failed");
         _;
     }
 
@@ -95,7 +95,7 @@ contract StreamManagementWithHookTest is Test {
 
         // Since Alice is the `msg.sender`, `withdraw` to Sablier stream should revert due to hook restriction
         vm.expectRevert(abi.encodeWithSelector(StreamManagementWithHook.CallerNotThisContract.selector));
-        sablierLockup.withdraw(DEFAULT_STREAM_ID, address(streamManager), 1e18);
+        sablierLockup.withdraw(defaultStreamId, address(streamManager), 1e18);
     }
 
     // Test that withdraw from Sablier stream succeeds if it is called through the `streamManager` contract
@@ -107,12 +107,12 @@ contract StreamManagementWithHookTest is Test {
         vm.startPrank(alice);
 
         // Alice can withdraw from the streamManager contract
-        streamManager.withdraw(DEFAULT_STREAM_ID, 1e18);
+        streamManager.withdraw(defaultStreamId, 1e18);
 
         assertEq(token.balanceOf(alice), 1e18);
 
         // Withdraw max tokens from the stream
-        streamManager.withdrawMax(DEFAULT_STREAM_ID);
+        streamManager.withdrawMax(defaultStreamId);
 
         assertEq(token.balanceOf(alice), 10e18);
     }

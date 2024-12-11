@@ -11,7 +11,7 @@ contract RecipientHooks is ISablierLockupRecipient {
     /// depending on which type of streams are supported in this hook.
     address public immutable SABLIER_LOCKUP;
 
-    mapping(address => uint256) internal _balances;
+    mapping(address account => uint256 amount) internal _balances;
 
     /// @dev Constructor will set the address of the lockup contract.
     constructor(address sablierLockup_) {

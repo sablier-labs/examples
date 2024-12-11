@@ -12,11 +12,12 @@
   "devDependencies": {
     "forge-std": "github:foundry-rs/forge-std#v1.8.1",
     "prettier": "^2.8.8",
-    "solhint": "^4.0.0"
+    "solhint": "^5.0.3"
   },
   "dependencies": {
     "@openzeppelin/contracts": "5.0.2",
-    "@prb/math": "4.0.3",
+    "@prb/math": "4.1.0",
+    "@sablier/flow": "^1.0.0",
     "@sablier/v2-core": "1.2.0",
     "@sablier/v2-periphery": "1.2.0"
   },
@@ -40,12 +41,16 @@
   "private": true,
   "repository": "github.com:sablier-labs/examples",
   "scripts": {
-    "build": "forge build",
+    "build": "bun run build:flow && bun run build:lockup",
+    "build:flow": "FOUNDRY_PROFILE=flow forge build",
+    "build:lockup": "FOUNDRY_PROFILE=lockup forge build",
     "clean": "rm -rf cache out",
     "lint": "bun run lint:sol && bun run prettier:check",
-    "lint:sol": "forge fmt --check && bun solhint \"{script,src,test}/**/*.sol\"",
-    "prettier:check": "prettier --check \"**/*.{json,md,yml}\"",
-    "prettier:write": "prettier --write \"**/*.{json,md,yml}\"",
-    "test": "forge test"
+    "lint:sol": "forge fmt . && bun solhint \"{flow,lockup}/**/*.sol\"",
+    "prettier:check": "prettier --check \"**/*.{md,yml}\"",
+    "prettier:write": "prettier --write \"**/*.{md,yml}\"",
+    "test": "bun run test:flow && bun run test:lockup",
+    "test:flow": "FOUNDRY_PROFILE=flow forge test",
+    "test:lockup": "FOUNDRY_PROFILE=lockup forge test"
   }
 }

@@ -8,8 +8,14 @@ optimizer = true
 optimizer_runs = 5000
 out = "out"
 solc = "0.8.26"
-src = "v2"
-test = "v2"
+
+[profile.lockup]
+src = "lockup"
+test = "lockup"
+
+[profile.flow]
+src = "flow"
+test = "flow"
 
 [fmt]
 bracket_spacing = true
