@@ -2,11 +2,11 @@
 pragma solidity >=0.8.22;
 
 import { ud21x18 } from "@prb/math/src/UD21x18.sol";
-
-import { ISablierFlow } from "@sablier/flow/src/interfaces/ISablierFlow.sol";
+import { ud60x18 } from "@prb/math/src/UD60x18.sol";
+import { Broker, ISablierFlow } from "@sablier/flow/src/interfaces/ISablierFlow.sol";
 
 contract FlowStreamManager {
-    // Sepolia addres
+    // Sepolia address
     ISablierFlow public constant FLOW = ISablierFlow(0x5Ae8c13f6Ae094887322012425b34b0919097d8A);
 
     function adjustRatePerSecond(uint256 streamId) external {
@@ -21,6 +21,18 @@ contract FlowStreamManager {
         FLOW.depositAndPause(streamId, 3.14159e18);
     }
 
+    function depositViaBroker(uint256 streamId) external {
+        Broker memory broker = Broker({ account: address(0xDEAD), fee: ud60x18(0.0001e18) });
+
+        FLOW.depositViaBroker({
+            streamId: streamId,
+            totalAmount: 3.14159e18,
+            sender: msg.sender,
+            recipient: address(0xCAFE),
+            broker: broker
+        });
+    }
+
     function pause(uint256 streamId) external {
         FLOW.pause(streamId);
     }
@@ -31,6 +43,10 @@ contract FlowStreamManager {
 
     function refundAndPause(uint256 streamId) external {
         FLOW.refundAndPause({ streamId: streamId, amount: 1.61803e18 });
+    }
+
+    function refundMax(uint256 streamId) external {
+        FLOW.refundMax(streamId);
     }
 
     function restart(uint256 streamId) external {
