@@ -15,8 +15,9 @@ contract FlowBatchable {
     ISablierFlow public constant FLOW = ISablierFlow(0x5Ae8c13f6Ae094887322012425b34b0919097d8A);
 
     /// @dev A function to adjust the rate per second and deposit into a stream in a single transaction.
+    /// Note: The streamId's sender must be this contract, otherwise, the call will fail due to no authorization.
     function adjustRatePerSecondAndDeposit(uint256 streamId) external {
-        UD21x18 newRatePerSecond = ud21x18(0.0001e18);
+        UD21x18 newRatePerSecond = ud21x18(0.0002e18);
         uint128 depositAmount = 1000e6;
 
         // Transfer to this contract the amount to deposit in the stream.
@@ -42,6 +43,7 @@ contract FlowBatchable {
         address recipient = address(0xCAFE);
         UD21x18 ratePerSecond = ud21x18(0.0001e18);
         uint128 depositAmount = 1000e6;
+        bool transferable = true;
 
         // The broker struct.
         Broker memory broker = Broker({
@@ -59,7 +61,7 @@ contract FlowBatchable {
 
         // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
-        calls[0] = abi.encodeCall(FLOW.create, (sender, recipient, ratePerSecond, USDC, true));
+        calls[0] = abi.encodeCall(FLOW.create, (sender, recipient, ratePerSecond, USDC, transferable));
         calls[1] = abi.encodeCall(FLOW.depositViaBroker, (streamId, depositAmount, sender, recipient, broker));
 
         // Execute multiple calls in a single transaction using the prepared call data.
@@ -73,11 +75,12 @@ contract FlowBatchable {
         address secondRecipient = address(0xBEEF);
         UD21x18 firstRatePerSecond = ud21x18(0.0001e18);
         UD21x18 secondRatePerSecond = ud21x18(0.0002e18);
+        bool transferable = true;
 
         // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
-        calls[0] = abi.encodeCall(FLOW.create, (sender, firstRecipient, firstRatePerSecond, USDC, true));
-        calls[1] = abi.encodeCall(FLOW.create, (sender, secondRecipient, secondRatePerSecond, USDC, true));
+        calls[0] = abi.encodeCall(FLOW.create, (sender, firstRecipient, firstRatePerSecond, USDC, transferable));
+        calls[1] = abi.encodeCall(FLOW.create, (sender, secondRecipient, secondRatePerSecond, USDC, transferable));
 
         // Prepare the `streamIds` array to return them
         uint256 nextStreamId = FLOW.nextStreamId();
@@ -96,6 +99,7 @@ contract FlowBatchable {
         address secondRecipient = address(0xBEEF);
         UD21x18 ratePerSecond = ud21x18(0.0001e18);
         uint128 depositAmount = 1000e6;
+        bool transferable = true;
 
         // Transfer the deposit amount of USDC tokens to this contract for both streams
         USDC.transferFrom(msg.sender, address(this), 2 * depositAmount);
@@ -116,8 +120,8 @@ contract FlowBatchable {
 
         // We need to have 4 different function calls, 2 for creating streams and 2 for depositing via broker
         bytes[] memory calls = new bytes[](4);
-        calls[0] = abi.encodeCall(FLOW.create, (sender, firstRecipient, ratePerSecond, USDC, true));
-        calls[1] = abi.encodeCall(FLOW.create, (sender, secondRecipient, ratePerSecond, USDC, true));
+        calls[0] = abi.encodeCall(FLOW.create, (sender, firstRecipient, ratePerSecond, USDC, transferable));
+        calls[1] = abi.encodeCall(FLOW.create, (sender, secondRecipient, ratePerSecond, USDC, transferable));
         calls[2] = abi.encodeCall(FLOW.depositViaBroker, (streamIds[0], depositAmount, sender, firstRecipient, broker));
         calls[3] = abi.encodeCall(FLOW.depositViaBroker, (streamIds[1], depositAmount, sender, secondRecipient, broker));
 
@@ -126,6 +130,7 @@ contract FlowBatchable {
     }
 
     /// @dev A function to pause a stream and withdraw the maximum available funds.
+    /// Note: The streamId's sender must be this contract, otherwise, the call will fail due to no authorization.
     function pauseAndWithdrawMax(uint256 streamId) external {
         // The call data declared as bytes.
         bytes[] memory calls = new bytes[](2);
@@ -137,6 +142,7 @@ contract FlowBatchable {
     }
 
     /// @dev A function to void a stream and withdraw what is left.
+    /// Note: The streamId's sender must be this contract, otherwise, the call will fail due to no authorization.
     function voidAndWithdrawMax(uint256 streamId) external {
         // The call data declared as bytes
         bytes[] memory calls = new bytes[](2);
