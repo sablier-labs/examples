@@ -16,7 +16,7 @@ contract LockupTranchedStreamCreator {
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream(uint128 amount0, uint128 amount1) public returns (uint256 streamId) {
-        // Sum the segment amounts
+        // Sum the tranche amounts
         uint256 totalAmount = amount0 + amount1;
 
         // Transfer the provided amount of DAI tokens to this contract
