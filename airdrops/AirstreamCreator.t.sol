@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3-0-or-later
 pragma solidity >=0.8.22;
 
-import { ISablierV2MerkleLL } from "@sablier/v2-periphery/src/interfaces/ISablierV2MerkleLL.sol";
+import { ISablierMerkleLL } from "@sablier/airdrops/src/interfaces/ISablierMerkleLL.sol";
 import { Test } from "forge-std/src/Test.sol";
 
 import { AirstreamCreator } from "./AirstreamCreator.sol";
@@ -14,7 +14,7 @@ contract AirstreamCreatorTest is Test {
 
     function setUp() public {
         // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_246_059 });
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_497_776 });
 
         // Deploy the airstream creator
         airstreamCreator = new AirstreamCreator();
@@ -29,7 +29,7 @@ contract AirstreamCreatorTest is Test {
 
     // Tests creating the airstream campaign.
     function test_CreateLLAirstream() public {
-        ISablierV2MerkleLL merkleLL = airstreamCreator.createLLAirstream();
+        ISablierMerkleLL merkleLL = airstreamCreator.createLLAirstream();
 
         // Assert the merkleLL contract was created with correct params
         assertEq(address(0xBeeF), merkleLL.admin(), "admin");

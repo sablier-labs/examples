@@ -4,26 +4,23 @@ pragma solidity >=0.8.22;
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { ud2x18 } from "@prb/math/src/UD2x18.sol";
 import { ud60x18 } from "@prb/math/src/UD60x18.sol";
-import { ISablierV2LockupDynamic } from "@sablier/v2-core/src/interfaces/ISablierV2LockupDynamic.sol";
-import { Broker, LockupDynamic } from "@sablier/v2-core/src/types/DataTypes.sol";
-import { ISablierV2BatchLockup } from "@sablier/v2-periphery/src/interfaces/ISablierV2BatchLockup.sol";
-import { BatchLockup } from "@sablier/v2-periphery/src/types/DataTypes.sol";
+import { ISablierBatchLockup } from "@sablier/lockup/src/interfaces/ISablierBatchLockup.sol";
+import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
+import { BatchLockup, Broker, LockupDynamic } from "@sablier/lockup/src/types/DataTypes.sol";
 
 contract BatchLDStreamCreator {
     // Sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     // See https://docs.sablier.com/contracts/v2/deployments for all deployments
-    ISablierV2LockupDynamic public constant LOCKUP_DYNAMIC =
-        ISablierV2LockupDynamic(0x73BB6dD3f5828d60F8b3dBc8798EB10fbA2c5636);
-    ISablierV2BatchLockup public constant BATCH_LOCKUP =
-        ISablierV2BatchLockup(0x04A9c14b7a000640419aD5515Db4eF4172C00E31);
+    ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
+    ISablierBatchLockup public constant BATCH_LOCKUP = ISablierBatchLockup(0xd4294579236eE290668c8FdaE9403c4F00D914f0);
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function batchCreateStreams(uint128 perStreamAmount) public returns (uint256[] memory streamIds) {
         // Create a batch of two streams
         uint256 batchSize = 2;
 
-        // Calculate the combined amount of DAI assets to transfer to this contract
+        // Calculate the combined amount of DAI tokens to transfer to this contract
         uint256 transferAmount = perStreamAmount * batchSize;
 
         // Transfer the provided amount of DAI tokens to this contract
@@ -34,8 +31,8 @@ contract BatchLDStreamCreator {
 
         // Declare the first stream in the batch
         BatchLockup.CreateWithTimestampsLD memory stream0;
-        stream0.sender = address(0xABCD); // The sender to stream the assets, he will be able to cancel the stream
-        stream0.recipient = address(0xCAFE); // The recipient of the streamed assets
+        stream0.sender = address(0xABCD); // The sender to stream the tokens, he will be able to cancel the stream
+        stream0.recipient = address(0xCAFE); // The recipient of the streamed tokens
         stream0.totalAmount = perStreamAmount; // The total amount of each stream, inclusive of all fees
         stream0.cancelable = true; // Whether the stream will be cancelable or not
         stream0.transferable = false; // Whether the recipient can transfer the NFT or not
@@ -59,8 +56,8 @@ contract BatchLDStreamCreator {
 
         // Declare the second stream in the batch
         BatchLockup.CreateWithTimestampsLD memory stream1;
-        stream1.sender = address(0xABCD); // The sender to stream the assets, he will be able to cancel the stream
-        stream1.recipient = address(0xBEEF); // The recipient of the streamed assets
+        stream1.sender = address(0xABCD); // The sender to stream the tokens, he will be able to cancel the stream
+        stream1.recipient = address(0xBEEF); // The recipient of the streamed tokens
         stream1.totalAmount = perStreamAmount; // The total amount of each stream, inclusive of all fees
         stream1.cancelable = false; // Whether the stream will be cancelable or not
         stream1.transferable = false; // Whether the recipient can transfer the NFT or not
@@ -87,6 +84,6 @@ contract BatchLDStreamCreator {
         batch[0] = stream0;
         batch[1] = stream1;
 
-        streamIds = BATCH_LOCKUP.createWithTimestampsLD(LOCKUP_DYNAMIC, DAI, batch);
+        streamIds = BATCH_LOCKUP.createWithTimestampsLD(LOCKUP, DAI, batch);
     }
 }

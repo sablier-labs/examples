@@ -5,9 +5,9 @@ import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { ERC721Holder } from "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
-import { Adminable } from "@sablier/v2-core/src/abstracts/Adminable.sol";
-import { ISablierLockupRecipient } from "@sablier/v2-core/src/interfaces/ISablierLockupRecipient.sol";
-import { ISablierV2Lockup } from "@sablier/v2-core/src/interfaces/ISablierV2Lockup.sol";
+import { Adminable } from "@sablier/lockup/src/abstracts/Adminable.sol";
+import { ISablierLockupRecipient } from "@sablier/lockup/src/interfaces/ISablierLockupRecipient.sol";
+import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
 
 /// @title StakeSablierNFT
 ///
@@ -72,7 +72,7 @@ contract StakeSablierNFT is Adminable, ERC721Holder, ISablierLockupRecipient {
     /// @dev This should be the Sablier Lockup contract.
     ///   - If you used Lockup Linear, you should use the LockupLinear contract address.
     ///   - If you used Lockup Dynamic, you should use the LockupDynamic contract address.
-    ISablierV2Lockup public sablierLockup;
+    ISablierLockup public sablierLockup;
 
     /// @dev The staked stream IDs mapped by user addresses.
     mapping(address account => uint256 streamId) public stakedStreams;
@@ -113,8 +113,13 @@ contract StakeSablierNFT is Adminable, ERC721Holder, ISablierLockupRecipient {
     /// @param initialAdmin The address of the initial contract admin.
     /// @param rewardERC20Token_ The address of the ERC-20 token used for rewards.
     /// @param sablierLockup_ The address of the ERC-721 Contract.
-    constructor(address initialAdmin, IERC20 rewardERC20Token_, ISablierV2Lockup sablierLockup_) {
-        admin = initialAdmin;
+    constructor(
+        address initialAdmin,
+        IERC20 rewardERC20Token_,
+        ISablierLockup sablierLockup_
+    )
+        Adminable(initialAdmin)
+    {
         rewardERC20Token = rewardERC20Token_;
         sablierLockup = sablierLockup_;
     }
@@ -237,13 +242,13 @@ contract StakeSablierNFT is Adminable, ERC721Holder, ISablierLockupRecipient {
         return ISablierLockupRecipient.onSablierLockupWithdraw.selector;
     }
 
-    /// @notice Stake a Sablier NFT with specified base asset.
+    /// @notice Stake a Sablier NFT with specified base token.
     /// @dev The `msg.sender` must approve the staking contract to spend the Sablier NFT before calling this function.
     /// One user can only stake one NFT at a time.
     /// @param streamId The stream ID of the Sablier NFT to be staked.
     function stake(uint256 streamId) external updateReward(msg.sender) {
-        // Check: the Sablier NFT is streaming the staking asset.
-        if (sablierLockup.getAsset(streamId) != rewardERC20Token) {
+        // Check: the Sablier NFT is streaming the staking token.
+        if (sablierLockup.getUnderlyingToken(streamId) != rewardERC20Token) {
             revert DifferentStreamingToken(streamId, rewardERC20Token);
         }
 

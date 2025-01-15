@@ -10,7 +10,7 @@ import { FlowUtilities } from "./FlowUtilities.sol";
 contract FlowStreamCreator {
     // Sepolia addresses
     IERC20 public constant USDC = IERC20(0xf08A50178dfcDe18524640EA6618a1f965821715);
-    ISablierFlow public constant FLOW = ISablierFlow(0x5Ae8c13f6Ae094887322012425b34b0919097d8A);
+    ISablierFlow public constant FLOW = ISablierFlow(0x52ab22e769E31564E17D524b683264B65662A014);
 
     // Create a stream that sends 1000 USDC per month.
     function createStream_1K_PerMonth() external returns (uint256 streamId) {
@@ -19,7 +19,7 @@ contract FlowStreamCreator {
 
         streamId = FLOW.create({
             sender: msg.sender, // The sender will be able to manage the stream
-            recipient: address(0xCAFE), // The recipient of the streamed assets
+            recipient: address(0xCAFE), // The recipient of the streamed tokens
             ratePerSecond: ratePerSecond, // The rate per second equivalent to 1000 USDC per month
             token: USDC, // The token to be streamed
             transferable: true // Whether the stream will be transferable or not
@@ -33,7 +33,7 @@ contract FlowStreamCreator {
 
         streamId = FLOW.create({
             sender: msg.sender, // The sender will be able to manage the stream
-            recipient: address(0xCAFE), // The recipient of the streamed assets
+            recipient: address(0xCAFE), // The recipient of the streamed tokens
             ratePerSecond: ratePerSecond, // The rate per second equivalent to 1,000,00 USDC per year
             token: USDC, // The token to be streamed
             transferable: true // Whether the stream will be transferable or not

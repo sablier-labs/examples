@@ -29,7 +29,7 @@ contract Unstake_Test is StakeSablierNFT_Fork_Test {
         // Assert: NFT has been transferred.
         assertEq(SABLIER.ownerOf(users.joe.streamId), users.joe.addr);
 
-        // Assert: `stakedAssets` and `stakedStreamId` have been deleted from storage.
+        // Assert: `stakedTokens` and `stakedStreamId` have been deleted from storage.
         assertEq(stakingContract.stakedUsers(users.joe.streamId), address(0));
         assertEq(stakingContract.stakedStreams(users.joe.addr), 0);
 

@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.22;
 
-import { ISablierV2LockupLinear } from "@sablier/v2-core/src/interfaces/ISablierV2LockupLinear.sol";
-import { ISablierV2NFTDescriptor } from "@sablier/v2-core/src/interfaces/ISablierV2NFTDescriptor.sol";
-import { SablierV2LockupLinear } from "@sablier/v2-core/src/SablierV2LockupLinear.sol";
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
+import { ILockupNFTDescriptor } from "@sablier/lockup/src/interfaces/ILockupNFTDescriptor.sol";
+import { SablierLockup } from "@sablier/lockup/src/SablierLockup.sol";
+
 import { Test } from "forge-std/src/Test.sol";
 import { StreamManagementWithHook } from "./StreamManagementWithHook.sol";
 
@@ -16,7 +17,7 @@ contract MockERC20 is ERC20 {
 
 contract StreamManagementWithHookTest is Test {
     StreamManagementWithHook internal streamManager;
-    ISablierV2LockupLinear internal sablierLockup;
+    ISablierLockup internal sablierLockup;
 
     ERC20 internal token;
     uint128 internal amount = 10e18;
@@ -27,6 +28,8 @@ contract StreamManagementWithHookTest is Test {
     address internal sablierAdmin;
 
     function setUp() public {
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_497_776 });
+
         // Create a test users
         alice = makeAddr("Alice");
         bob = makeAddr("Bob");
@@ -36,9 +39,10 @@ contract StreamManagementWithHookTest is Test {
         token = new MockERC20(bob);
 
         // Deploy Sablier Lockup Linear contract
-        sablierLockup = new SablierV2LockupLinear(
+        sablierLockup = new SablierLockup(
             sablierAdmin,
-            ISablierV2NFTDescriptor(address(0)) // Irrelevant for test purposes
+            ILockupNFTDescriptor(address(0)), // Irrelevant for test purposes
+            500 // the MAX_COUNT
         );
 
         // Deploy StreamManagementWithHook contract
@@ -65,10 +69,10 @@ contract StreamManagementWithHookTest is Test {
         // Check balances
         assertEq(token.balanceOf(alice), 0);
         assertEq(token.balanceOf(bob), 1_000_000e18 - amount);
-        assertEq(token.balanceOf(address(sablierLockup)), amount);
+        assertEq(token.balanceOf(address(streamManager.SABLIER())), amount);
 
         // Check stream details are correct
-        assertEq(address(sablierLockup.getAsset(streamId)), address(token));
+        assertEq(address(sablierLockup.getUnderlyingToken(streamId)), address(token));
         assertEq(sablierLockup.getRecipient(streamId), address(streamManager));
         assertEq(sablierLockup.getDepositedAmount(streamId), amount);
         assertEq(sablierLockup.isCancelable(streamId), true);

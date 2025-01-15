@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.8.22;
 
-import { ISablierV2Lockup } from "@sablier/v2-core/src/interfaces/ISablierV2Lockup.sol";
+import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
 
 /// @notice Examples of how to manage Sablier streams after they have been created.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/stream-management/setup
 contract StreamManagement {
-    ISablierV2Lockup public immutable sablier;
+    ISablierLockup public immutable sablier;
 
-    constructor(ISablierV2Lockup sablier_) {
+    constructor(ISablierLockup sablier_) {
         sablier = sablier_;
     }
 
