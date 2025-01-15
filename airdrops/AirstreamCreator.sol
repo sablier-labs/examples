@@ -9,11 +9,11 @@ import { ISablierMerkleFactory } from "@sablier/airdrops/src/interfaces/ISablier
 import { MerkleBase, MerkleLL } from "@sablier/airdrops/src/types/DataTypes.sol";
 
 /// @notice Example of how to create an Airstream campaign with Lockup Linear.
-/// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-airstream
+/// @dev This code is referenced in the docs: https://docs.sablier.com/guides/lockup/examples/create-airstream
 contract AirstreamCreator {
     // Sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
-    // See https://docs.sablier.com/contracts/v2/deployments for all deployments
+    // See https://docs.sablier.com/guides/lockup/deployments for all deployments
     ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
     ISablierMerkleFactory public constant FACTORY = ISablierMerkleFactory(0x4ECd5A688b0365e61c1a764E8BF96A7C5dF5d35F);
 

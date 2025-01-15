@@ -46,7 +46,7 @@ abstract contract StakeSablierNFT_Fork_Test is Test {
     IERC20 public constant DAI = IERC20(0x776b6fC2eD15D6Bb5Fc32e0c89DE68683118c62A);
     IERC20 public constant USDC = IERC20(0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238);
 
-    // Get the latest deployment address from the docs: https://docs.sablier.com/contracts/v2/deployments.
+    // Get the latest deployment address from the docs: https://docs.sablier.com/guides/lockup/deployments.
     ISablierLockup internal constant SABLIER = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
 
     // Set a stream ID to stake.

@@ -4,7 +4,7 @@ pragma solidity >=0.8.22;
 import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
 
 /// @notice Examples of how to manage Sablier streams after they have been created.
-/// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/stream-management/setup
+/// @dev This code is referenced in the docs: https://docs.sablier.com/guides/lockup/examples/stream-management/setup
 contract StreamManagement {
     ISablierLockup public immutable sablier;
 

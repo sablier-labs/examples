@@ -10,7 +10,7 @@ import { BatchLockup, Broker, LockupTranched } from "@sablier/lockup/src/types/D
 contract BatchLTStreamCreator {
     // Sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
-    // See https://docs.sablier.com/contracts/v2/deployments for all deployments
+    // See https://docs.sablier.com/guides/lockup/deployments for all deployments
     ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
     ISablierBatchLockup public constant BATCH_LOCKUP = ISablierBatchLockup(0xd4294579236eE290668c8FdaE9403c4F00D914f0);
 

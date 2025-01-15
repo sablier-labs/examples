@@ -8,7 +8,8 @@ import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.so
 import { Broker, Lockup, LockupDynamic } from "@sablier/lockup/src/types/DataTypes.sol";
 
 /// @notice Example of how to create a Lockup Dynamic stream.
-/// @dev This code is referenced in the docs: https://docs.sablier.com/contracts/v2/guides/create-stream/lockup-dynamic
+/// @dev This code is referenced in the docs:
+/// https://docs.sablier.com/guides/lockup/examples/create-stream/lockup-dynamic
 contract LockupDynamicStreamCreator {
     // sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
