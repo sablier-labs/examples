@@ -11,7 +11,7 @@ import { Broker, Lockup, LockupDynamic } from "@sablier/lockup/src/types/DataTyp
 /// @dev This code is referenced in the docs:
 /// https://docs.sablier.com/guides/lockup/examples/create-stream/lockup-dynamic
 contract LockupDynamicStreamCreator {
-    // sepolia addresses
+    // Sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
     ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
 
