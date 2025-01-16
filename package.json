@@ -17,9 +17,9 @@
   "dependencies": {
     "@openzeppelin/contracts": "5.0.2",
     "@prb/math": "4.1.0",
-    "@sablier/airdrops": "github:sablier-labs/airdrops#main",
-    "@sablier/flow": "github:sablier-labs/flow#staging",
-    "@sablier/v2-core": "github:sablier-labs/v2-core#staging"
+    "@sablier/airdrops": "github:sablier-labs/airdrops#1ad7325",
+    "@sablier/flow": "github:sablier-labs/flow#acbb14c",
+    "@sablier/v2-core": "github:sablier-labs/v2-core#076eba9"
   },
   "homepage": "https://github.com/sablier-labs/examples#readme",
   "keywords": [
