@@ -47,7 +47,7 @@
     "build:lockup": "FOUNDRY_PROFILE=lockup forge build",
     "clean": "rm -rf cache out",
     "lint": "bun run lint:sol && bun run prettier:check",
-    "lint:sol": "forge fmt . && bun solhint \"{flow,lockup}/**/*.sol\"",
+    "lint:sol": "forge fmt . && bun solhint \"{airdrops,flow,lockup}/**/*.sol\"",
     "prettier:check": "prettier --check \"**/*.{md,yml}\"",
     "prettier:write": "prettier --write \"**/*.{md,yml}\"",
     "test": "bun run test:airdrops && bun run test:flow && bun run test:lockup",

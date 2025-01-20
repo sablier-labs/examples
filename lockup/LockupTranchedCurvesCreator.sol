@@ -8,7 +8,7 @@ import { Broker, Lockup, LockupTranched } from "@sablier/lockup/src/types/DataTy
 
 /// @notice Examples of how to create Lockup Linear streams with different curve shapes.
 /// @dev A visualization of the curve shapes can be found in the docs:
-/// https://docs.sablier.com/concepts/lockup/stream-shapeslockup-tranched
+/// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-tranched
 /// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupTranchedCurvesCreator {
     // Sepolia addresses
@@ -34,7 +34,7 @@ contract LockupTranchedCurvesCreator {
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Declare a four-size tranche to match the curve shape
         uint256 trancheSize = 4;
@@ -46,7 +46,7 @@ contract LockupTranchedCurvesCreator {
             tranches[i] = LockupTranched.TrancheWithDuration({ amount: unlockAmount, duration: 25 days });
         }
 
-        // Create the LockupTranche stream
+        // Create the Lockup stream using tranche model with periodic unlocks in step
         streamId = LOCKUP.createWithDurationsLT(params, tranches);
     }
 
@@ -69,7 +69,7 @@ contract LockupTranchedCurvesCreator {
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Declare a twenty four size tranche to match the curve shape
         uint256 trancheSize = 12;
@@ -81,7 +81,7 @@ contract LockupTranchedCurvesCreator {
             tranches[i] = LockupTranched.TrancheWithDuration({ amount: unlockAmount, duration: 30 days });
         }
 
-        // Create the LockupTranche stream
+        // Create the Lockup stream using tranche model with web2 style monthly unlocks
         streamId = LOCKUP.createWithDurationsLT(params, tranches);
     }
 
@@ -104,13 +104,13 @@ contract LockupTranchedCurvesCreator {
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Declare a two-size tranche to match the curve shape
         LockupTranched.TrancheWithDuration[] memory tranches = new LockupTranched.TrancheWithDuration[](1);
         tranches[0] = LockupTranched.TrancheWithDuration({ amount: 100e18, duration: 90 days });
 
-        // Create the LockupTranche stream
+        // Create the Lockup stream using tranche model with full unlock only at the end
         streamId = LOCKUP.createWithDurationsLT(params, tranches);
     }
 }

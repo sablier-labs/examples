@@ -15,54 +15,56 @@ import { MerkleBase, MerkleLL, MerkleLT } from "@sablier/airdrops/src/types/Data
 contract MerkleCreator {
     // Sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
+
     // See https://docs.sablier.com/guides/lockup/deployments for all deployments
-    ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
     ISablierMerkleFactory public constant FACTORY = ISablierMerkleFactory(0x4ECd5A688b0365e61c1a764E8BF96A7C5dF5d35F);
+    ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
 
     function createMerkleInstant() public virtual returns (ISablierMerkleInstant merkleInstant) {
-        // Declare the base parameters for the MerkleBase.
+        // Declare the constructor parameter of MerkleBase.
         MerkleBase.ConstructorParams memory baseParams;
 
-        // Declare the base parameters.
+        // Set the base parameters.
         baseParams.token = DAI;
         baseParams.expiration = uint40(block.timestamp + 12 weeks); // The expiration of the campaign
         baseParams.initialAdmin = address(0xBeeF); // Admin of the merkle lockup contract
         baseParams.ipfsCID = "QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX"; // IPFS hash of the campaign metadata
         baseParams.merkleRoot = 0x4e07408562bedb8b60ce05c1decfe3ad16b722309875f562c03d02d7aaacb123;
-        baseParams.campaignName = "My First Campaign"; // Unique campaign name for the campaign
-        baseParams.shape = "A custom stream shape"; // Unique campaign name for the campaign
+        baseParams.campaignName = "My First Campaign"; // Unique campaign name
+        baseParams.shape = "A custom stream shape"; // Stream shape name for visualization in the UI
 
         // The total amount of tokens you want to airdrop to your users.
         uint256 aggregateAmount = 100_000_000e18;
 
-        // The total number of addresses you want to airdrop your tokens too.
+        // The total number of addresses you want to airdrop your tokens to.
         uint256 recipientCount = 10_000;
 
-        // Deploy the MerkleInstant contract.
+        // Deploy the MerkleInstant campaign contract. The deployed contract will be completely owned by the campaign
+        // admin. Recipients will interact with the deployed contract to claim their airdrop.
         merkleInstant = FACTORY.createMerkleInstant(baseParams, aggregateAmount, recipientCount);
     }
 
     function createMerkleLL() public returns (ISablierMerkleLL merkleLL) {
-        // Declare the base parameters for the MerkleBase.
+        // Declare the constructor parameter of MerkleBase.
         MerkleBase.ConstructorParams memory baseParams;
 
-        // Declare the base parameters.
+        // Set the base parameters.
         baseParams.token = DAI;
         baseParams.expiration = uint40(block.timestamp + 12 weeks); // The expiration of the campaign
         baseParams.initialAdmin = address(0xBeeF); // Admin of the merkle lockup contract
         baseParams.ipfsCID = "QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX"; // IPFS hash of the campaign metadata
         baseParams.merkleRoot = 0x4e07408562bedb8b60ce05c1decfe3ad16b722309875f562c03d02d7aaacb123;
-        baseParams.campaignName = "My First Campaign"; // Unique campaign name for the campaign
-        baseParams.shape = "A custom stream shape"; // Unique campaign name for the campaign
+        baseParams.campaignName = "My First Campaign"; // Unique campaign name
+        baseParams.shape = "A custom stream shape"; // Stream shape name for visualization in the UI
 
         // The total amount of tokens you want to airdrop to your users.
         uint256 aggregateAmount = 100_000_000e18;
 
-        // The total number of addresses you want to airdrop your tokens too.
+        // The total number of addresses you want to airdrop your tokens to.
         uint256 recipientCount = 10_000;
 
-        // Deploy the MerkleLL campaign contract. This contract will be completely owned by the campaign admin. Recipient
-        // will interact with the MerkleLL contract to claim their airdrop.
+        // Deploy the MerkleLL campaign contract. The deployed contract will be completely owned by the campaign admin.
+        // Recipients will interact with the deployed contract to claim their airdrop.
         merkleLL = FACTORY.createMerkleLL({
             baseParams: baseParams,
             lockup: LOCKUP,
@@ -84,14 +86,14 @@ contract MerkleCreator {
         // Prepare the constructor parameters.
         MerkleBase.ConstructorParams memory baseParams;
 
-        // Declare the base parameters.
+        // Set the base parameters.
         baseParams.token = DAI;
         baseParams.expiration = uint40(block.timestamp + 12 weeks); // The expiration of the campaign
         baseParams.initialAdmin = address(0xBeeF); // Admin of the merkle lockup contract
         baseParams.ipfsCID = "QmT5NvUtoM5nWFfrQdVrFtvGfKFmG7AHE8P34isapyhCxX"; // IPFS hash of the campaign metadata
         baseParams.merkleRoot = 0x4e07408562bedb8b60ce05c1decfe3ad16b722309875f562c03d02d7aaacb123;
-        baseParams.campaignName = "My First Campaign"; // Unique campaign name for the campaign
-        baseParams.shape = "A custom stream shape"; // Unique campaign name for the campaign
+        baseParams.campaignName = "My First Campaign"; // Unique campaign name
+        baseParams.shape = "A custom stream shape"; // Stream shape name for visualization in the UI
 
         // The tranches with their unlock percentages and durations.
         MerkleLT.TrancheWithPercentage[] memory tranchesWithPercentages = new MerkleLT.TrancheWithPercentage[](2);
@@ -103,10 +105,11 @@ contract MerkleCreator {
         // The total amount of tokens you want to airdrop to your users.
         uint256 aggregateAmount = 100_000_000e18;
 
-        // The total number of addresses you want to airdrop your tokens too.
+        // The total number of addresses you want to airdrop your tokens to.
         uint256 recipientCount = 10_000;
 
-        // Deploy the MerkleLT contract.
+        // Deploy the MerkleLT campaign contract. The deployed contract will be completely owned by the campaign admin.
+        // Recipients will interact with the deployed contract to claim their airdrop.
         merkleLT = FACTORY.createMerkleLT({
             baseParams: baseParams,
             lockup: LOCKUP,

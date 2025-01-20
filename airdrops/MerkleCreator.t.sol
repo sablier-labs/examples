@@ -9,7 +9,7 @@ import { Test } from "forge-std/src/Test.sol";
 import { MerkleCreator } from "./MerkleCreator.sol";
 
 contract MerkleCreatorTest is Test {
-    // Test contracts
+    // Test contract
     MerkleCreator internal merkleCreator;
 
     address internal user;
@@ -29,7 +29,7 @@ contract MerkleCreatorTest is Test {
         vm.startPrank({ msgSender: user });
     }
 
-    // Test creating the MerkleLL campaign.
+    // Test creating the MerkleInstant campaign.
     function test_CreateMerkleInstant() public {
         ISablierMerkleInstant merkleInstant = merkleCreator.createMerkleInstant();
 

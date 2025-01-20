@@ -8,7 +8,7 @@ import { Broker, Lockup, LockupLinear } from "@sablier/lockup/src/types/DataType
 
 /// @notice Examples of how to create Lockup Linear streams with different curve shapes.
 /// @dev A visualization of the curve shapes can be found in the docs:
-/// https://docs.sablier.com/concepts/lockup/stream-shapeslockup-linear
+/// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-linear
 /// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupLinearCurvesCreator {
     // Sepolia addresses
@@ -36,7 +36,7 @@ contract LockupLinearCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         LockupLinear.UnlockAmounts memory unlockAmounts = LockupLinear.UnlockAmounts({ start: 0, cliff: 0 });
         LockupLinear.Durations memory durations = LockupLinear.Durations({
@@ -44,7 +44,7 @@ contract LockupLinearCurvesCreator {
             total: 100 days // Setting a total duration of 100 days
          });
 
-        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
+        // Create the Lockup stream with Linear shape, no cliff and start time as `block.timestamp`
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
     }
 
@@ -69,7 +69,7 @@ contract LockupLinearCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Setting a cliff unlock amount of 25 DAI
         LockupLinear.UnlockAmounts memory unlockAmounts = LockupLinear.UnlockAmounts({ start: 0, cliff: 25e18 });
@@ -78,7 +78,7 @@ contract LockupLinearCurvesCreator {
             total: 100 days // Setting a total duration of 100 days
          });
 
-        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
+        // Create the Lockup stream with Linear shape, a cliff and start time as `block.timestamp`
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
     }
 
@@ -103,7 +103,7 @@ contract LockupLinearCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Setting an initial unlock amount of 25 DAI
         LockupLinear.UnlockAmounts memory unlockAmounts = LockupLinear.UnlockAmounts({ start: 25e18, cliff: 0 });
@@ -112,7 +112,7 @@ contract LockupLinearCurvesCreator {
             total: 100 days // Setting a total duration of 100 days
          });
 
-        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
+        // Create the Lockup stream with Linear shape, an initial unlock, no cliff and start time as `block.timestamp`
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
     }
 
@@ -137,7 +137,7 @@ contract LockupLinearCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Setting an initial and a cliff unlock amount of 25 DAI
         LockupLinear.UnlockAmounts memory unlockAmounts = LockupLinear.UnlockAmounts({ start: 25e18, cliff: 25e18 });
@@ -146,7 +146,7 @@ contract LockupLinearCurvesCreator {
             total: 100 days // Setting a total duration of 100 days
          });
 
-        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
+        // Create the Lockup stream with Linear shape, an initial unlock, a cliff and start time as `block.timestamp`
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
     }
 
@@ -171,7 +171,7 @@ contract LockupLinearCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         LockupLinear.UnlockAmounts memory unlockAmounts = LockupLinear.UnlockAmounts({ start: 0, cliff: 0 });
         LockupLinear.Durations memory durations = LockupLinear.Durations({
@@ -179,7 +179,7 @@ contract LockupLinearCurvesCreator {
             total: 100 days // Setting a total duration of 100 days
          });
 
-        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
+        // Create the Lockup stream with Linear shape, zero unlock until cliff and start time as `block.timestamp`
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
     }
 
@@ -204,7 +204,7 @@ contract LockupLinearCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter for charging a fee
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Setting an initial unlock amount of 25 DAI
         LockupLinear.UnlockAmounts memory unlockAmounts = LockupLinear.UnlockAmounts({ start: 25e18, cliff: 0 });
@@ -213,7 +213,8 @@ contract LockupLinearCurvesCreator {
             total: 100 days // Setting a total duration of 100 days
          });
 
-        // Create the LockupLinear stream using a function that sets the start time to `block.timestamp`
+        // Create the Lockup stream with Linear shape, an initial unlock followed by zero unlock until cliff and start
+        // time as `block.timestamp`
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
     }
 }

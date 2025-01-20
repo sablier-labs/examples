@@ -9,7 +9,7 @@ import { Broker, Lockup, LockupDynamic } from "@sablier/lockup/src/types/DataTyp
 
 /// @notice Examples of how to create Lockup Dynamic streams with different curve shapes.
 /// @dev A visualization of the curve shapes can be found in the docs:
-/// https://docs.sablier.com/concepts/lockup/stream-shapeslockup-dynamic
+/// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-dynamic
 /// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupDynamicCurvesCreator {
     // Sepolia addresses
@@ -37,7 +37,7 @@ contract LockupDynamicCurvesCreator {
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
         params.transferable = true; // Whether the stream will be transferable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Declare a single-size segment to match the curve shape
         LockupDynamic.SegmentWithDuration[] memory segments = new LockupDynamic.SegmentWithDuration[](1);
@@ -47,10 +47,11 @@ contract LockupDynamicCurvesCreator {
             exponent: ud2x18(6e18)
         });
 
-        // Create the LockupDynamic stream
+        // Create the Lockup stream using dynamic model with exponential shape
         streamId = LOCKUP.createWithDurationsLD(params, segments);
     }
 
+    /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream_ExponentialCliff() external returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
@@ -70,7 +71,7 @@ contract LockupDynamicCurvesCreator {
         params.totalAmount = totalAmount; // Total amount is the amount inclusive of all fees
         params.token = DAI; // The streaming token
         params.cancelable = true; // Whether the stream will be cancelable or not
-        params.broker = Broker(address(0), ud60x18(0)); // Optional parameter left undefined
+        params.broker = Broker(address(0), ud60x18(0)); // Optional broker fee
 
         // Declare a three-size segment to match the curve shape
         LockupDynamic.SegmentWithDuration[] memory segments = new LockupDynamic.SegmentWithDuration[](3);
@@ -79,7 +80,7 @@ contract LockupDynamicCurvesCreator {
         segments[1] = LockupDynamic.SegmentWithDuration({ amount: 20e18, duration: 1 seconds, exponent: ud2x18(1e18) });
         segments[2] = LockupDynamic.SegmentWithDuration({ amount: 80e18, duration: 50 days, exponent: ud2x18(6e18) });
 
-        // Create the LockupDynamic stream
+        // Create the Lockup stream using dynamic model  with exponential cliff shape
         streamId = LOCKUP.createWithDurationsLD(params, segments);
     }
 }
