@@ -63,6 +63,15 @@ contract MerkleCreator {
         // The total number of addresses you want to airdrop your tokens to.
         uint256 recipientCount = 10_000;
 
+        // Set the schedule of the stream that will be created from this campaign.
+        MerkleLL.Schedule memory schedule = MerkleLL.Schedule({
+            startTime: 0, // i.e. block.timestamp
+            startPercentage: ud2x18(0.01e18),
+            cliffDuration: 30 days,
+            cliffPercentage: ud2x18(0.01e18),
+            totalDuration: 90 days
+        });
+
         // Deploy the MerkleLL campaign contract. The deployed contract will be completely owned by the campaign admin.
         // Recipients will interact with the deployed contract to claim their airdrop.
         merkleLL = FACTORY.createMerkleLL({
@@ -70,13 +79,7 @@ contract MerkleCreator {
             lockup: LOCKUP,
             cancelable: false,
             transferable: true,
-            schedule: MerkleLL.Schedule({
-                startTime: 0, // i.e. block.timestamp
-                startPercentage: ud2x18(0.01e18),
-                cliffDuration: 30 days,
-                cliffPercentage: ud2x18(0.01e18),
-                totalDuration: 90 days
-            }),
+            schedule: schedule,
             aggregateAmount: aggregateAmount,
             recipientCount: recipientCount
         });

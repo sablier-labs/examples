@@ -63,9 +63,9 @@ contract LockupLinearCurvesCreatorTest is Test {
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 
-    function test_CreateStream_Cliff() external {
+    function test_CreateStream_CliffUnlock() external {
         uint256 expectedStreamId = creator.LOCKUP().nextStreamId();
-        uint256 actualStreamId = creator.createStream_Cliff();
+        uint256 actualStreamId = creator.createStream_CliffUnlock();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -95,9 +95,9 @@ contract LockupLinearCurvesCreatorTest is Test {
         assertApproxEqAbs(actualStreamedAmount, expectedStreamedAmount, 100, "cliff unlock amount + linear streaming");
     }
 
-    function test_CreateStream_UnlockLinear() external {
+    function test_CreateStream_InitialUnlock() external {
         uint256 expectedStreamId = creator.LOCKUP().nextStreamId();
-        uint256 actualStreamId = creator.createStream_UnlockLinear();
+        uint256 actualStreamId = creator.createStream_InitialUnlock();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -119,9 +119,9 @@ contract LockupLinearCurvesCreatorTest is Test {
         assertEq(actualStreamedAmount, expectedStreamedAmount);
     }
 
-    function test_CreateStream_UnlockCliff() external {
+    function test_CreateStream_InitialCliffUnlock() external {
         uint256 expectedStreamId = creator.LOCKUP().nextStreamId();
-        uint256 actualStreamId = creator.createStream_UnlockCliff();
+        uint256 actualStreamId = creator.createStream_InitialCliffUnlock();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -157,9 +157,9 @@ contract LockupLinearCurvesCreatorTest is Test {
         assertApproxEqAbs(actualStreamedAmount, expectedStreamedAmount, 100, "linear streaming after cliff");
     }
 
-    function test_CreateStream_ConstantLinear() external {
+    function test_CreateStream_ConstantCliff() external {
         uint256 expectedStreamId = creator.LOCKUP().nextStreamId();
-        uint256 actualStreamId = creator.createStream_ConstantLinear();
+        uint256 actualStreamId = creator.createStream_ConstantCliff();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);
@@ -190,9 +190,9 @@ contract LockupLinearCurvesCreatorTest is Test {
         assertEq(actualStreamedAmount, expectedStreamedAmount, "linear streaming");
     }
 
-    function test_CreateStream_UnlockConstant() external {
+    function test_CreateStream_InitialUnlockConstantCliff() external {
         uint256 expectedStreamId = creator.LOCKUP().nextStreamId();
-        uint256 actualStreamId = creator.createStream_UnlockConstant();
+        uint256 actualStreamId = creator.createStream_InitialUnlockConstantCliff();
 
         // Assert that the stream has been created.
         assertEq(actualStreamId, expectedStreamId);

@@ -49,7 +49,7 @@ contract LockupLinearCurvesCreator {
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
-    function createStream_Cliff() public returns (uint256 streamId) {
+    function createStream_CliffUnlock() public returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -83,7 +83,7 @@ contract LockupLinearCurvesCreator {
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
-    function createStream_UnlockLinear() public returns (uint256 streamId) {
+    function createStream_InitialUnlock() public returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -117,7 +117,7 @@ contract LockupLinearCurvesCreator {
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
-    function createStream_UnlockCliff() public returns (uint256 streamId) {
+    function createStream_InitialCliffUnlock() public returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -151,7 +151,7 @@ contract LockupLinearCurvesCreator {
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
-    function createStream_ConstantLinear() public returns (uint256 streamId) {
+    function createStream_ConstantCliff() public returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
@@ -184,7 +184,7 @@ contract LockupLinearCurvesCreator {
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
-    function createStream_UnlockConstant() public returns (uint256 streamId) {
+    function createStream_InitialUnlockConstantCliff() public returns (uint256 streamId) {
         // Declare the total amount as 100 DAI
         uint128 totalAmount = 100e18;
 
