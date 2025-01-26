@@ -11,7 +11,7 @@ import { ISablierMerkleFactory } from "@sablier/airdrops/src/interfaces/ISablier
 import { MerkleBase, MerkleLL, MerkleLT } from "@sablier/airdrops/src/types/DataTypes.sol";
 
 /// @notice Example of how to create Merkle airdrop campaigns.
-/// @dev This code is referenced in the docs: https://docs.sablier.com/guides/lockup/examples/create-airstream
+/// @dev This code is referenced in the docs: https://docs.sablier.com/guides/airdrops/examples/create-campaign
 contract MerkleCreator {
     // Sepolia addresses
     IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
