@@ -21,7 +21,6 @@ import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.so
 /// https://github.com/Synthetixio/synthetix/blob/develop/contracts/StakingRewards.sol.
 ///
 /// Assumptions:
-///   - The staking contract supports only one type of stream at a time, either Lockup Dynamic or Lockup Linear.
 ///   - The Sablier NFT must be transferable because staking requires transferring the NFT to the staking contract.
 ///   - This staking contract assumes that one user can only stake one NFT at a time.
 contract StakeSablierNFT is Adminable, ERC721Holder, ISablierLockupRecipient {
@@ -70,8 +69,6 @@ contract StakeSablierNFT is Adminable, ERC721Holder, ISablierLockupRecipient {
     uint256 public rewardsDuration;
 
     /// @dev This should be the Sablier Lockup contract.
-    ///   - If you used Lockup Linear, you should use the LockupLinear contract address.
-    ///   - If you used Lockup Dynamic, you should use the LockupDynamic contract address.
     ISablierLockup public sablierLockup;
 
     /// @dev The staked stream IDs mapped by user addresses.
