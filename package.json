@@ -1,6 +1,6 @@
 {
   "name": "examples",
-  "description": "Solidity examples for on-chain interaction with Sablier V2",
+  "description": "Solidity examples for on-chain interaction with Sablier Protocols",
   "version": "1.0.0",
   "author": {
     "name": "Sablier Labs Ltd",
@@ -17,9 +17,9 @@
   "dependencies": {
     "@openzeppelin/contracts": "5.0.2",
     "@prb/math": "4.1.0",
-    "@sablier/airdrops": "github:sablier-labs/airdrops#1ad7325",
-    "@sablier/flow": "github:sablier-labs/flow#acbb14c",
-    "@sablier/v2-core": "github:sablier-labs/v2-core#076eba9"
+    "@sablier/airdrops": "1.3.0",
+    "@sablier/flow": "1.1.0",
+    "@sablier/lockup": "2.0.0"
   },
   "homepage": "https://github.com/sablier-labs/examples#readme",
   "keywords": [
