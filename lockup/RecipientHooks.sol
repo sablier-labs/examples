@@ -2,7 +2,7 @@
 pragma solidity >=0.8.22;
 
 import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
-import { ISablierLockupRecipient } from "@sablier/v2-core/src/interfaces/ISablierLockupRecipient.sol";
+import { ISablierLockupRecipient } from "@sablier/lockup/src/interfaces/ISablierLockupRecipient.sol";
 
 contract RecipientHooks is ISablierLockupRecipient {
     error CallerNotSablierContract(address caller, address sablierLockup);

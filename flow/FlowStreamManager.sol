@@ -7,7 +7,7 @@ import { Broker, ISablierFlow } from "@sablier/flow/src/interfaces/ISablierFlow.
 
 contract FlowStreamManager {
     // Sepolia address
-    ISablierFlow public constant FLOW = ISablierFlow(0x5Ae8c13f6Ae094887322012425b34b0919097d8A);
+    ISablierFlow public constant FLOW = ISablierFlow(0x52ab22e769E31564E17D524b683264B65662A014);
 
     function adjustRatePerSecond(uint256 streamId) external {
         FLOW.adjustRatePerSecond({ streamId: streamId, newRatePerSecond: ud21x18(0.0001e18) });

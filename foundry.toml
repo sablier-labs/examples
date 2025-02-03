@@ -9,13 +9,17 @@ optimizer_runs = 5000
 out = "out"
 solc = "0.8.26"
 
-[profile.lockup]
-src = "lockup"
-test = "lockup"
+[profile.airdrops]
+src = "airdrops"
+test = "airdrops"
 
 [profile.flow]
 src = "flow"
 test = "flow"
+
+[profile.lockup]
+src = "lockup"
+test = "lockup"
 
 [fmt]
 bracket_spacing = true

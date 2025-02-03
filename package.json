@@ -1,6 +1,6 @@
 {
   "name": "examples",
-  "description": "Solidity examples for on-chain interaction with Sablier V2",
+  "description": "Solidity examples for on-chain interaction with Sablier Protocols",
   "version": "1.0.0",
   "author": {
     "name": "Sablier Labs Ltd",
@@ -17,9 +17,9 @@
   "dependencies": {
     "@openzeppelin/contracts": "5.0.2",
     "@prb/math": "4.1.0",
-    "@sablier/flow": "^1.0.0",
-    "@sablier/v2-core": "1.2.0",
-    "@sablier/v2-periphery": "1.2.0"
+    "@sablier/airdrops": "1.3.0",
+    "@sablier/flow": "1.1.0",
+    "@sablier/lockup": "2.0.0"
   },
   "homepage": "https://github.com/sablier-labs/examples#readme",
   "keywords": [
@@ -41,15 +41,17 @@
   "private": true,
   "repository": "github.com:sablier-labs/examples",
   "scripts": {
-    "build": "bun run build:flow && bun run build:lockup",
+    "build": "bun run build:airdrops && bun run build:flow && bun run build:lockup",
+    "build:airdrops": "FOUNDRY_PROFILE=airdrops forge build",
     "build:flow": "FOUNDRY_PROFILE=flow forge build",
     "build:lockup": "FOUNDRY_PROFILE=lockup forge build",
     "clean": "rm -rf cache out",
     "lint": "bun run lint:sol && bun run prettier:check",
-    "lint:sol": "forge fmt . && bun solhint \"{flow,lockup}/**/*.sol\"",
+    "lint:sol": "forge fmt . && bun solhint \"{airdrops,flow,lockup}/**/*.sol\"",
     "prettier:check": "prettier --check \"**/*.{md,yml}\"",
     "prettier:write": "prettier --write \"**/*.{md,yml}\"",
-    "test": "bun run test:flow && bun run test:lockup",
+    "test": "bun run test:airdrops && bun run test:flow && bun run test:lockup",
+    "test:airdrops": "FOUNDRY_PROFILE=airdrops forge test",
     "test:flow": "FOUNDRY_PROFILE=flow forge test",
     "test:lockup": "FOUNDRY_PROFILE=lockup forge test"
   }

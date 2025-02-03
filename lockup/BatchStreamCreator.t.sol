@@ -17,7 +17,7 @@ contract BatchStreamCreatorTest is Test {
 
     function setUp() public {
         // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 6_240_755 });
+        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_497_776 });
 
         // Deploy the stream creators
         dynamicCreator = new BatchLDStreamCreator();
@@ -46,7 +46,7 @@ contract BatchStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_BatchLockupDynamicStreamCreator() public {
-        uint256 nextStreamId = dynamicCreator.LOCKUP_DYNAMIC().nextStreamId();
+        uint256 nextStreamId = dynamicCreator.LOCKUP().nextStreamId();
         uint256[] memory actualStreamIds = dynamicCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
@@ -60,7 +60,7 @@ contract BatchStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_BatchLockupLinearStreamCreator() public {
-        uint256 nextStreamId = linearCreator.LOCKUP_LINEAR().nextStreamId();
+        uint256 nextStreamId = linearCreator.LOCKUP().nextStreamId();
         uint256[] memory actualStreamIds = linearCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
@@ -74,7 +74,7 @@ contract BatchStreamCreatorTest is Test {
 
     // Tests that creating streams works by checking the stream ids
     function test_BatchLockupTranchedStreamCreator() public {
-        uint256 nextStreamId = tranchedCreator.LOCKUP_TRANCHED().nextStreamId();
+        uint256 nextStreamId = tranchedCreator.LOCKUP().nextStreamId();
         uint256[] memory actualStreamIds = tranchedCreator.batchCreateStreams({ perStreamAmount: 1337e18 });
         uint256[] memory expectedStreamIds = new uint256[](2);
         expectedStreamIds[0] = nextStreamId;
