@@ -43,11 +43,11 @@ abstract contract StakeSablierNFT_Fork_Test is Test {
     event Staked(address indexed user, uint256 streamId);
     event Unstaked(address indexed user, uint256 streamId);
 
-    IERC20 public constant DAI = IERC20(0x776b6fC2eD15D6Bb5Fc32e0c89DE68683118c62A);
-    IERC20 public constant USDC = IERC20(0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238);
+    IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+    IERC20 public constant USDC = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
 
     // Get the latest deployment address from the docs: https://docs.sablier.com/guides/lockup/deployments.
-    ISablierLockup internal constant SABLIER = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
+    ISablierLockup internal constant SABLIER = ISablierLockup(0x7C01AA3783577E15fD7e272443D44B92d5b21056);
 
     // Set a stream ID to stake.
     uint256 internal stakingStreamId = 2;
@@ -65,8 +65,8 @@ abstract contract StakeSablierNFT_Fork_Test is Test {
     Users internal users;
 
     function setUp() public {
-        // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_497_776 });
+        // Fork Ethereum Mainnet
+        vm.createSelectFork("mainnet");
 
         // Create users.
         users.admin = makeAddr("admin");

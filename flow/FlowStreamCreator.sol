@@ -8,9 +8,9 @@ import { ISablierFlow } from "@sablier/flow/src/interfaces/ISablierFlow.sol";
 import { FlowUtilities } from "./FlowUtilities.sol";
 
 contract FlowStreamCreator {
-    // Sepolia addresses
-    IERC20 public constant USDC = IERC20(0xf08A50178dfcDe18524640EA6618a1f965821715);
-    ISablierFlow public constant FLOW = ISablierFlow(0x52ab22e769E31564E17D524b683264B65662A014);
+    // Mainnet addresses
+    IERC20 public constant USDC = IERC20(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48);
+    ISablierFlow public constant FLOW = ISablierFlow(0x3DF2AAEdE81D2F6b261F79047517713B8E844E04);
 
     // Create a stream that sends 1000 USDC per month.
     function createStream_1K_PerMonth() external returns (uint256 streamId) {

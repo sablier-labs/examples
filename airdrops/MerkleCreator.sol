@@ -13,12 +13,12 @@ import { MerkleBase, MerkleLL, MerkleLT } from "@sablier/airdrops/src/types/Data
 /// @notice Example of how to create Merkle airdrop campaigns.
 /// @dev This code is referenced in the docs: https://docs.sablier.com/guides/airdrops/examples/create-campaign
 contract MerkleCreator {
-    // Sepolia addresses
-    IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
+    // Mainnet addresses
+    IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
 
     // See https://docs.sablier.com/guides/lockup/deployments for all deployments
-    ISablierMerkleFactory public constant FACTORY = ISablierMerkleFactory(0x4ECd5A688b0365e61c1a764E8BF96A7C5dF5d35F);
-    ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
+    ISablierMerkleFactory public constant FACTORY = ISablierMerkleFactory(0x71DD3Ca88E7564416E5C2E350090C12Bf8F6144a);
+    ISablierLockup public constant LOCKUP = ISablierLockup(0x7C01AA3783577E15fD7e272443D44B92d5b21056);
 
     function createMerkleInstant() public virtual returns (ISablierMerkleInstant merkleInstant) {
         // Declare the constructor parameter of MerkleBase.
