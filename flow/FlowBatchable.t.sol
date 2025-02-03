@@ -10,8 +10,8 @@ contract FlowBatchable_Test is Test {
     address internal user;
 
     function setUp() external {
-        // Fork Ethereum Sepolia
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_497_776 });
+        // Fork Ethereum Mainnet
+        vm.createSelectFork("mainnet");
 
         // Deploy the batchable contract
         batchable = new FlowBatchable();

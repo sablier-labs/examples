@@ -32,4 +32,4 @@ tab_width = 4
 wrap_comments = true
 
 [rpc_endpoints]
-sepolia = "${SEPOLIA_RPC_URL}"
+mainnet = "${MAINNET_RPC_URL}"

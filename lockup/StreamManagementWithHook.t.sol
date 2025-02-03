@@ -28,7 +28,7 @@ contract StreamManagementWithHookTest is Test {
     address internal sablierAdmin;
 
     function setUp() public {
-        vm.createSelectFork({ urlOrAlias: "sepolia", blockNumber: 7_497_776 });
+        vm.createSelectFork("mainnet");
 
         // Create a test users
         alice = makeAddr("Alice");

@@ -11,9 +11,9 @@ import { Broker, Lockup, LockupLinear } from "@sablier/lockup/src/types/DataType
 /// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-linear
 /// Visualizing the curves while reviewing this code is recommended. The X axis will be assumed to represent "days".
 contract LockupLinearCurvesCreator {
-    // Sepolia addresses
-    IERC20 public constant DAI = IERC20(0x68194a729C2450ad26072b3D33ADaCbcef39D574);
-    ISablierLockup public constant LOCKUP = ISablierLockup(0xC2Da366fD67423b500cDF4712BdB41d0995b0794);
+    // Mainnet addresses
+    IERC20 public constant DAI = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+    ISablierLockup public constant LOCKUP = ISablierLockup(0x7C01AA3783577E15fD7e272443D44B92d5b21056);
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
     function createStream_Linear() public returns (uint256 streamId) {
