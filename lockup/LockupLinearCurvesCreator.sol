@@ -6,6 +6,8 @@ import { ud60x18 } from "@prb/math/src/UD60x18.sol";
 import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
 import { Broker, Lockup, LockupLinear } from "@sablier/lockup/src/types/DataTypes.sol";
 
+import { console } from "forge-std/src/console.sol";
+
 /// @notice Examples of how to create Lockup Linear streams with different curve shapes.
 /// @dev A visualization of the curve shapes can be found in the docs:
 /// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-linear
@@ -45,7 +47,11 @@ contract LockupLinearCurvesCreator {
          });
 
         // Create the Lockup stream with Linear shape, no cliff and start time as `block.timestamp`
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
+        uint256 afterGas = gasleft();
+
+        console.log("Gas used: %d for a simple Linear shape stream", beforeGas - afterGas);
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
@@ -79,7 +85,10 @@ contract LockupLinearCurvesCreator {
          });
 
         // Create the Lockup stream with Linear shape, a cliff and start time as `block.timestamp`
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for a Linear shape stream with a cliff unlock", beforeGas - afterGas);
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
@@ -113,7 +122,10 @@ contract LockupLinearCurvesCreator {
          });
 
         // Create the Lockup stream with Linear shape, an initial unlock, no cliff and start time as `block.timestamp`
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for a Linear shape stream with an initial unlock", beforeGas - afterGas);
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
@@ -147,7 +159,10 @@ contract LockupLinearCurvesCreator {
          });
 
         // Create the Lockup stream with Linear shape, an initial unlock, a cliff and start time as `block.timestamp`
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for a Linear shape stream with an initial and cliff unlock", beforeGas - afterGas);
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
@@ -180,7 +195,10 @@ contract LockupLinearCurvesCreator {
          });
 
         // Create the Lockup stream with Linear shape, zero unlock until cliff and start time as `block.timestamp`
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for a Linear shape stream with a constant cliff", beforeGas - afterGas);
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
@@ -215,6 +233,11 @@ contract LockupLinearCurvesCreator {
 
         // Create the Lockup stream with Linear shape, an initial unlock followed by zero unlock until cliff and start
         // time as `block.timestamp`
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLL(params, unlockAmounts, durations);
+        uint256 afterGas = gasleft();
+        console.log(
+            "Gas used: %d for a Linear shape stream with an initial unlock and a constant cliff", beforeGas - afterGas
+        );
     }
 }

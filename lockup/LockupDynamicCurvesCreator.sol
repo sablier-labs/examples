@@ -7,6 +7,8 @@ import { ud60x18 } from "@prb/math/src/UD60x18.sol";
 import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
 import { Broker, Lockup, LockupDynamic } from "@sablier/lockup/src/types/DataTypes.sol";
 
+import { console } from "forge-std/src/console.sol";
+
 /// @notice Examples of how to create Lockup Dynamic streams with different curve shapes.
 /// @dev A visualization of the curve shapes can be found in the docs:
 /// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-dynamic
@@ -48,7 +50,10 @@ contract LockupDynamicCurvesCreator {
         });
 
         // Create the Lockup stream using dynamic model with exponential shape
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLD(params, segments);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d Exponential curve", beforeGas - afterGas);
     }
 
     /// @dev For this function to work, the sender must have approved this dummy contract to spend DAI.
@@ -80,7 +85,10 @@ contract LockupDynamicCurvesCreator {
         segments[1] = LockupDynamic.SegmentWithDuration({ amount: 20e18, duration: 1 seconds, exponent: ud2x18(1e18) });
         segments[2] = LockupDynamic.SegmentWithDuration({ amount: 80e18, duration: 50 days, exponent: ud2x18(6e18) });
 
-        // Create the Lockup stream using dynamic model  with exponential cliff shape
+        // Create the Lockup stream using dynamic model with exponential cliff shape
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLD(params, segments);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for Exponential cliff curve", beforeGas - afterGas);
     }
 }

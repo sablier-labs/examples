@@ -6,6 +6,8 @@ import { ud60x18 } from "@prb/math/src/UD60x18.sol";
 import { ISablierLockup } from "@sablier/lockup/src/interfaces/ISablierLockup.sol";
 import { Broker, Lockup, LockupTranched } from "@sablier/lockup/src/types/DataTypes.sol";
 
+import { console } from "forge-std/src/console.sol";
+
 /// @notice Examples of how to create Lockup Linear streams with different curve shapes.
 /// @dev A visualization of the curve shapes can be found in the docs:
 /// https://docs.sablier.com/concepts/lockup/stream-shapes#lockup-tranched
@@ -47,7 +49,10 @@ contract LockupTranchedCurvesCreator {
         }
 
         // Create the Lockup stream using tranche model with periodic unlocks in step
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLT(params, tranches);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for Unlock in steps wiht four-size tranche", beforeGas - afterGas);
     }
 
     function createStream_MonthlyUnlocks() external returns (uint256 streamId) {
@@ -82,7 +87,10 @@ contract LockupTranchedCurvesCreator {
         }
 
         // Create the Lockup stream using tranche model with web2 style monthly unlocks
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLT(params, tranches);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for Monthly unlocks with twelve-size tranche", beforeGas - afterGas);
     }
 
     function createStream_Timelock() external returns (uint256 streamId) {
@@ -111,6 +119,9 @@ contract LockupTranchedCurvesCreator {
         tranches[0] = LockupTranched.TrancheWithDuration({ amount: 100e18, duration: 90 days });
 
         // Create the Lockup stream using tranche model with full unlock only at the end
+        uint256 beforeGas = gasleft();
         streamId = LOCKUP.createWithDurationsLT(params, tranches);
+        uint256 afterGas = gasleft();
+        console.log("Gas used: %d for Timelock shape", beforeGas - afterGas);
     }
 }
